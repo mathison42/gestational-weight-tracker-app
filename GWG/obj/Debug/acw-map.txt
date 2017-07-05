@@ -1,0 +1,16 @@
+GWG.dialog_SignUp1, GWG;md581c68db7fed8cafc546070a4791a818f.dialog_SignUp1
+GWG.dialog_SignUp1, GWG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md581c68db7fed8cafc546070a4791a818f.dialog_SignUp1
+GWG.dialog_SignUp1;md581c68db7fed8cafc546070a4791a818f.dialog_SignUp1
+gwg.dialog_SignUp1;md581c68db7fed8cafc546070a4791a818f.dialog_SignUp1
+GWG.GraphActivity, GWG;md581c68db7fed8cafc546070a4791a818f.GraphActivity
+GWG.GraphActivity, GWG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md581c68db7fed8cafc546070a4791a818f.GraphActivity
+GWG.GraphActivity;md581c68db7fed8cafc546070a4791a818f.GraphActivity
+gwg.GraphActivity;md581c68db7fed8cafc546070a4791a818f.GraphActivity
+GWG.MainActivity, GWG;md581c68db7fed8cafc546070a4791a818f.MainActivity
+GWG.MainActivity, GWG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md581c68db7fed8cafc546070a4791a818f.MainActivity
+GWG.MainActivity;md581c68db7fed8cafc546070a4791a818f.MainActivity
+gwg.MainActivity;md581c68db7fed8cafc546070a4791a818f.MainActivity
+OxyPlot.Xamarin.Android.PlotView, OxyPlot.Xamarin.Android;md576548fdf6897b70553b6b405e9653aa0.PlotView
+OxyPlot.Xamarin.Android.PlotView, OxyPlot.Xamarin.Android, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md576548fdf6897b70553b6b405e9653aa0.PlotView
+OxyPlot.Xamarin.Android.PlotView;md576548fdf6897b70553b6b405e9653aa0.PlotView
+oxyplot.xamarin.android.PlotView;md576548fdf6897b70553b6b405e9653aa0.PlotView
