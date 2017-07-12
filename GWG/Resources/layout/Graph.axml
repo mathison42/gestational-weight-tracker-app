@@ -1,60 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@android:color/white"
-    android:weightSum="100">
-    <ImageView
-        android:src="@drawable/gwg_pic_small"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"
-        android:id="@+id/imgIcon"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp" />
-    <TextView
-        android:text="You are on track!"
-        android:layout_width="match_parent"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/viewOnTrack"
-        android:textColor="#699791"
-        android:gravity="left"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:background="#bae2e0" />
-    <TextView
-        android:text="Your weight gain goal is 25- 35 pounds"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/viewGainGoal"
-        android:textColor="#699791"
-        android:gravity="left"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:background="#bae2e0" />
-    <TextView
-        android:text="Preganancy Weight-Gain Tracker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/viewWGTracket"
-        android:textColor="#699791"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:background="#fbfabe" />
-    <OxyPlot.Xamarin.Android.PlotView
-        android:layout_width="fill_parent"
-        android:layout_height="150dp"
-        android:id="@+id/plotViewGraph" />
-    <TextView
-        android:text="Update My Weight"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/viewUpdateWeight"
-        android:textColor="#699791"
-        android:gravity="center"
-        android:textStyle="bold"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:background="#fbfabe" />
-</LinearLayout>
+        android:background="@android:color/white"
+        android:weightSum="100">
+        <ImageView
+            android:src="@drawable/gwg_pic_small"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/imgIcon"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp" />
+        <TextView
+            android:text="You are on track!"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/viewOnTrack"
+            android:textColor="#699791"
+            android:gravity="center_vertical"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:background="#bae2e0"
+            android:paddingLeft="15dp" />
+        <TextView
+            android:text="Your weight gain goal is 25- 35 pounds"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/viewGainGoal"
+            android:textColor="#699791"
+            android:gravity="center_vertical"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:background="#bae2e0"
+            android:paddingLeft="15dp" />
+        <TextView
+            android:text="Preganancy Weight-Gain Tracker"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/viewWGTracket"
+            android:textColor="#699791"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:background="#fbfabe" />
+        <OxyPlot.Xamarin.Android.PlotView
+            android:layout_width="fill_parent"
+            android:layout_height="500dp"
+            android:id="@+id/plotViewGraph" />
+        <TextView
+            android:text="Update My Weight"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/viewUpdateWeight"
+            android:textColor="#699791"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:background="#fbfabe" />
+        <Button
+            android:text="Add Weight"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:id="@+id/btnAddWeight"
+            android:background="@drawable/btnLogin"
+            android:textColor="#699791"
+            android:textAllCaps="false"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView
+            android:text="History"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/viewHistory"
+            android:textColor="#699791"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:background="#fbfabe" />
+    </LinearLayout>
+</ScrollView>

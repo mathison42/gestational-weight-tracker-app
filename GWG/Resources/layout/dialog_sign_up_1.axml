@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:minWidth="300dp"
-    android:minHeight="400dp">
+    android:minHeight="500dp">
     <ImageView
         android:src="@drawable/gwg_pic_small"
         android:layout_width="match_parent"
@@ -18,7 +18,7 @@
         android:layout_below="@id/imgIcon"
         android:id="@+id/txtREDCapId"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="50dp"
         android:background="@drawable/edit_text_style"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
@@ -32,7 +32,7 @@
         android:layout_below="@id/txtREDCapId"
         android:inputType="numberPassword"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="50dp"
         android:id="@+id/txtPin"
         android:background="@drawable/edit_text_style"
         android:layout_marginBottom="10dp"
@@ -47,7 +47,7 @@
         android:layout_below="@id/txtPin"
         android:inputType="numberPassword"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="50dp"
         android:id="@+id/txtPinRepeat"
         android:background="@drawable/edit_text_style"
         android:layout_marginBottom="10dp"
@@ -62,7 +62,7 @@
         android:layout_below="@id/txtPinRepeat"
         android:text=""
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="50dp"
         android:id="@+id/viewFailureReason"
         android:textColor="#FF0000"
         android:gravity="center"
@@ -72,21 +72,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/viewFailureReason"
-        android:layout_marginTop="50dp">
+        android:layout_marginTop="30dp">
         <Button
             android:text="Confirm REDCap Identifier"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="50dp"
             android:id="@+id/btnREDCap"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:textColor="#699791"
             android:paddingLeft="10dp"
             android:height="35dp"
             android:background="@drawable/btnLogin"
-            android:layout_marginBottom="10dp"
+            android:paddingBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
             android:textAllCaps="false"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>

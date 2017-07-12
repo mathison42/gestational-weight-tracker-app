@@ -28,25 +28,26 @@ public final class R {
         public static final int toggle_text=0x7f02000a;
     }
     public static final class id {
+        public static final int btnAddWeight=0x7f070017;
         public static final int btnCalcPeriod=0x7f070007;
         public static final int btnCreateProfile=0x7f070011;
-        public static final int btnLogin=0x7f07001c;
+        public static final int btnLogin=0x7f07001e;
         public static final int btnREDCap=0x7f070005;
         public static final int btnSetADate=0x7f070008;
-        public static final int btnSignUp=0x7f07001e;
+        public static final int btnSignUp=0x7f070020;
         public static final int imgIcon=0x7f070000;
-        public static final int imgLock=0x7f070019;
-        public static final int inputPassword=0x7f070018;
+        public static final int imgLock=0x7f07001b;
+        public static final int inputPassword=0x7f07001a;
         public static final int plotViewGraph=0x7f070015;
-        public static final int progressBar1=0x7f07001a;
+        public static final int progressBar1=0x7f07001c;
         public static final int txtBMI=0x7f070010;
         public static final int txtHeight=0x7f07000c;
-        public static final int txtNeedAnAccount=0x7f07001d;
+        public static final int txtNeedAnAccount=0x7f07001f;
         public static final int txtPin=0x7f070002;
-        public static final int txtPinNumber=0x7f07001b;
+        public static final int txtPinNumber=0x7f07001d;
         public static final int txtPinRepeat=0x7f070003;
         public static final int txtREDCapId=0x7f070001;
-        public static final int txtTitle=0x7f070017;
+        public static final int txtTitle=0x7f070019;
         public static final int txtWeight=0x7f07000e;
         public static final int viewBMI=0x7f07000f;
         public static final int viewDate=0x7f07000a;
@@ -55,6 +56,7 @@ public final class R {
         public static final int viewFailureReason=0x7f070004;
         public static final int viewGainGoal=0x7f070013;
         public static final int viewHeight=0x7f07000b;
+        public static final int viewHistory=0x7f070018;
         public static final int viewOnTrack=0x7f070012;
         public static final int viewUpdateWeight=0x7f070016;
         public static final int viewWGTracket=0x7f070014;
