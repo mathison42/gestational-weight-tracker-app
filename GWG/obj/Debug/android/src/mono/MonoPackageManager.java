@@ -101,6 +101,10 @@ class MonoPackageManager_Resources {
 		"GWG.dll",
 		"OxyPlot.dll",
 		"OxyPlot.Xamarin.Android.dll",
+		"Xamarin.Android.Support.Animated.Vector.Drawable.dll",
+		"Xamarin.Android.Support.v4.dll",
+		"Xamarin.Android.Support.v7.AppCompat.dll",
+		"Xamarin.Android.Support.Vector.Drawable.dll",
 	};
 	public static final String[] Dependencies = new String[]{
 	};

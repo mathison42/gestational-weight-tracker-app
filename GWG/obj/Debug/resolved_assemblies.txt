@@ -9,6 +9,10 @@ C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\as
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\System.Xml.Linq.dll
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\OxyPlot.dll
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\OxyPlot.Xamarin.Android.dll
+C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\Xamarin.Android.Support.Animated.Vector.Drawable.dll
+C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\Xamarin.Android.Support.v4.dll
+C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\Xamarin.Android.Support.v7.AppCompat.dll
+C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\Xamarin.Android.Support.Vector.Drawable.dll
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\System.Runtime.dll
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\System.ComponentModel.Composition.dll
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\System.Threading.dll
