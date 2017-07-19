@@ -5,8 +5,7 @@
     <string name="openDrawer">Drawer Opened</string>
     <string name="closeDrawer">Drawer Closed</string>
     <string-array name="list_items">
-      <item>Weight Graph</item>
-      <item>Baseline</item>
+      <item>Loading...</item>
     </string-array>
   
 </resources>

@@ -4,14 +4,14 @@
   <uses-sdk android:minSdkVersion="15" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-  <application android:label="GWG" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
-    <activity android:label="GraphActivity" android:theme="@style/MyTheme" android:name="md581c68db7fed8cafc546070a4791a818f.GraphActivity" />
+  <application android:label="GWG" android:name="android.app.Application" android:allowBackup="true" android:icon="@drawable/icon" android:debuggable="true">
     <activity android:icon="@drawable/icon" android:label="GWG" android:name="md581c68db7fed8cafc546070a4791a818f.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <activity android:label="MainToolbarActivity" android:theme="@style/MyTheme" android:name="md581c68db7fed8cafc546070a4791a818f.MainToolbarActivity" />
     <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="2147483647" android:authorities="GWG.GWG.mono.MonoRuntimeProvider.__mono_init__" />
     <!--suppress ExportedReceiver-->
     <receiver android:name="mono.android.Seppuku">

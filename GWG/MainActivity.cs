@@ -36,7 +36,7 @@ namespace GWG
 
         private void MBtnLogin_Click(object sender, EventArgs e)
         {
-            var intent = new Intent(this, typeof(GraphActivity));
+            var intent = new Intent(this, typeof(MainToolbarActivity));
             StartActivity(intent);
         }
 

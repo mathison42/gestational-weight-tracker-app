@@ -74,9 +74,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dialog_SignUp1.cs" />
-    <Compile Include="GraphActivity.cs" />
     <Compile Include="MainActivity.cs" />
+    <Compile Include="MainToolbarActivity.cs" />
     <Compile Include="MyActionBarDrawerToggle.cs" />
+    <Compile Include="Resources\fragments\GraphFragment.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -93,6 +94,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\Graph.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\MainToolbar.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
