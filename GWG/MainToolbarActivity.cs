@@ -17,13 +17,14 @@ using OxyPlot.Axes;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
+using SupportFragment = Android.Support.V4.App.Fragment;
 using Java.Lang;
 using GWG.Resources.fragments;
 
 namespace GWG
 {
     [Activity(Label = "MainToolbarActivity", Theme = "@style/MyTheme")]
-    public class MainToolbarActivity : ActionBarActivity
+    public class MainToolbarActivity : ActionBarActivity, AdapterView.IOnItemClickListener
     {
         private SupportToolbar mToolbar;
         private MyActionBarDrawerToggle mDrawerToggle;
@@ -31,6 +32,10 @@ namespace GWG
         private ListView mLeftDrawer;
         private List<string> mLeftDataSet;
         private ArrayAdapter mLeftAdapter;
+        private SupportFragment mCurrentFragment;
+        private GraphFragment mGraphFragment;
+        private BaselineFragment mBaselineFragment;
+        private Stack<SupportFragment> mStackFragment;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -44,6 +49,11 @@ namespace GWG
             mToolbar = FindViewById<SupportToolbar>(Resource.Id.toolbar);
             mDrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             mLeftDrawer = FindViewById<ListView>(Resource.Id.left_drawer);
+
+            mGraphFragment = new GraphFragment();
+            mBaselineFragment = new BaselineFragment();
+
+            mStackFragment = new Stack<SupportFragment>();
 
             SetSupportActionBar(mToolbar);
 
@@ -77,20 +87,81 @@ namespace GWG
                 SupportActionBar.SetTitle(Resource.String.closeDrawer);
             }
 
-            // Drawer Initialization
+            // Show initial Fragment
             var trans = SupportFragmentManager.BeginTransaction();
-            trans.Add(Resource.Id.fragmentContainer, new GraphFragment(), "GraphFragment");
+            trans.Add(Resource.Id.fragmentContainer, mBaselineFragment, "BaselineFragment");
+            trans.Hide(mBaselineFragment);
+            trans.Add(Resource.Id.fragmentContainer, mGraphFragment, "GraphFragment");
             trans.Commit();
 
+            mCurrentFragment = mGraphFragment;
+
+
+            // Drawer Initialization
             mLeftDataSet = mLeftDataSet = new List<string>();
             mLeftDataSet.Add("Weight Graph");
             mLeftDataSet.Add("Baseline");
             mLeftDataSet.Add("Logout");
             mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
             mLeftDrawer.Adapter = mLeftAdapter;
+            mLeftDrawer.OnItemClickListener = this;
 
         }
 
+        public void OnItemClick(AdapterView container, View view, int position, long id)
+        {
+            if (id == 0)
+            {
+                // Weight Graph
+                Console.WriteLine("Loading weight graph...");
+
+                ShowFragment(mGraphFragment);
+            }
+            else if (id == 1)
+            {
+                // Baseline
+                Console.WriteLine("Loading Baseline...");
+
+                ShowFragment(mBaselineFragment);
+
+            }
+            else if (id == 2)
+            {
+                // Logout
+                Console.WriteLine("Logging out...");
+                Finish();
+
+            }
+            else
+            {
+                Console.WriteLine("Failed Loading: " + id);
+            }
+        }
+
+        public override void OnBackPressed()
+        {
+            if (SupportFragmentManager.BackStackEntryCount > 0)
+            {
+                SupportFragmentManager.PopBackStack();
+
+            }
+            else
+            {
+                base.OnBackPressed();
+            }
+        }
+        private void ShowFragment(SupportFragment fragment)
+        {
+            var trans = SupportFragmentManager.BeginTransaction();
+            trans.Hide(mCurrentFragment);
+            trans.Show(fragment);
+            trans.AddToBackStack(null);
+            trans.Commit();
+
+            mStackFragment.Push(mCurrentFragment);
+            mCurrentFragment = fragment;
+            mDrawerLayout.CloseDrawer((int)GravityFlags.Left);
+        }
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
             mDrawerToggle.OnOptionsItemSelected(item);
@@ -102,6 +173,7 @@ namespace GWG
             if (mDrawerLayout.IsDrawerOpen((int)GravityFlags.Left))
             {
                 outState.PutString("DrawerState", "Opened");
+                mCurrentFragment = mStackFragment.Pop();
             }
             else
             {

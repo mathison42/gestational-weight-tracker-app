@@ -14,6 +14,10 @@ GWG.MyActionBarDrawerToggle, GWG;md581c68db7fed8cafc546070a4791a818f.MyActionBar
 GWG.MyActionBarDrawerToggle, GWG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md581c68db7fed8cafc546070a4791a818f.MyActionBarDrawerToggle
 GWG.MyActionBarDrawerToggle;md581c68db7fed8cafc546070a4791a818f.MyActionBarDrawerToggle
 gwg.MyActionBarDrawerToggle;md581c68db7fed8cafc546070a4791a818f.MyActionBarDrawerToggle
+GWG.Resources.fragments.BaselineFragment, GWG;md5123eb17f879984f6bf34ed2d928dce54.BaselineFragment
+GWG.Resources.fragments.BaselineFragment, GWG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5123eb17f879984f6bf34ed2d928dce54.BaselineFragment
+GWG.Resources.fragments.BaselineFragment;md5123eb17f879984f6bf34ed2d928dce54.BaselineFragment
+gwg.resources.fragments.BaselineFragment;md5123eb17f879984f6bf34ed2d928dce54.BaselineFragment
 GWG.Resources.fragments.GraphFragment, GWG;md5123eb17f879984f6bf34ed2d928dce54.GraphFragment
 GWG.Resources.fragments.GraphFragment, GWG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5123eb17f879984f6bf34ed2d928dce54.GraphFragment
 GWG.Resources.fragments.GraphFragment;md5123eb17f879984f6bf34ed2d928dce54.GraphFragment

@@ -1568,20 +1568,20 @@ namespace GWG
 			// aapt resource value: 0x7f0b0067
 			public const int btnAddWeight = 2131427431;
 			
-			// aapt resource value: 0x7f0b0057
-			public const int btnCalcPeriod = 2131427415;
+			// aapt resource value: 0x7f0b0052
+			public const int btnCalcPeriod = 2131427410;
 			
-			// aapt resource value: 0x7f0b0061
-			public const int btnCreateProfile = 2131427425;
+			// aapt resource value: 0x7f0b005c
+			public const int btnCreateProfile = 2131427420;
 			
 			// aapt resource value: 0x7f0b006e
 			public const int btnLogin = 2131427438;
 			
-			// aapt resource value: 0x7f0b0055
-			public const int btnREDCap = 2131427413;
+			// aapt resource value: 0x7f0b0061
+			public const int btnREDCap = 2131427425;
 			
-			// aapt resource value: 0x7f0b0058
-			public const int btnSetADate = 2131427416;
+			// aapt resource value: 0x7f0b0053
+			public const int btnSetADate = 2131427411;
 			
 			// aapt resource value: 0x7f0b0070
 			public const int btnSignUp = 2131427440;
@@ -1823,32 +1823,32 @@ namespace GWG
 			// aapt resource value: 0x7f0b002e
 			public const int topPanel = 2131427374;
 			
-			// aapt resource value: 0x7f0b0060
-			public const int txtBMI = 2131427424;
+			// aapt resource value: 0x7f0b005b
+			public const int txtBMI = 2131427419;
 			
-			// aapt resource value: 0x7f0b005c
-			public const int txtHeight = 2131427420;
+			// aapt resource value: 0x7f0b0057
+			public const int txtHeight = 2131427415;
 			
 			// aapt resource value: 0x7f0b006f
 			public const int txtNeedAnAccount = 2131427439;
 			
-			// aapt resource value: 0x7f0b0052
-			public const int txtPin = 2131427410;
+			// aapt resource value: 0x7f0b005e
+			public const int txtPin = 2131427422;
 			
 			// aapt resource value: 0x7f0b006d
 			public const int txtPinNumber = 2131427437;
 			
-			// aapt resource value: 0x7f0b0053
-			public const int txtPinRepeat = 2131427411;
+			// aapt resource value: 0x7f0b005f
+			public const int txtPinRepeat = 2131427423;
 			
-			// aapt resource value: 0x7f0b0051
-			public const int txtREDCapId = 2131427409;
+			// aapt resource value: 0x7f0b005d
+			public const int txtREDCapId = 2131427421;
 			
 			// aapt resource value: 0x7f0b0069
 			public const int txtTitle = 2131427433;
 			
-			// aapt resource value: 0x7f0b005e
-			public const int txtWeight = 2131427422;
+			// aapt resource value: 0x7f0b0059
+			public const int txtWeight = 2131427417;
 			
 			// aapt resource value: 0x7f0b0008
 			public const int up = 2131427336;
@@ -1856,26 +1856,26 @@ namespace GWG
 			// aapt resource value: 0x7f0b0012
 			public const int useLogo = 2131427346;
 			
-			// aapt resource value: 0x7f0b005f
-			public const int viewBMI = 2131427423;
-			
 			// aapt resource value: 0x7f0b005a
-			public const int viewDate = 2131427418;
+			public const int viewBMI = 2131427418;
 			
-			// aapt resource value: 0x7f0b0056
-			public const int viewDueDate1 = 2131427414;
+			// aapt resource value: 0x7f0b0055
+			public const int viewDate = 2131427413;
 			
-			// aapt resource value: 0x7f0b0059
-			public const int viewDueDate2 = 2131427417;
+			// aapt resource value: 0x7f0b0051
+			public const int viewDueDate1 = 2131427409;
 			
 			// aapt resource value: 0x7f0b0054
-			public const int viewFailureReason = 2131427412;
+			public const int viewDueDate2 = 2131427412;
+			
+			// aapt resource value: 0x7f0b0060
+			public const int viewFailureReason = 2131427424;
 			
 			// aapt resource value: 0x7f0b0063
 			public const int viewGainGoal = 2131427427;
 			
-			// aapt resource value: 0x7f0b005b
-			public const int viewHeight = 2131427419;
+			// aapt resource value: 0x7f0b0056
+			public const int viewHeight = 2131427414;
 			
 			// aapt resource value: 0x7f0b0068
 			public const int viewHistory = 2131427432;
@@ -1889,8 +1889,8 @@ namespace GWG
 			// aapt resource value: 0x7f0b0064
 			public const int viewWGTracket = 2131427428;
 			
-			// aapt resource value: 0x7f0b005d
-			public const int viewWeight = 2131427421;
+			// aapt resource value: 0x7f0b0058
+			public const int viewWeight = 2131427416;
 			
 			// aapt resource value: 0x7f0b0020
 			public const int withText = 2131427360;
@@ -2015,10 +2015,10 @@ namespace GWG
 			public const int abc_select_dialog_material = 2130903064;
 			
 			// aapt resource value: 0x7f030019
-			public const int dialog_sign_up_1 = 2130903065;
+			public const int Baseline = 2130903065;
 			
 			// aapt resource value: 0x7f03001a
-			public const int dialog_sign_up_2 = 2130903066;
+			public const int dialog_sign_up_1 = 2130903066;
 			
 			// aapt resource value: 0x7f03001b
 			public const int Graph = 2130903067;

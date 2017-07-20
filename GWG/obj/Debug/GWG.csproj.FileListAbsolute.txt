@@ -12,7 +12,6 @@ C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\GWG.dll
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\GWG.pdb
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\bin\GWG.GWG.apk
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\dialog_sign_up_1.xml
-C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\dialog_sign_up_2.xml
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\graph.xml
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\main.xml
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\values\strings.xml
@@ -42,7 +41,8 @@ C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\bin\Debug\Xamarin.An
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\bin\Debug\Xamarin.Android.Support.v7.AppCompat.dll
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\bin\Debug\Xamarin.Android.Support.Vector.Drawable.dll
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\GWG.csprojResolveAssemblyReference.cache
+C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\maintoolbar.xml
+C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\baseline.xml
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\bin\Debug\GWG.dll.mdb
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\GWG.dll.mdb
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\OxyPlot.dll.mdb
-C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\maintoolbar.xml
