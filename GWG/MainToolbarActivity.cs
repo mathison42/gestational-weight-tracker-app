@@ -89,8 +89,6 @@ namespace GWG
 
             // Show initial Fragment
             var trans = SupportFragmentManager.BeginTransaction();
-            trans.Add(Resource.Id.fragmentContainer, mBaselineFragment, "BaselineFragment");
-            trans.Hide(mBaselineFragment);
             trans.Add(Resource.Id.fragmentContainer, mGraphFragment, "GraphFragment");
             trans.Commit();
 
@@ -115,14 +113,14 @@ namespace GWG
                 // Weight Graph
                 Console.WriteLine("Loading weight graph...");
 
-                ShowFragment(mGraphFragment);
+                ReplaceFragment(mGraphFragment);
             }
             else if (id == 1)
             {
                 // Baseline
                 Console.WriteLine("Loading Baseline...");
 
-                ShowFragment(mBaselineFragment);
+                ReplaceFragment(mBaselineFragment);
 
             }
             else if (id == 2)
@@ -140,27 +138,24 @@ namespace GWG
 
         public override void OnBackPressed()
         {
-            if (SupportFragmentManager.BackStackEntryCount > 0)
-            {
-                SupportFragmentManager.PopBackStack();
-
-            }
-            else
-            {
-                base.OnBackPressed();
-            }
+            base.OnBackPressed();
         }
-        private void ShowFragment(SupportFragment fragment)
+
+        public void ReplaceFragment(SupportFragment fragment)
         {
+            if (fragment.IsVisible)
+            {
+                return;
+            }
+
             var trans = SupportFragmentManager.BeginTransaction();
-            trans.Hide(mCurrentFragment);
-            trans.Show(fragment);
-            trans.AddToBackStack(null);
+
+            trans.Replace(Resource.Id.fragmentContainer, fragment);
             trans.Commit();
 
-            mStackFragment.Push(mCurrentFragment);
             mCurrentFragment = fragment;
             mDrawerLayout.CloseDrawer((int)GravityFlags.Left);
+
         }
         public override bool OnOptionsItemSelected(IMenuItem item)
         {

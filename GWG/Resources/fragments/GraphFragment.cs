@@ -27,15 +27,11 @@ namespace GWG.Resources.fragments
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            // Graph Initialization
-
-
-            // Create your fragment here
         }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            // Graph Initialization
             View view = inflater.Inflate(Resource.Layout.Graph, container, false);
             plotViewGraph = view.FindViewById<PlotView>(Resource.Id.plotViewGraph);
             MyGraph = CreatePlotModel();
