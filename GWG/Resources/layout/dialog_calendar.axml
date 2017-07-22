@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@android:color/white"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="300dp"
+    android:minHeight="300dp">
+  <CalendarView
+      android:layout_alignParentTop="true"
+      android:id="@+id/viewCalendar"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:minDate=""
+      android:maxDate=""
+      android:selectedWeekBackgroundColor="#f00"
+      android:weekSeparatorLineColor="#0f0" />
+  <Button
+      android:layout_below="@id/viewCalendar"
+      android:text="Save Date"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:id="@+id/btnSetCalendar"
+      android:textSize="25dp"
+      android:textColor="#699791"
+      android:background="@drawable/btnLogin"
+      android:layout_marginLeft="10dp"
+      android:layout_marginRight="10dp"
+      android:layout_marginTop="20dp"
+      android:layout_marginBottom="20dp"
+      android:textAllCaps="false" />
+</RelativeLayout>

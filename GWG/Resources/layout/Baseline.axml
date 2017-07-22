@@ -214,7 +214,7 @@
             android:layout_height="150dp"
             android:weightSum="1.5" >
           <TextView
-              android:id="@+id/viewCreateProfileError"
+              android:id="@+id/viewSaveProfileError"
               android:text=""
               android:textSize="20dp"
               android:layout_width="match_parent"
@@ -226,8 +226,8 @@
               android:layout_alignParentTop="true"
               android:layout_marginTop="5dp" />
          <Button
-              android:layout_below="@id/viewCreateProfileError"
-              android:id="@+id/btnCreateProfile"
+              android:layout_below="@id/viewSaveProfileError"
+              android:id="@+id/btnSaveProfile"
               android:text="Save Profile"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
