@@ -24,6 +24,8 @@ namespace GWG.Resources.fragments
         private TextView mViewDate;
         private TextView mViewSaveProfileError;
 
+        private DateTime mDueDate;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -62,9 +64,9 @@ namespace GWG.Resources.fragments
         {
             DateTime lmp = e.Date;
             Console.WriteLine("LMP Date: " + lmp.ToShortDateString());
-            DateTime dueDate = calcNaegelesRule(lmp);
-            Console.WriteLine("Due Date: " + dueDate.ToShortDateString());
-            mViewDate.Text = dueDate.ToShortDateString();
+            mDueDate = calcNaegelesRule(lmp);
+            Console.WriteLine("Due Date: " + mDueDate.ToShortDateString());
+            mViewDate.Text = mDueDate.ToShortDateString();
         }
 
         private void MBtnSetADate_Click(object sender, EventArgs e)
@@ -78,9 +80,9 @@ namespace GWG.Resources.fragments
 
         private void CalendarDialog_mCalendarComplete_SelectDate(object sender, CalendarEventArg e)
         {
-            DateTime date = e.Date;
-            Console.WriteLine("Selected Date: " + date.ToShortDateString());
-            mViewDate.Text = date.ToShortDateString();
+            mDueDate = e.Date;
+            Console.WriteLine("Selected Date: " + mDueDate.ToShortDateString());
+            mViewDate.Text = mDueDate.ToShortDateString();
         }
 
         private void MBtnSaveProfile_Click(object sender, EventArgs e)
