@@ -6,14 +6,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/white">
-        <View
-            android:id="@+id/line1"
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="#bae2e0"
-            android:layout_alignParentTop="true" />
         <TextView
-            android:layout_below="@id/line1"
+            android:layout_alignParentTop="true"
             android:id="@+id/textDueDate"
             android:text="Calcuate the Due Date"
             android:layout_width="match_parent"

@@ -16,11 +16,17 @@
             app:theme="@style/ToolBarStyle"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
         <ImageView
+            android:id="@+id/viewIconToolbar"
             android:src="@drawable/gwg_pic_small"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:adjustViewBounds="true"
-            android:id="@+id/imgIcon" />
+            android:adjustViewBounds="true" />
+        <View
+            android:layout_below="@id/viewIconToolbar"
+            android:id="@+id/lineToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="#bae2e0" />
     </RelativeLayout>
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer_layout"
