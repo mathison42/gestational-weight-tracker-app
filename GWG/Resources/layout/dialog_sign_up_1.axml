@@ -58,7 +58,7 @@
         android:paddingLeft="10dp"
         android:textColor="#699791"
         android:textColorHint="#699791" />
-  <TextView
+    <TextView
         android:layout_below="@id/txtPinRepeat"
         android:text=""
         android:layout_width="match_parent"
