@@ -20,9 +20,14 @@ namespace GWG.Resources.fragments
     {
         private Button mBtnCalcPeriod;
         private Button mBtnSetADate;
-        private Button mBtnSaveProfile;
         private TextView mViewDate;
+
+        private EditText mTxtHeight;
+        private EditText mTxtWeight;
+        private TextView mTxtBMI;
+
         private TextView mViewSaveProfileError;
+        private Button mBtnSaveProfile;
 
         private DateTime mDueDate;
 
@@ -37,17 +42,87 @@ namespace GWG.Resources.fragments
         {
             View view = inflater.Inflate(Resource.Layout.Baseline, container, false);
 
+            // Retrieve Objects
             mBtnCalcPeriod = view.FindViewById<Button>(Resource.Id.btnCalcPeriod);
             mBtnSetADate = view.FindViewById<Button>(Resource.Id.btnSetADate);
-            mBtnSaveProfile = view.FindViewById<Button>(Resource.Id.btnSaveProfile);
             mViewDate = view.FindViewById<TextView>(Resource.Id.viewDate);
-            mViewSaveProfileError = view.FindViewById<TextView>(Resource.Id.viewSaveProfileError);
 
+
+            mTxtHeight = view.FindViewById<EditText>(Resource.Id.txtHeight);
+            mTxtWeight = view.FindViewById<EditText>(Resource.Id.txtWeight);
+            mTxtBMI    = view.FindViewById<TextView>(Resource.Id.txtBMI);
+
+            mViewSaveProfileError = view.FindViewById<TextView>(Resource.Id.viewSaveProfileError);
+            mBtnSaveProfile = view.FindViewById<Button>(Resource.Id.btnSaveProfile);
+
+            // Set on Button Clicks
             mBtnCalcPeriod.Click += MBtnCalcPeriod_Click;
             mBtnSetADate.Click += MBtnSetADate_Click;
             mBtnSaveProfile.Click += MBtnSaveProfile_Click;
 
+            // Set Text Listeners
+            mTxtHeight.AfterTextChanged += MTxtHeight_AfterTextChanged;
+            mTxtWeight.AfterTextChanged += MTxtWeight_AfterTextChanged;
             return view;
+        }
+
+        private void MTxtHeight_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
+        {
+            Console.WriteLine("Height: " + e.Editable.ToString());
+            setTextBMI(e.Editable.ToString(), mTxtWeight.Text);
+        }
+
+        private void MTxtWeight_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
+        {
+            Console.WriteLine("Weight: " + e.Editable.ToString());
+            setTextBMI(mTxtHeight.Text, e.Editable.ToString());
+        }
+
+        private void setTextBMI(String heightStr, String weightStr)
+        {
+            if (String.IsNullOrEmpty(heightStr) || String.IsNullOrEmpty(weightStr))
+            {
+                mTxtBMI.Text = "";
+            } else
+            {
+                double height;
+                double weight;
+                if (Double.TryParse(heightStr, out height))
+                {
+                    if (height <= 0)
+                    {
+                        mTxtBMI.Text = "Negative Height";
+                        return;
+                    }
+                } else
+                {
+                    mTxtBMI.Text = "Invalid Height";
+                    return;
+                }
+                if (Double.TryParse(weightStr, out weight))
+                {
+                    if (height <= 0)
+                    {
+                        mTxtBMI.Text = "Negative Weight";
+                        return;
+                    }
+                }
+                else
+                {
+                    mTxtBMI.Text = "Invalid Weight";
+                    return;
+                }
+
+                mTxtBMI.Text = calculateBMI(height, weight).ToString("0.0");
+
+            }
+        }
+
+        // http://www.bmi-calculator.net/bmi-formula.php
+        // BMI = (Weight in Pounds / (Height in inches x Height in inches)) x 703
+        private double calculateBMI(double height, double weight)
+        {
+            return (weight / (height * height)) * 703;
         }
 
         private void MBtnCalcPeriod_Click(object sender, EventArgs e)
