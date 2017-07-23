@@ -52,9 +52,13 @@ namespace GWG.Resources.fragments
 
         private void MBtnCalcPeriod_Click(object sender, EventArgs e)
         {
+            Bundle bundle = new Bundle();
+            bundle.PutString("title", "Select Date of Last Menstrual Period (LMP)");
+
             //Pull up Calendar Dialog
             dialog_Calendar calendarDialog = new dialog_Calendar();
-            calendarDialog.Show(this.FragmentManager, "Dialog Calendar Fragment");
+            calendarDialog.Arguments = bundle;
+            calendarDialog.Show(this.FragmentManager, "Dialog Calendar Fragment - Calculate Date");
 
             calendarDialog.mCalendarComplete += CalendarDialog_mCalendarComplete_Naegele;
             
@@ -71,9 +75,13 @@ namespace GWG.Resources.fragments
 
         private void MBtnSetADate_Click(object sender, EventArgs e)
         {
+            Bundle bundle = new Bundle();
+            bundle.PutString("title", "Select Due Date");
+
             //Pull up Calendar Dialog
             dialog_Calendar calendarDialog = new dialog_Calendar();
-            calendarDialog.Show(this.FragmentManager, "Dialog Calendar Fragment");
+            calendarDialog.Arguments = bundle;
+            calendarDialog.Show(this.FragmentManager, "Dialog Calendar Fragment - Set Date");
 
             calendarDialog.mCalendarComplete += CalendarDialog_mCalendarComplete_SelectDate;
         }
