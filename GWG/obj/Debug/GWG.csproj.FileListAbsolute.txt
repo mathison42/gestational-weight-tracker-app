@@ -47,3 +47,4 @@ C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\bin\Debug\GWG.dll.md
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\GWG.dll.mdb
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\OxyPlot.dll.mdb
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\GWG.csprojResolveAssemblyReference.cache
+C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\dialog_weight.xml

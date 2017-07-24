@@ -185,6 +185,9 @@ namespace GWG.Resources.fragments
             mViewSaveProfileError.SetTextColor(Android.Graphics.Color.ForestGreen);
 
             // Save Profile Data in Database...
+            // mDueDate
+            // mTxtWeight.Text
+            // mTxtBMI.Text
         }
 
         // https://en.wikipedia.org/wiki/Naegele%27s_rule
