@@ -118,13 +118,6 @@ namespace GWG.Resources.fragments
             }
         }
 
-        // http://www.bmi-calculator.net/bmi-formula.php
-        // BMI = (Weight in Pounds / (Height in inches x Height in inches)) x 703
-        private double calculateBMI(double height, double weight)
-        {
-            return (weight / (height * height)) * 703;
-        }
-
         private void MBtnCalcPeriod_Click(object sender, EventArgs e)
         {
             Bundle bundle = new Bundle();
@@ -170,7 +163,28 @@ namespace GWG.Resources.fragments
 
         private void MBtnSaveProfile_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            DateTime dueDate;
+            if (!DateTime.TryParse(mViewDate.Text, out dueDate))
+            {
+                mViewSaveProfileError.Text = "Specify a Due Date";
+                return;
+            }
+
+            double bmi;
+            if (!Double.TryParse(mTxtBMI.Text, out bmi))
+            {
+                mViewSaveProfileError.Text = "Specify a BMI";
+                return;
+            }
+
+            mBtnCalcPeriod.Enabled = false;
+            mBtnSetADate.Enabled = false;
+            mTxtHeight.InputType = Android.Text.InputTypes.Null;
+            mTxtWeight.InputType = Android.Text.InputTypes.Null;
+            mViewSaveProfileError.Text = "Profile Saved";
+            mViewSaveProfileError.SetTextColor(Android.Graphics.Color.ForestGreen);
+
+            // Save Profile Data in Database...
         }
 
         // https://en.wikipedia.org/wiki/Naegele%27s_rule
@@ -181,6 +195,13 @@ namespace GWG.Resources.fragments
             dueDate = dueDate.AddMonths(-3);
             dueDate = dueDate.AddDays(7);
             return dueDate;
+        }
+
+        // http://www.bmi-calculator.net/bmi-formula.php
+        // BMI = (Weight in Pounds / (Height in inches x Height in inches)) x 703
+        private double calculateBMI(double height, double weight)
+        {
+            return (weight / (height * height)) * 703;
         }
     }
 }

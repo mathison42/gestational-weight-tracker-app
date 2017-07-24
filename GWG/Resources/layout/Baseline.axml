@@ -212,36 +212,36 @@
             android:id="@+id/layoutCreateProfile"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:weightSum="1.5" >
-          <TextView
-              android:id="@+id/viewSaveProfileError"
-              android:text=""
-              android:textSize="20dp"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textColor="#FF0000"
-              android:gravity="center"
-              android:textStyle="bold"
-              android:layout_weight=".5"
-              android:layout_alignParentTop="true"
-              android:layout_marginTop="5dp" />
-         <Button
-              android:layout_below="@id/viewSaveProfileError"
-              android:id="@+id/btnSaveProfile"
-              android:text="Save Profile"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:textSize="25dp"
-              android:textColor="#699791"
-              android:paddingLeft="10dp"
-              android:height="35dp"
-              android:background="@drawable/btnLogin"
-              android:layout_marginBottom="10dp"
-              android:layout_marginLeft="20dp"
-              android:layout_marginRight="20dp"
-              android:layout_marginTop="10dp"
-              android:textAllCaps="false"
-              android:layout_weight="1"/>
+            android:weightSum="1.5">
+            <TextView
+                android:id="@+id/viewSaveProfileError"
+                android:text=""
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_weight=".5"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="5dp" />
+            <Button
+                android:layout_below="@id/viewSaveProfileError"
+                android:id="@+id/btnSaveProfile"
+                android:text="Save Profile"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="25dp"
+                android:textColor="#699791"
+                android:paddingLeft="10dp"
+                android:height="35dp"
+                android:background="@drawable/btnLogin"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:textAllCaps="false"
+                android:layout_weight="1" />
         </RelativeLayout>
     </RelativeLayout>
 </ScrollView>
