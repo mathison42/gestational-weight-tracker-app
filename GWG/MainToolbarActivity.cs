@@ -34,6 +34,7 @@ namespace GWG
         private ArrayAdapter mLeftAdapter;
         private SupportFragment mCurrentFragment;
         private GraphFragment mGraphFragment;
+        private HistoryFragment mHistoryFragment;
         private BaselineFragment mBaselineFragment;
         private Stack<SupportFragment> mStackFragment;
 
@@ -51,6 +52,7 @@ namespace GWG
             mLeftDrawer = FindViewById<ListView>(Resource.Id.left_drawer);
 
             mGraphFragment = new GraphFragment();
+            mHistoryFragment = new HistoryFragment();
             mBaselineFragment = new BaselineFragment();
 
             mStackFragment = new Stack<SupportFragment>();
@@ -98,6 +100,7 @@ namespace GWG
             // Drawer Initialization
             mLeftDataSet = mLeftDataSet = new List<string>();
             mLeftDataSet.Add("Weight Graph");
+            mLeftDataSet.Add("History");
             mLeftDataSet.Add("Baseline");
             mLeftDataSet.Add("Logout");
             mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
@@ -117,13 +120,21 @@ namespace GWG
             }
             else if (id == 1)
             {
+                // History
+                Console.WriteLine("Loading History...");
+
+                ReplaceFragment(mHistoryFragment);
+
+
+            }
+            else if (id == 2)
+            {
                 // Baseline
                 Console.WriteLine("Loading Baseline...");
 
                 ReplaceFragment(mBaselineFragment);
-
             }
-            else if (id == 2)
+            else if (id == 3)
             {
                 // Logout
                 Console.WriteLine("Logging out...");

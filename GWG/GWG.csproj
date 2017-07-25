@@ -79,6 +79,7 @@
     <Compile Include="MainToolbarActivity.cs" />
     <Compile Include="MyActionBarDrawerToggle.cs" />
     <Compile Include="Resources\fragments\BaselineFragment.cs" />
+    <Compile Include="Resources\fragments\HistoryFragment.cs" />
     <Compile Include="Resources\fragments\GraphFragment.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,6 +106,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\dialog_weight.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\History.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
