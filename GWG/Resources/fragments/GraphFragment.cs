@@ -26,7 +26,8 @@ namespace GWG.Resources.fragments
 
         private DateTime mDueDate;
         private double mBMI;
-        private double mPreWeight;
+        private long[] mDates;
+        private int[] mWeights;
 
         private Button mBtnAddWeight;
 
@@ -37,10 +38,12 @@ namespace GWG.Resources.fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Retreive Due Date and BMI
-            mDueDate = DateTime.Today.AddMonths(9);
-            mBMI = 25.0;
-            mPreWeight = 130;
+            // Retreive Due Date, BMI, dates, and weights
+            Bundle bundle = Arguments;
+            mDates = bundle.GetLongArray("dates");
+            mWeights = bundle.GetIntArray("weights");
+            mBMI = bundle.GetDouble("bmi");
+            mDueDate = new DateTime(bundle.GetLong("dueDate"));
      
             // Graph Initialization
             View view = inflater.Inflate(Resource.Layout.Graph, container, false);
@@ -69,25 +72,36 @@ namespace GWG.Resources.fragments
                 MarkerStroke = OxyColors.White
             };
 
-            series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(mDueDate.AddYears(-1).AddMonths(3).AddDays(-7)), mPreWeight));
+            if (mDates.Length != mWeights.Length)
+            {
+                Console.WriteLine("[Error] Dates and Weights do not equal in size!");
+            }
+            else
+            {
+                for (int i = 0; i < mDates.Length; i++)
+                {
+                    series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(mDates[i])), mWeights[i]));
+                }
+            }
+            /**series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(mDueDate.AddYears(-1).AddMonths(3).AddDays(-7)), mPreWeight));
             series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(mDueDate.AddYears(-1).AddMonths(3).AddDays(-7).AddDays(7)), mPreWeight + 3));
-            series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(mDueDate.AddYears(-1).AddMonths(3).AddDays(-7).AddDays(14)), mPreWeight + 3));
+            series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(mDueDate.AddYears(-1).AddMonths(3).AddDays(-7).AddDays(14)), mPreWeight + 3));*/
 
             var plotModel = new PlotModel { Title = "" };
 
-            DateTime startDate = mDueDate.AddYears(-1).AddMonths(3).AddDays(-7); // Reverse Naegele's Rule
-            DateTime endDate = DateTime.Today;
+            DateTime startDate = new DateTime(mDates[0]).AddDays(-1);
+            DateTime endDate = new DateTime(mDates[mDates.Length-1]).AddDays(1);
 
-            // Will later need to calculate based on new data
-            int startWeight = (int)mPreWeight - 5;
-            int endWeight = (int)mPreWeight + 30;
+            // Get the min and max weights for the initial bounds
+            int minWeight = (int)mWeights.Min();
+            int maxWeight = (int)mWeights.Max();
 
             plotModel.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = DateTimeAxis.ToDouble(startDate), Maximum = DateTimeAxis.ToDouble(endDate), StringFormat = "M/d",
                 AbsoluteMinimum = DateTimeAxis.ToDouble(startDate), AbsoluteMaximum = DateTimeAxis.ToDouble(endDate)
             });
-            plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = startWeight, Maximum = endWeight,
-                AbsoluteMinimum = startWeight - 10,
-                AbsoluteMaximum = endWeight
+            plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = minWeight-3, Maximum = maxWeight+3,
+                AbsoluteMinimum = minWeight - 10,
+                AbsoluteMaximum = maxWeight + 10
             });
 
             plotModel.Series.Add(series1);

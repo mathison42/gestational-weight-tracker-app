@@ -40,6 +40,9 @@ namespace GWG
 
         private List<long> mDates;
         private List<int> mWeights;
+        private long mDueDate;
+        private double mHeight;
+        private double mBMI;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -95,6 +98,14 @@ namespace GWG
             // Retrieve Data
             getData();
 
+            // Set initial graph data
+            Bundle args = new Bundle();
+            args.PutLongArray("dates", mDates.ToArray());
+            args.PutIntArray("weights", mWeights.ToArray());
+            args.PutDouble("bmi", mBMI);
+            args.PutLong("dueDate", mDueDate);
+            mGraphFragment.Arguments = args;
+
             // Show initial Fragment
             var trans = SupportFragmentManager.BeginTransaction();
             trans.Add(Resource.Id.fragmentContainer, mGraphFragment, "GraphFragment");
@@ -122,6 +133,16 @@ namespace GWG
                 // Weight Graph
                 Console.WriteLine("Loading weight graph...");
 
+                if (!mGraphFragment.IsVisible)
+                {
+                    Bundle args = new Bundle();
+                    args.PutLongArray("dates", mDates.ToArray());
+                    args.PutIntArray("weights", mWeights.ToArray());
+                    args.PutDouble("bmi", mBMI);
+                    args.PutLong("dueDate", mDueDate);
+                    mGraphFragment.Arguments = args;
+                }
+
                 ReplaceFragment(mGraphFragment);
             }
             else if (id == 1)
@@ -144,7 +165,16 @@ namespace GWG
             {
                 // Baseline
                 Console.WriteLine("Loading Baseline...");
-
+                
+                if (!mBaselineFragment.IsVisible)
+                {
+                    Bundle args = new Bundle();
+                    args.PutInt("weight", mWeights[0]);
+                    args.PutDouble("height", mHeight);
+                    args.PutDouble("bmi", mBMI);
+                    args.PutLong("dueDate", mDueDate);
+                    mBaselineFragment.Arguments = args;
+                }
                 ReplaceFragment(mBaselineFragment);
             }
             else if (id == 3)
@@ -223,6 +253,11 @@ namespace GWG
             mWeights.Add(180);
             mWeights.Add(185);
             mWeights.Add(190);
+
+            mHeight = 76.5;
+            mBMI = 25;
+            mDueDate = DateTime.UtcNow.AddYears(1).AddMonths(-3).AddDays(7).Ticks;
+
         }
 
     }

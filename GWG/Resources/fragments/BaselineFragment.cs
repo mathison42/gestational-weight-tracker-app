@@ -30,7 +30,7 @@ namespace GWG.Resources.fragments
         private Button mBtnSaveProfile;
 
         private DateTime mDueDate;
-
+        
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -55,14 +55,33 @@ namespace GWG.Resources.fragments
             mViewSaveProfileError = view.FindViewById<TextView>(Resource.Id.viewSaveProfileError);
             mBtnSaveProfile = view.FindViewById<Button>(Resource.Id.btnSaveProfile);
 
-            // Set on Button Clicks
-            mBtnCalcPeriod.Click += MBtnCalcPeriod_Click;
-            mBtnSetADate.Click += MBtnSetADate_Click;
-            mBtnSaveProfile.Click += MBtnSaveProfile_Click;
+            Bundle bundle = Arguments;
+            long tempDueDate = bundle.GetLong("dueDate");
+            if (tempDueDate > 0)
+            {
+                // Set values
+                mViewDate.Text = new DateTime(tempDueDate).ToShortDateString();
+                mTxtHeight.Text = bundle.GetDouble("height").ToString() + " inches";
+                mTxtWeight.Text = bundle.GetInt("weight").ToString() + " lbs";
+                mTxtBMI.Text = bundle.GetDouble("bmi").ToString();
 
-            // Set Text Listeners
-            mTxtHeight.AfterTextChanged += MTxtHeight_AfterTextChanged;
-            mTxtWeight.AfterTextChanged += MTxtWeight_AfterTextChanged;
+                // Disable Buttons and EditTexts
+                mBtnCalcPeriod.Enabled = false;
+                mBtnSetADate.Enabled = false;
+                mTxtHeight.Enabled = false;
+                mTxtWeight.Enabled = false;
+                mBtnSaveProfile.Visibility = ViewStates.Invisible;
+            } else
+            {
+                // Set on Button Clicks
+                mBtnCalcPeriod.Click += MBtnCalcPeriod_Click;
+                mBtnSetADate.Click += MBtnSetADate_Click;
+                mBtnSaveProfile.Click += MBtnSaveProfile_Click;
+
+                // Set Text Listeners
+                mTxtHeight.AfterTextChanged += MTxtHeight_AfterTextChanged;
+                mTxtWeight.AfterTextChanged += MTxtWeight_AfterTextChanged;
+            }
             return view;
         }
 
