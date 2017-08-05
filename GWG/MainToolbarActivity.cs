@@ -211,11 +211,10 @@ namespace GWG
         public void getData()
         {
             // Retrieve data from database... for right now, falsify data
-            DateTime ogTime = new DateTime(2000, 1, 1);
             mDates = new List<long>();
-            mDates.Add((long)new TimeSpan(DateTime.Now.Ticks - ogTime.Ticks).TotalMilliseconds);
-            mDates.Add((long)new TimeSpan(DateTime.Now.AddDays(7).Ticks - ogTime.Ticks).TotalMilliseconds);
-            mDates.Add((long)new TimeSpan(DateTime.Now.AddDays(14).Ticks - ogTime.Ticks).TotalMilliseconds);
+            mDates.Add(DateTime.UtcNow.Ticks);
+            mDates.Add(DateTime.UtcNow.AddDays(7).Ticks);
+            mDates.Add(DateTime.UtcNow.AddDays(14).Ticks);
             /**mDates.Add(DateTime.Today.Ticks / TimeSpan.TicksPerMillisecond);
             mDates.Add(DateTime.Today.AddDays(7).Ticks / TimeSpan.TicksPerMillisecond);
             mDates.Add(DateTime.Today.AddDays(14).Ticks / TimeSpan.TicksPerMillisecond);*/

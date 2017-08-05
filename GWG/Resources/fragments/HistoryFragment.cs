@@ -20,7 +20,6 @@ namespace GWG.Resources.fragments
 {
     public class HistoryFragment : Android.Support.V4.App.Fragment { 
         private RecyclerView mWeightList;
-        private List<DateWeight> mItems;
         RecyclerView.LayoutManager mLayoutManager;
         RecyclerAdapter mAdapter;
 
