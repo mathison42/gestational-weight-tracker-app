@@ -24,6 +24,8 @@ namespace GWG.Resources.fragments
         RecyclerView.LayoutManager mLayoutManager;
         RecyclerAdapter mAdapter;
 
+        private List<DateWeight> mDateWeights;
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -31,21 +33,29 @@ namespace GWG.Resources.fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // History Initialization
+            Bundle bundle = Arguments;
+            long[] dates = bundle.GetLongArray("dates");
+            int[] weights = bundle.GetIntArray("weights");
+
             View view = inflater.Inflate(Resource.Layout.History, container, false);
             mWeightList = view.FindViewById<RecyclerView>(Resource.Id.weightList);
             mWeightList.HasFixedSize = true;
 
-            mItems = new List<DateWeight>();
-            mItems.Add(new DateWeight(DateTime.Today, 180));
-            mItems.Add(new DateWeight(DateTime.Today.AddDays(7), 185));
-            mItems.Add(new DateWeight(DateTime.Today.AddDays(14), 190));
-
-
+            mDateWeights = new List<DateWeight>();
+            if (dates.Length != weights.Length)
+            {
+                Console.WriteLine("[Error] Dates and Weights do not equal in size!");
+            } else
+            {
+                for (int i = 0; i < dates.Length; i++)
+                {
+                    mDateWeights.Add(new DateWeight(dates[i], weights[i]));
+                }
+            }
+            
             mLayoutManager = new LinearLayoutManager(this.Context);
             mWeightList.SetLayoutManager(mLayoutManager);
-            //mAdapter = new RecyclerAdapter(mItems);
-            mAdapter = new RecyclerAdapter(mItems);
+            mAdapter = new RecyclerAdapter(mDateWeights);
             mWeightList.SetAdapter(mAdapter);
 
             Console.WriteLine("Done");

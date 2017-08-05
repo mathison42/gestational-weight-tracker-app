@@ -34,7 +34,7 @@ namespace GWG.Resources.adapter
         {
             RecyclerViewHolder vh = holder as RecyclerViewHolder;
             var item = weightData[position];
-            vh.mText1.Text = item.mDate.ToString();
+            vh.mText1.Text = new DateTime(item.mDate).ToString();
             vh.mText2.Text = item.mWeight.ToString();
         }
 

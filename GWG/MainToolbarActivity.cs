@@ -38,6 +38,9 @@ namespace GWG
         private BaselineFragment mBaselineFragment;
         private Stack<SupportFragment> mStackFragment;
 
+        private List<long> mDates;
+        private List<int> mWeights;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             //RequestWindowFeature(WindowFeatures.NoTitle);
@@ -89,6 +92,9 @@ namespace GWG
                 SupportActionBar.SetTitle(Resource.String.closeDrawer);
             }
 
+            // Retrieve Data
+            getData();
+
             // Show initial Fragment
             var trans = SupportFragmentManager.BeginTransaction();
             trans.Add(Resource.Id.fragmentContainer, mGraphFragment, "GraphFragment");
@@ -123,8 +129,15 @@ namespace GWG
                 // History
                 Console.WriteLine("Loading History...");
 
+                if (!mHistoryFragment.IsVisible)
+                {
+                    Bundle args = new Bundle();
+                    args.PutLongArray("dates", mDates.ToArray());
+                    args.PutIntArray("weights", mWeights.ToArray());
+                    mHistoryFragment.Arguments = args;
+                }
                 ReplaceFragment(mHistoryFragment);
-
+                
 
             }
             else if (id == 2)
@@ -193,6 +206,24 @@ namespace GWG
         {
             base.OnPostCreate(savedInstanceState);
             mDrawerToggle.SyncState();
+        }
+
+        public void getData()
+        {
+            // Retrieve data from database... for right now, falsify data
+            DateTime ogTime = new DateTime(2000, 1, 1);
+            mDates = new List<long>();
+            mDates.Add((long)new TimeSpan(DateTime.Now.Ticks - ogTime.Ticks).TotalMilliseconds);
+            mDates.Add((long)new TimeSpan(DateTime.Now.AddDays(7).Ticks - ogTime.Ticks).TotalMilliseconds);
+            mDates.Add((long)new TimeSpan(DateTime.Now.AddDays(14).Ticks - ogTime.Ticks).TotalMilliseconds);
+            /**mDates.Add(DateTime.Today.Ticks / TimeSpan.TicksPerMillisecond);
+            mDates.Add(DateTime.Today.AddDays(7).Ticks / TimeSpan.TicksPerMillisecond);
+            mDates.Add(DateTime.Today.AddDays(14).Ticks / TimeSpan.TicksPerMillisecond);*/
+
+            mWeights = new List<int>();
+            mWeights.Add(180);
+            mWeights.Add(185);
+            mWeights.Add(190);
         }
 
     }

@@ -12,15 +12,16 @@ using Android.Widget;
 
 namespace GWG
 {
-    class DateWeight
+    public class DateWeight
     {
-        public DateTime mDate { get; set; }
+        public long mDate { get; set; }
         public int mWeight { get; set; }
 
-        public DateWeight(DateTime date, int weight)
+        public DateWeight(long date, int weight)
         {
             mDate = date;
             mWeight = weight;
         }
+        
     }
 }
