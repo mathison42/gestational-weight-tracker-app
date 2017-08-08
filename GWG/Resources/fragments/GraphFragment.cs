@@ -10,7 +10,9 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using Android.Support.V4.Widget;
 using Android.Support.V4.App;
+using static Android.Support.V4.App.FragmentManager;
 
 using OxyPlot;
 using OxyPlot.Series;
@@ -21,13 +23,13 @@ namespace GWG.Resources.fragments
 {
     public class GraphFragment : Android.Support.V4.App.Fragment
     {
-        private PlotView plotViewGraph;
+        private PlotView mPlotViewGraph;
         public PlotModel MyGraph { get; set; }
 
         private DateTime mDueDate;
         private double mBMI;
-        private long[] mDates;
-        private int[] mWeights;
+        private List<long> mDates;
+        private List<int> mWeights;
 
         private Button mBtnAddWeight;
 
@@ -40,17 +42,19 @@ namespace GWG.Resources.fragments
         {
             // Retreive Due Date, BMI, dates, and weights
             Bundle bundle = Arguments;
-            mDates = bundle.GetLongArray("dates");
-            mWeights = bundle.GetIntArray("weights");
+            long[] tempDates = bundle.GetLongArray("dates");
+            mDates = tempDates.ToList();
+            int[] tempWeights = bundle.GetIntArray("weights");
+            mWeights = tempWeights.ToList();
             mBMI = bundle.GetDouble("bmi");
             mDueDate = new DateTime(bundle.GetLong("dueDate"));
      
             // Graph Initialization
             View view = inflater.Inflate(Resource.Layout.Graph, container, false);
-            plotViewGraph = view.FindViewById<PlotView>(Resource.Id.plotViewGraph);
-            plotViewGraph.SetScrollContainer(false);
+            mPlotViewGraph = view.FindViewById<PlotView>(Resource.Id.plotViewGraph);
+            mPlotViewGraph.SetScrollContainer(false);
             MyGraph = CreatePlotModel();
-            plotViewGraph.Model = MyGraph;
+            mPlotViewGraph.Model = MyGraph;
 
             mBtnAddWeight = view.FindViewById<Button>(Resource.Id.btnAddWeight);
             mBtnAddWeight.Click += MBtnAddWeight_Click;
@@ -59,7 +63,28 @@ namespace GWG.Resources.fragments
 
         private void MBtnAddWeight_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            //Pull up Calendar Dialog
+            dialog_weight weightDialog = new dialog_weight();
+            weightDialog.Show(this.FragmentManager, "Add Weight Fragment");
+            
+            weightDialog.mDailyWeightComplete += WeightDialog_mDailyWeightComplete;
+        }
+
+        private void WeightDialog_mDailyWeightComplete(object sender, DailyWeightEventArg e)
+        {
+            long timestamp = e.timestamp;
+            double weight = e.weight;
+
+            // Check if same day weight exists, rewrite if so
+            mDates.Add(timestamp);
+            mWeights.Add((int)weight);
+
+            // Save weight and timestamp with database
+
+            // Update graph
+            mPlotViewGraph.Model = CreatePlotModel();
+
+
         }
 
         private PlotModel CreatePlotModel()
@@ -72,25 +97,22 @@ namespace GWG.Resources.fragments
                 MarkerStroke = OxyColors.White
             };
 
-            if (mDates.Length != mWeights.Length)
+            if (mDates.Count != mWeights.Count)
             {
                 Console.WriteLine("[Error] Dates and Weights do not equal in size!");
             }
             else
             {
-                for (int i = 0; i < mDates.Length; i++)
+                for (int i = 0; i < mDates.Count; i++)
                 {
                     series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(mDates[i])), mWeights[i]));
                 }
             }
-            /**series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(mDueDate.AddYears(-1).AddMonths(3).AddDays(-7)), mPreWeight));
-            series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(mDueDate.AddYears(-1).AddMonths(3).AddDays(-7).AddDays(7)), mPreWeight + 3));
-            series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(mDueDate.AddYears(-1).AddMonths(3).AddDays(-7).AddDays(14)), mPreWeight + 3));*/
 
             var plotModel = new PlotModel { Title = "" };
 
             DateTime startDate = new DateTime(mDates[0]).AddDays(-1);
-            DateTime endDate = new DateTime(mDates[mDates.Length-1]).AddDays(1);
+            DateTime endDate = new DateTime(mDates[mDates.Count - 1]).AddDays(1);
 
             // Get the min and max weights for the initial bounds
             int minWeight = (int)mWeights.Min();

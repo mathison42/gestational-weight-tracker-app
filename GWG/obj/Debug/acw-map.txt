@@ -2,6 +2,10 @@ GWG.dialog_Calendar, GWG;md581c68db7fed8cafc546070a4791a818f.dialog_Calendar
 GWG.dialog_Calendar, GWG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md581c68db7fed8cafc546070a4791a818f.dialog_Calendar
 GWG.dialog_Calendar;md581c68db7fed8cafc546070a4791a818f.dialog_Calendar
 gwg.dialog_Calendar;md581c68db7fed8cafc546070a4791a818f.dialog_Calendar
+GWG.dialog_weight, GWG;md581c68db7fed8cafc546070a4791a818f.dialog_weight
+GWG.dialog_weight, GWG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md581c68db7fed8cafc546070a4791a818f.dialog_weight
+GWG.dialog_weight;md581c68db7fed8cafc546070a4791a818f.dialog_weight
+gwg.dialog_weight;md581c68db7fed8cafc546070a4791a818f.dialog_weight
 GWG.dialog_SignUp1, GWG;md581c68db7fed8cafc546070a4791a818f.dialog_SignUp1
 GWG.dialog_SignUp1, GWG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md581c68db7fed8cafc546070a4791a818f.dialog_SignUp1
 GWG.dialog_SignUp1;md581c68db7fed8cafc546070a4791a818f.dialog_SignUp1

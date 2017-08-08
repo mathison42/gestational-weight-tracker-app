@@ -1529,8 +1529,8 @@ namespace GWG
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f06008b
-			public const int action0 = 2131099787;
+			// aapt resource value: 0x7f06008c
+			public const int action0 = 2131099788;
 			
 			// aapt resource value: 0x7f060042
 			public const int action_bar = 2131099714;
@@ -1556,8 +1556,8 @@ namespace GWG
 			// aapt resource value: 0x7f060043
 			public const int action_context_bar = 2131099715;
 			
-			// aapt resource value: 0x7f06008f
-			public const int action_divider = 2131099791;
+			// aapt resource value: 0x7f060090
+			public const int action_divider = 2131099792;
 			
 			// aapt resource value: 0x7f060003
 			public const int action_menu_divider = 2131099651;
@@ -1586,14 +1586,14 @@ namespace GWG
 			// aapt resource value: 0x7f06001a
 			public const int beginning = 2131099674;
 			
-			// aapt resource value: 0x7f06007a
-			public const int btnAddWeight = 2131099770;
+			// aapt resource value: 0x7f06007b
+			public const int btnAddWeight = 2131099771;
 			
 			// aapt resource value: 0x7f060053
 			public const int btnCalcPeriod = 2131099731;
 			
-			// aapt resource value: 0x7f060082
-			public const int btnLogin = 2131099778;
+			// aapt resource value: 0x7f060083
+			public const int btnLogin = 2131099779;
 			
 			// aapt resource value: 0x7f060072
 			public const int btnREDCap = 2131099762;
@@ -1607,23 +1607,23 @@ namespace GWG
 			// aapt resource value: 0x7f06006c
 			public const int btnSetCalendar = 2131099756;
 			
-			// aapt resource value: 0x7f060074
-			public const int btnSetWeight = 2131099764;
+			// aapt resource value: 0x7f060075
+			public const int btnSetWeight = 2131099765;
 			
-			// aapt resource value: 0x7f060084
-			public const int btnSignUp = 2131099780;
+			// aapt resource value: 0x7f060085
+			public const int btnSignUp = 2131099781;
 			
 			// aapt resource value: 0x7f06002c
 			public const int buttonPanel = 2131099692;
 			
-			// aapt resource value: 0x7f06008c
-			public const int cancel_action = 2131099788;
+			// aapt resource value: 0x7f06008d
+			public const int cancel_action = 2131099789;
 			
 			// aapt resource value: 0x7f06003a
 			public const int checkbox = 2131099706;
 			
-			// aapt resource value: 0x7f060091
-			public const int chronometer = 2131099793;
+			// aapt resource value: 0x7f060092
+			public const int chronometer = 2131099794;
 			
 			// aapt resource value: 0x7f06001e
 			public const int collapseActionView = 2131099678;
@@ -1646,8 +1646,8 @@ namespace GWG
 			// aapt resource value: 0x7f06000d
 			public const int disableHome = 2131099661;
 			
-			// aapt resource value: 0x7f060088
-			public const int drawer_layout = 2131099784;
+			// aapt resource value: 0x7f060089
+			public const int drawer_layout = 2131099785;
 			
 			// aapt resource value: 0x7f060044
 			public const int edit_query = 2131099716;
@@ -1655,8 +1655,8 @@ namespace GWG
 			// aapt resource value: 0x7f06001b
 			public const int end = 2131099675;
 			
-			// aapt resource value: 0x7f060095
-			public const int end_padder = 2131099797;
+			// aapt resource value: 0x7f060096
+			public const int end_padder = 2131099798;
 			
 			// aapt resource value: 0x7f060026
 			public const int expand_activities_button = 2131099686;
@@ -1664,8 +1664,8 @@ namespace GWG
 			// aapt resource value: 0x7f060039
 			public const int expanded_menu = 2131099705;
 			
-			// aapt resource value: 0x7f060089
-			public const int fragmentContainer = 2131099785;
+			// aapt resource value: 0x7f06008a
+			public const int fragmentContainer = 2131099786;
 			
 			// aapt resource value: 0x7f060005
 			public const int home = 2131099653;
@@ -1685,14 +1685,14 @@ namespace GWG
 			// aapt resource value: 0x7f06006d
 			public const int imgIcon = 2131099757;
 			
+			// aapt resource value: 0x7f060080
+			public const int imgLock = 2131099776;
+			
+			// aapt resource value: 0x7f060095
+			public const int info = 2131099797;
+			
 			// aapt resource value: 0x7f06007f
-			public const int imgLock = 2131099775;
-			
-			// aapt resource value: 0x7f060094
-			public const int info = 2131099796;
-			
-			// aapt resource value: 0x7f06007e
-			public const int inputPassword = 2131099774;
+			public const int inputPassword = 2131099775;
 			
 			// aapt resource value: 0x7f060000
 			public const int item_touch_helper_previous_elevation = 2131099648;
@@ -1718,11 +1718,11 @@ namespace GWG
 			// aapt resource value: 0x7f06005d
 			public const int layoutWeight = 2131099741;
 			
-			// aapt resource value: 0x7f06008a
-			public const int left_drawer = 2131099786;
+			// aapt resource value: 0x7f06008b
+			public const int left_drawer = 2131099787;
 			
-			// aapt resource value: 0x7f060097
-			public const int line = 2131099799;
+			// aapt resource value: 0x7f060098
+			public const int line = 2131099800;
 			
 			// aapt resource value: 0x7f060069
 			public const int line1 = 2131099753;
@@ -1739,8 +1739,8 @@ namespace GWG
 			// aapt resource value: 0x7f060064
 			public const int line5 = 2131099748;
 			
-			// aapt resource value: 0x7f060087
-			public const int lineToolbar = 2131099783;
+			// aapt resource value: 0x7f060088
+			public const int lineToolbar = 2131099784;
 			
 			// aapt resource value: 0x7f06000a
 			public const int listMode = 2131099658;
@@ -1748,8 +1748,8 @@ namespace GWG
 			// aapt resource value: 0x7f060029
 			public const int list_item = 2131099689;
 			
-			// aapt resource value: 0x7f06008e
-			public const int media_actions = 2131099790;
+			// aapt resource value: 0x7f06008f
+			public const int media_actions = 2131099791;
 			
 			// aapt resource value: 0x7f06001c
 			public const int middle = 2131099676;
@@ -1769,11 +1769,11 @@ namespace GWG
 			// aapt resource value: 0x7f06002e
 			public const int parentPanel = 2131099694;
 			
-			// aapt resource value: 0x7f060078
-			public const int plotViewGraph = 2131099768;
+			// aapt resource value: 0x7f060079
+			public const int plotViewGraph = 2131099769;
 			
-			// aapt resource value: 0x7f060080
-			public const int progressBar1 = 2131099776;
+			// aapt resource value: 0x7f060081
+			public const int progressBar1 = 2131099777;
 			
 			// aapt resource value: 0x7f060006
 			public const int progress_circular = 2131099654;
@@ -1856,8 +1856,8 @@ namespace GWG
 			// aapt resource value: 0x7f060019
 			public const int src_over = 2131099673;
 			
-			// aapt resource value: 0x7f06008d
-			public const int status_bar_latest_event_content = 2131099789;
+			// aapt resource value: 0x7f06008e
+			public const int status_bar_latest_event_content = 2131099790;
 			
 			// aapt resource value: 0x7f06004d
 			public const int submit_area = 2131099725;
@@ -1865,14 +1865,14 @@ namespace GWG
 			// aapt resource value: 0x7f06000c
 			public const int tabMode = 2131099660;
 			
+			// aapt resource value: 0x7f060094
+			public const int text = 2131099796;
+			
+			// aapt resource value: 0x7f060097
+			public const int text1 = 2131099799;
+			
 			// aapt resource value: 0x7f060093
-			public const int text = 2131099795;
-			
-			// aapt resource value: 0x7f060096
-			public const int text1 = 2131099798;
-			
-			// aapt resource value: 0x7f060092
-			public const int text2 = 2131099794;
+			public const int text2 = 2131099795;
 			
 			// aapt resource value: 0x7f060051
 			public const int textDueDate = 2131099729;
@@ -1880,8 +1880,8 @@ namespace GWG
 			// aapt resource value: 0x7f060035
 			public const int textSpacerNoButtons = 2131099701;
 			
-			// aapt resource value: 0x7f060090
-			public const int time = 2131099792;
+			// aapt resource value: 0x7f060091
+			public const int time = 2131099793;
 			
 			// aapt resource value: 0x7f06002b
 			public const int title = 2131099691;
@@ -1889,8 +1889,8 @@ namespace GWG
 			// aapt resource value: 0x7f060030
 			public const int title_template = 2131099696;
 			
-			// aapt resource value: 0x7f060085
-			public const int toolbar = 2131099781;
+			// aapt resource value: 0x7f060086
+			public const int toolbar = 2131099782;
 			
 			// aapt resource value: 0x7f06002f
 			public const int topPanel = 2131099695;
@@ -1901,14 +1901,14 @@ namespace GWG
 			// aapt resource value: 0x7f06005b
 			public const int txtHeight = 2131099739;
 			
-			// aapt resource value: 0x7f060083
-			public const int txtNeedAnAccount = 2131099779;
+			// aapt resource value: 0x7f060084
+			public const int txtNeedAnAccount = 2131099780;
 			
 			// aapt resource value: 0x7f06006f
 			public const int txtPin = 2131099759;
 			
-			// aapt resource value: 0x7f060081
-			public const int txtPinNumber = 2131099777;
+			// aapt resource value: 0x7f060082
+			public const int txtPinNumber = 2131099778;
 			
 			// aapt resource value: 0x7f060070
 			public const int txtPinRepeat = 2131099760;
@@ -1916,8 +1916,8 @@ namespace GWG
 			// aapt resource value: 0x7f06006e
 			public const int txtREDCapId = 2131099758;
 			
-			// aapt resource value: 0x7f06007d
-			public const int txtTitle = 2131099773;
+			// aapt resource value: 0x7f06007e
+			public const int txtTitle = 2131099774;
 			
 			// aapt resource value: 0x7f06005f
 			public const int txtWeight = 2131099743;
@@ -1946,29 +1946,32 @@ namespace GWG
 			// aapt resource value: 0x7f060071
 			public const int viewFailureReason = 2131099761;
 			
-			// aapt resource value: 0x7f060076
-			public const int viewGainGoal = 2131099766;
+			// aapt resource value: 0x7f060077
+			public const int viewGainGoal = 2131099767;
 			
 			// aapt resource value: 0x7f06005a
 			public const int viewHeight = 2131099738;
 			
-			// aapt resource value: 0x7f06007b
-			public const int viewHistory = 2131099771;
+			// aapt resource value: 0x7f06007c
+			public const int viewHistory = 2131099772;
 			
-			// aapt resource value: 0x7f060086
-			public const int viewIconToolbar = 2131099782;
+			// aapt resource value: 0x7f060087
+			public const int viewIconToolbar = 2131099783;
 			
-			// aapt resource value: 0x7f060075
-			public const int viewOnTrack = 2131099765;
+			// aapt resource value: 0x7f060076
+			public const int viewOnTrack = 2131099766;
 			
 			// aapt resource value: 0x7f060066
 			public const int viewSaveProfileError = 2131099750;
 			
-			// aapt resource value: 0x7f060079
-			public const int viewUpdateWeight = 2131099769;
+			// aapt resource value: 0x7f060074
+			public const int viewSaveWeightError = 2131099764;
 			
-			// aapt resource value: 0x7f060077
-			public const int viewWGTracket = 2131099767;
+			// aapt resource value: 0x7f06007a
+			public const int viewUpdateWeight = 2131099770;
+			
+			// aapt resource value: 0x7f060078
+			public const int viewWGTracket = 2131099768;
 			
 			// aapt resource value: 0x7f06005e
 			public const int viewWeight = 2131099742;
@@ -1976,8 +1979,8 @@ namespace GWG
 			// aapt resource value: 0x7f060073
 			public const int viewWeightText = 2131099763;
 			
-			// aapt resource value: 0x7f06007c
-			public const int weightList = 2131099772;
+			// aapt resource value: 0x7f06007d
+			public const int weightList = 2131099773;
 			
 			// aapt resource value: 0x7f060021
 			public const int withText = 2131099681;

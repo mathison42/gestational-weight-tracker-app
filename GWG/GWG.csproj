@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="DateWeight.cs" />
     <Compile Include="dialog_Calendar.cs" />
+    <Compile Include="dialog_weight.cs" />
     <Compile Include="dialog_SignUp1.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainToolbarActivity.cs" />
