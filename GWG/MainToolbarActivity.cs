@@ -250,7 +250,6 @@ namespace GWG
 
         public void saveDateAndWeight(long timestamp, double weight)
         {
-            Console.WriteLine("saveDateAndWeight");
             long maxTimestamp = mDates.Max();
             if (new DateTime(timestamp).Date == new DateTime(maxTimestamp).Date)
             {

@@ -46,7 +46,7 @@ namespace GWG.Resources.fragments
                 Console.WriteLine("[Error] Dates and Weights do not equal in size!");
             } else
             {
-                for (int i = 0; i < dates.Length; i++)
+                for (int i = dates.Length - 1; i >= 0; i--)
                 {
                     mDateWeights.Add(new DateWeight(dates[i], weights[i]));
                 }
