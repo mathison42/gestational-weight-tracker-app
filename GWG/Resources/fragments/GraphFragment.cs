@@ -76,8 +76,17 @@ namespace GWG.Resources.fragments
             double weight = e.weight;
 
             // Check if same day weight exists, rewrite if so
-            mDates.Add(timestamp);
-            mWeights.Add((int)weight);
+            long maxTimestamp = mDates.Max();
+            if (new DateTime(timestamp).Date == new DateTime(maxTimestamp).Date)
+            {
+                int index = mDates.IndexOf(maxTimestamp);
+                mDates[index] = timestamp;
+                mWeights[index] = (int)weight;
+            } else
+            {
+                mDates.Add(timestamp);
+                mWeights.Add((int)weight);
+            }
 
             // Save weight and timestamp with database
 
@@ -111,8 +120,8 @@ namespace GWG.Resources.fragments
 
             var plotModel = new PlotModel { Title = "" };
 
-            DateTime startDate = new DateTime(mDates[0]).AddDays(-1);
-            DateTime endDate = new DateTime(mDates[mDates.Count - 1]).AddDays(1);
+            DateTime startDate = new DateTime(mDates.Min()).AddDays(-1);
+            DateTime endDate = new DateTime(mDates.Max()).AddDays(1);
 
             // Get the min and max weights for the initial bounds
             int minWeight = (int)mWeights.Min();

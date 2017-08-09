@@ -242,9 +242,9 @@ namespace GWG
         {
             // Retrieve data from database... for right now, falsify data
             mDates = new List<long>();
-            mDates.Add(DateTime.UtcNow.Ticks);
-            mDates.Add(DateTime.UtcNow.AddDays(7).Ticks);
-            mDates.Add(DateTime.UtcNow.AddDays(14).Ticks);
+            mDates.Add(DateTime.UtcNow.AddDays(-14).Ticks);
+            mDates.Add(DateTime.UtcNow.AddDays(-7).Ticks);
+            mDates.Add(DateTime.UtcNow.AddDays(-1).Ticks);
             /**mDates.Add(DateTime.Today.Ticks / TimeSpan.TicksPerMillisecond);
             mDates.Add(DateTime.Today.AddDays(7).Ticks / TimeSpan.TicksPerMillisecond);
             mDates.Add(DateTime.Today.AddDays(14).Ticks / TimeSpan.TicksPerMillisecond);*/
