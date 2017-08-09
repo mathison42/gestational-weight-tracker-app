@@ -63,6 +63,11 @@ namespace GWG.Resources.fragments
 
         private void MBtnAddWeight_Click(object sender, EventArgs e)
         {
+            if (mDates.Count == 0)
+            {
+                Console.WriteLine("[Error] Complete Baseline first.");
+                return;
+            }
             //Pull up Calendar Dialog
             dialog_weight weightDialog = new dialog_weight();
             weightDialog.Show(this.FragmentManager, "Add Weight Fragment");
@@ -112,12 +117,28 @@ namespace GWG.Resources.fragments
 
             var plotModel = new PlotModel { Title = "" };
 
-            DateTime startDate = new DateTime(mDates.Min()).AddDays(-1);
-            DateTime endDate = new DateTime(mDates.Max()).AddDays(1);
+            DateTime startDate;
+            DateTime endDate;
+            if (mDates.Count > 0)
+            {
+                startDate = new DateTime(mDates.Min()).AddDays(-1);
+                endDate = new DateTime(mDates.Max()).AddDays(1);
+
+            } else
+            {
+                startDate = DateTime.UtcNow.AddDays(-5);
+                endDate = DateTime.UtcNow.AddDays(5);
+
+            }
 
             // Get the min and max weights for the initial bounds
-            int minWeight = (int)mWeights.Min();
-            int maxWeight = (int)mWeights.Max();
+            int minWeight = 0;
+            int maxWeight = 50;
+            if (mWeights.Count > 0)
+            {
+                minWeight = (int)mWeights.Min();
+                maxWeight = (int)mWeights.Max();
+            }
 
             plotModel.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = DateTimeAxis.ToDouble(startDate), Maximum = DateTimeAxis.ToDouble(endDate), StringFormat = "M/d",
                 AbsoluteMinimum = DateTimeAxis.ToDouble(startDate), AbsoluteMaximum = DateTimeAxis.ToDouble(endDate)

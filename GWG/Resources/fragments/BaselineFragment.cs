@@ -192,21 +192,36 @@ namespace GWG.Resources.fragments
             double bmi;
             if (!Double.TryParse(mTxtBMI.Text, out bmi))
             {
-                mViewSaveProfileError.Text = "Specify a BMI";
+                mViewSaveProfileError.Text = "Calculate a BMI";
                 return;
             }
 
+            double weight;
+            if (!Double.TryParse(mTxtWeight.Text, out weight))
+            {
+                mViewSaveProfileError.Text = "Invalid weight";
+                return;
+            }
+            weight = Math.Round(weight, 1);
+
+            double height;
+            if (!Double.TryParse(mTxtHeight.Text, out height))
+            {
+                mViewSaveProfileError.Text = "Invalid height";
+                return;
+            }
+            height = Math.Round(height, 1);
+
+            // Save Profile Data in Database...
+            ((MainToolbarActivity)Activity).saveBaseline(dueDate, weight, height, bmi);
+
+            // Freeze Baseline View
             mBtnCalcPeriod.Enabled = false;
             mBtnSetADate.Enabled = false;
             mTxtHeight.InputType = Android.Text.InputTypes.Null;
             mTxtWeight.InputType = Android.Text.InputTypes.Null;
             mViewSaveProfileError.Text = "Profile Saved";
             mViewSaveProfileError.SetTextColor(Android.Graphics.Color.ForestGreen);
-
-            // Save Profile Data in Database...
-            // mDueDate
-            // mTxtWeight.Text
-            // mTxtBMI.Text
         }
 
         // https://en.wikipedia.org/wiki/Naegele%27s_rule

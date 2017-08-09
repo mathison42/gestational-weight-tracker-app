@@ -38,8 +38,8 @@ namespace GWG
         private BaselineFragment mBaselineFragment;
         private Stack<SupportFragment> mStackFragment;
 
-        private List<long> mDates;
-        private List<int> mWeights;
+        private List<long> mDates = new List<long>();
+        private List<int> mWeights = new List<int>();
         private long mDueDate;
         private double mHeight;
         private double mBMI;
@@ -179,7 +179,11 @@ namespace GWG
                 if (!mBaselineFragment.IsVisible)
                 {
                     Bundle args = new Bundle();
-                    args.PutInt("weight", mWeights[0]);
+                    if (mDates.Count > 0)
+                    {
+                        int index = mDates.IndexOf(mDates.Min());
+                        args.PutInt("weight", mWeights[index]);
+                    }
                     args.PutDouble("height", mHeight);
                     args.PutDouble("bmi", mBMI);
                     args.PutLong("dueDate", mDueDate);
@@ -248,9 +252,30 @@ namespace GWG
             mDrawerToggle.SyncState();
         }
 
+        public void saveBaseline(DateTime dueDate, double weight, double height, double BMI)
+        {
+            mDueDate = dueDate.Ticks;
+
+            if (mDates.Count == 0)
+            {
+                mBMI = BMI;
+                mHeight = height;
+                saveDateAndWeight(DateTime.UtcNow.Ticks, weight);
+
+                // Update Database with BMI and Height
+            }
+
+            // Update Database with Due Date
+
+        }
+
         public void saveDateAndWeight(long timestamp, double weight)
         {
-            long maxTimestamp = mDates.Max();
+            long maxTimestamp = 0;
+            if (mDates.Count> 0)
+            {
+                maxTimestamp = mDates.Max();
+            }
             if (new DateTime(timestamp).Date == new DateTime(maxTimestamp).Date)
             {
                 int index = mDates.IndexOf(maxTimestamp);
@@ -263,28 +288,28 @@ namespace GWG
                 mWeights.Add((int)weight);
             }
 
-            // Update Database
+            // Update Database with Weights and Dates
         }
 
         public void createTestData()
         {
             // Retrieve data from database... for right now, falsify data
-            mDates = new List<long>();
+            /**mDates = new List<long>();
             mDates.Add(DateTime.UtcNow.AddDays(-14).Ticks);
             mDates.Add(DateTime.UtcNow.AddDays(-7).Ticks);
-            mDates.Add(DateTime.UtcNow.AddDays(-1).Ticks);
+            mDates.Add(DateTime.UtcNow.AddDays(-1).Ticks);*/
             /**mDates.Add(DateTime.Today.Ticks / TimeSpan.TicksPerMillisecond);
             mDates.Add(DateTime.Today.AddDays(7).Ticks / TimeSpan.TicksPerMillisecond);
             mDates.Add(DateTime.Today.AddDays(14).Ticks / TimeSpan.TicksPerMillisecond);*/
 
-            mWeights = new List<int>();
+           /** mWeights = new List<int>();
             mWeights.Add(180);
             mWeights.Add(185);
             mWeights.Add(190);
 
             mHeight = 76.5;
             mBMI = 25;
-            mDueDate = DateTime.UtcNow.AddYears(1).AddMonths(-3).AddDays(7).Ticks;
+            mDueDate = DateTime.UtcNow.AddYears(1).AddMonths(-3).AddDays(7).Ticks;*/
 
         }
 
