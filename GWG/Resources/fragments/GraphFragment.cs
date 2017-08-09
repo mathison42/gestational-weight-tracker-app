@@ -75,20 +75,12 @@ namespace GWG.Resources.fragments
             long timestamp = e.timestamp;
             double weight = e.weight;
 
-            // Check if same day weight exists, rewrite if so
-            long maxTimestamp = mDates.Max();
-            if (new DateTime(timestamp).Date == new DateTime(maxTimestamp).Date)
-            {
-                int index = mDates.IndexOf(maxTimestamp);
-                mDates[index] = timestamp;
-                mWeights[index] = (int)weight;
-            } else
-            {
-                mDates.Add(timestamp);
-                mWeights.Add((int)weight);
-            }
-
             // Save weight and timestamp with database
+            ((MainToolbarActivity)Activity).saveDateAndWeight(timestamp, weight);
+
+            // Get updated lists
+            mDates = ((MainToolbarActivity)Activity).getDates();
+            mWeights = ((MainToolbarActivity)Activity).getWeights();
 
             // Update graph
             mPlotViewGraph.Model = CreatePlotModel();

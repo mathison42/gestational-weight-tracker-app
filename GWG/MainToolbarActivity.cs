@@ -44,6 +44,16 @@ namespace GWG
         private double mHeight;
         private double mBMI;
 
+        public List<long> getDates()
+        {
+            return mDates;
+        }
+
+        public List<int> getWeights()
+        {
+            return mWeights;
+        }
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             //RequestWindowFeature(WindowFeatures.NoTitle);
@@ -96,7 +106,7 @@ namespace GWG
             }
 
             // Retrieve Data
-            getData();
+            createTestData();
 
             // Set initial graph data
             Bundle args = new Bundle();
@@ -238,7 +248,26 @@ namespace GWG
             mDrawerToggle.SyncState();
         }
 
-        public void getData()
+        public void saveDateAndWeight(long timestamp, double weight)
+        {
+            Console.WriteLine("saveDateAndWeight");
+            long maxTimestamp = mDates.Max();
+            if (new DateTime(timestamp).Date == new DateTime(maxTimestamp).Date)
+            {
+                int index = mDates.IndexOf(maxTimestamp);
+                mDates[index] = timestamp;
+                mWeights[index] = (int)weight;
+            }
+            else
+            {
+                mDates.Add(timestamp);
+                mWeights.Add((int)weight);
+            }
+
+            // Update Database
+        }
+
+        public void createTestData()
         {
             // Retrieve data from database... for right now, falsify data
             mDates = new List<long>();
