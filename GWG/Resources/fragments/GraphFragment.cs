@@ -96,26 +96,64 @@ namespace GWG.Resources.fragments
         private PlotModel CreatePlotModel()
         {
 
-            var series1 = new LineSeries
+            var weightSeries = new LineSeries
             {
                 MarkerType = MarkerType.Circle,
                 MarkerSize = 4,
                 MarkerStroke = OxyColors.White
             };
 
-            if (mDates.Count != mWeights.Count)
+            var guideSeries = new AreaSeries
+            {
+                Color = OxyColors.LightGoldenrodYellow,
+                Fill = OxyColor.FromRgb(251, 250, 190)
+
+            };
+
+            if (mDates.Count == 0)
+            {
+                Console.WriteLine("[Info] No dates found.");
+            }
+            else if (mDates.Count != mWeights.Count)
             {
                 Console.WriteLine("[Error] Dates and Weights do not equal in size!");
             }
             else
             {
+                // Set main weight line
                 for (int i = 0; i < mDates.Count; i++)
                 {
-                    series1.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(mDates[i])), mWeights[i]));
+                    weightSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(mDates[i])), mWeights[i]));
                 }
+
+                // Get Initial Weight and Date
+                long initDate = mDates.Min();
+                double initWeight = mWeights[mDates.IndexOf(initDate)];
+
+                // Set trendline area
+                List<double> guide = WeightGain.getWeightList(mBMI);
+                double deviation = WeightGain.getWeightDeviation(mBMI);
+
+                for (int i = 0; i < guide.Count; i++)
+                {
+                    Console.WriteLine("Guide Weight: " + guide[i]);
+                    guideSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(initDate).AddDays(i * 7)), initWeight + guide[i] + deviation));
+                    guideSeries.Points2.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(initDate).AddDays(i * 7)), initWeight + guide[i] - deviation));
+                }
+
             }
 
             var plotModel = new PlotModel { Title = "" };
+
+
+            // Get the min and max weights for the initial bounds
+            int minWeight = 0;
+            int maxWeight = 50;
+            if (mWeights.Count > 0)
+            {
+                minWeight = (int)mWeights.Min();
+                maxWeight = (int)mWeights.Max();
+            }
 
             DateTime startDate;
             DateTime endDate;
@@ -131,24 +169,17 @@ namespace GWG.Resources.fragments
 
             }
 
-            // Get the min and max weights for the initial bounds
-            int minWeight = 0;
-            int maxWeight = 50;
-            if (mWeights.Count > 0)
-            {
-                minWeight = (int)mWeights.Min();
-                maxWeight = (int)mWeights.Max();
-            }
-
             plotModel.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = DateTimeAxis.ToDouble(startDate), Maximum = DateTimeAxis.ToDouble(endDate), StringFormat = "M/d",
-                AbsoluteMinimum = DateTimeAxis.ToDouble(startDate), AbsoluteMaximum = DateTimeAxis.ToDouble(endDate)
+                AbsoluteMinimum = DateTimeAxis.ToDouble(startDate),
+                AbsoluteMaximum = DateTimeAxis.ToDouble(mDueDate)
             });
             plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = minWeight-3, Maximum = maxWeight+3,
                 AbsoluteMinimum = minWeight - 10,
                 AbsoluteMaximum = maxWeight + 10
             });
 
-            plotModel.Series.Add(series1);
+            plotModel.Series.Add(guideSeries);
+            plotModel.Series.Add(weightSeries);
 
             return plotModel;
         }

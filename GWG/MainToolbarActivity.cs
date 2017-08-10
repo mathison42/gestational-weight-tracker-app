@@ -294,22 +294,22 @@ namespace GWG
         public void createTestData()
         {
             // Retrieve data from database... for right now, falsify data
-            /**mDates = new List<long>();
+            mDates = new List<long>();
             mDates.Add(DateTime.UtcNow.AddDays(-14).Ticks);
             mDates.Add(DateTime.UtcNow.AddDays(-7).Ticks);
-            mDates.Add(DateTime.UtcNow.AddDays(-1).Ticks);*/
+            mDates.Add(DateTime.UtcNow.AddDays(-1).Ticks);
             /**mDates.Add(DateTime.Today.Ticks / TimeSpan.TicksPerMillisecond);
             mDates.Add(DateTime.Today.AddDays(7).Ticks / TimeSpan.TicksPerMillisecond);
             mDates.Add(DateTime.Today.AddDays(14).Ticks / TimeSpan.TicksPerMillisecond);*/
 
-           /** mWeights = new List<int>();
-            mWeights.Add(180);
-            mWeights.Add(185);
-            mWeights.Add(190);
+            mWeights = new List<int>();
+            mWeights.Add(205);
+            mWeights.Add(210);
+            mWeights.Add(215);
 
             mHeight = 76.5;
-            mBMI = 25;
-            mDueDate = DateTime.UtcNow.AddYears(1).AddMonths(-3).AddDays(7).Ticks;*/
+            mBMI = 33;
+            mDueDate = DateTime.UtcNow.AddYears(1).AddMonths(-3).AddDays(7).Ticks;
 
         }
 
