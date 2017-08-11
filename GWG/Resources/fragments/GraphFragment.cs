@@ -18,6 +18,7 @@ using OxyPlot;
 using OxyPlot.Series;
 using OxyPlot.Xamarin.Android;
 using OxyPlot.Axes;
+using Android.Graphics;
 
 namespace GWG.Resources.fragments
 {
@@ -31,6 +32,8 @@ namespace GWG.Resources.fragments
         private List<long> mDates;
         private List<int> mWeights;
 
+        private TextView mViewOnTrack;
+        private TextView mViewGainGoal;
         private Button mBtnAddWeight;
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -56,9 +59,46 @@ namespace GWG.Resources.fragments
             MyGraph = CreatePlotModel();
             mPlotViewGraph.Model = MyGraph;
 
+            // Set the "On Track" 
+            mViewOnTrack = view.FindViewById<TextView>(Resource.Id.viewOnTrack);
+            mViewGainGoal = view.FindViewById<TextView>(Resource.Id.viewGainGoal);
+            setWeightGainGoalHeader();
+            setOnTrackHeader();
+
             mBtnAddWeight = view.FindViewById<Button>(Resource.Id.btnAddWeight);
             mBtnAddWeight.Click += MBtnAddWeight_Click;
             return view;
+        }
+
+        private void setWeightGainGoalHeader()
+        {
+            List<double> guide = WeightGain.getWeightList(mBMI);
+            double max = guide.Max();
+            double dev = WeightGain.getWeightDeviation(mBMI);
+            mViewGainGoal.Text = "Your weight gain goal is " + (max - dev)  + " - " + (max + dev) + " lbs.";
+        }
+
+        private void setOnTrackHeader()
+        {
+            String resultStr = "";
+            String resultColor = "#fbfabe";
+
+            // Get Initial Weight and Date
+            long initDate = mDates.Min();
+            double initWeight = mWeights[mDates.IndexOf(initDate)];
+
+            // Get Last Weight and Date
+            long lastDate = mDates.Max();
+            double lastWeight = mWeights[mDates.IndexOf(lastDate)];
+
+            if (WeightGain.withinWeightRange( mBMI, lastWeight-initWeight,  new DateTime(lastDate), mDueDate))
+            {
+                resultStr = "You are on track!";
+                resultColor = "#bae2e0";
+            }
+            mViewOnTrack.Text = resultStr;
+            mViewOnTrack.SetBackgroundColor(Color.ParseColor(resultColor));
+            mViewGainGoal.SetBackgroundColor(Color.ParseColor(resultColor));
         }
 
         private void MBtnAddWeight_Click(object sender, EventArgs e)
@@ -90,7 +130,8 @@ namespace GWG.Resources.fragments
             // Update graph
             mPlotViewGraph.Model = CreatePlotModel();
 
-
+            // Update Headers
+            setOnTrackHeader();
         }
 
         private PlotModel CreatePlotModel()

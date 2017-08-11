@@ -14,8 +14,9 @@ namespace GWG
 {
     class WeightGain
     {
+        public readonly static int TOTAL_WEEKS = 40;
         // BMI <18.5
-        public readonly static double UNDERWEIGHT_DEVIATION = 4.5;
+        public readonly static double UNDERWEIGHT_DEVIATION = 6;
         public readonly static List<double> UNDERWEIGHT_WEIGHTS
             = new List<double> {
                 0,
@@ -61,7 +62,7 @@ namespace GWG
             };
 
         // BMI 18.5-24.9
-        public readonly static double NORMAL_DEVIATION = 6;
+        public readonly static double NORMAL_DEVIATION = 5;
         public readonly static List<double> NORMAL_WEIGHTS
             = new List<double> {
                 0,
@@ -107,7 +108,7 @@ namespace GWG
             };
 
         // BMI 25-29.9
-        public readonly static double OVERWEIGHT_DEVIATION = 5.5;
+        public readonly static double OVERWEIGHT_DEVIATION = 5;
         public readonly static List<double> OVERWEIGHT_WEIGHTS
             = new List<double> {
                 0,
@@ -245,6 +246,53 @@ namespace GWG
             {
                 result = OBESE_DEVIATION;
             }
+            return result;
+        }
+
+        // Determine if user is within weight range
+        public static bool withinWeightRange(double bmi, double weightGained,
+            DateTime lastDate, DateTime dueDate)
+        {
+            bool result = false;
+
+            // Calculate index to retrieve based on weeks until pregnancy
+            int weeksTilDueDate = (int)(dueDate - lastDate).TotalDays / 7;
+            int index = TOTAL_WEEKS - weeksTilDueDate;
+            if (index < 0)
+            {
+                index = 0;
+            }
+            else  if (index > 39)
+            {
+                index = 39;
+            }
+
+            // Grab how much weight they should have gained
+            double idealWeightGain = 0;
+            if (bmi < 18.5)
+            {
+                idealWeightGain = UNDERWEIGHT_WEIGHTS[index];
+            }
+            else if (bmi < 25)
+            {
+                idealWeightGain = NORMAL_WEIGHTS[index];
+            }
+            else if (bmi < 30)
+            {
+                idealWeightGain = OVERWEIGHT_WEIGHTS[index];
+            }
+            else
+            {
+                idealWeightGain = OBESE_WEIGHTS[index];
+            }
+
+            // Calculate if out of range
+            double dev = getWeightDeviation(bmi);
+            if (idealWeightGain + dev > weightGained && idealWeightGain - dev < weightGained)
+            {
+                result = true;
+            }
+
             return result;
         }
 

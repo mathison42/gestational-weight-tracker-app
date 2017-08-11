@@ -18,7 +18,7 @@
         android:background="#bae2e0"
         android:paddingLeft="15dp" />
     <TextView
-        android:text="Your weight gain goal is 25 - 35 pounds"
+        android:text="Your weight gain goal is ..."
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"

@@ -304,11 +304,11 @@ namespace GWG
 
             mWeights = new List<int>();
             mWeights.Add(205);
-            mWeights.Add(210);
-            mWeights.Add(215);
+            mWeights.Add(206);
+            mWeights.Add(209);
 
             mHeight = 76.5;
-            mBMI = 33;
+            mBMI = 25;
             mDueDate = DateTime.UtcNow.AddYears(1).AddMonths(-3).AddDays(7).Ticks;
 
         }

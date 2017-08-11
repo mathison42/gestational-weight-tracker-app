@@ -9,7 +9,7 @@
         <TextView
             android:layout_alignParentTop="true"
             android:id="@+id/textDueDate"
-            android:text="Calcuate the Due Date"
+            android:text="Calcuate Your Due Date"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:textColor="#699791"
