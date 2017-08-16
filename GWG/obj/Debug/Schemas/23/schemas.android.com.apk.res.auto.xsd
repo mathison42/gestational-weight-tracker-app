@@ -2,7 +2,7 @@
 <xs:schema xmlns:app="http://schemas.android.com/apk/res-auto" attributeFormDefault="qualified" targetNamespace="http://schemas.android.com/apk/res-auto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:annotation>
     <xs:documentation>v23</xs:documentation>
-    <xs:documentation>8/11/2017 12:12:58 AM</xs:documentation>
+    <xs:documentation>8/15/2017 12:11:46 AM</xs:documentation>
   </xs:annotation>
   <xs:attribute name="allowStacking">
     <xs:annotation>
@@ -141,6 +141,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -404,6 +405,7 @@
             <xs:enumeration value="@string/Hello" />
             <xs:enumeration value="@string/openDrawer" />
             <xs:enumeration value="@string/status_bar_notification_info_overflow" />
+            <xs:enumeration value="@string/title_activity_webview" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -524,6 +526,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -844,6 +847,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -1579,6 +1583,7 @@
             <xs:enumeration value="@string/Hello" />
             <xs:enumeration value="@string/openDrawer" />
             <xs:enumeration value="@string/status_bar_notification_info_overflow" />
+            <xs:enumeration value="@string/title_activity_webview" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -1699,6 +1704,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -2137,6 +2143,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -2457,6 +2464,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -2768,6 +2776,7 @@
             <xs:enumeration value="@string/Hello" />
             <xs:enumeration value="@string/openDrawer" />
             <xs:enumeration value="@string/status_bar_notification_info_overflow" />
+            <xs:enumeration value="@string/title_activity_webview" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -2888,6 +2897,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -3151,6 +3161,7 @@
             <xs:enumeration value="@string/Hello" />
             <xs:enumeration value="@string/openDrawer" />
             <xs:enumeration value="@string/status_bar_notification_info_overflow" />
+            <xs:enumeration value="@string/title_activity_webview" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -3271,6 +3282,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -3534,6 +3546,7 @@
             <xs:enumeration value="@string/Hello" />
             <xs:enumeration value="@string/openDrawer" />
             <xs:enumeration value="@string/status_bar_notification_info_overflow" />
+            <xs:enumeration value="@string/title_activity_webview" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -3763,6 +3776,7 @@
             <xs:enumeration value="@string/Hello" />
             <xs:enumeration value="@string/openDrawer" />
             <xs:enumeration value="@string/status_bar_notification_info_overflow" />
+            <xs:enumeration value="@string/title_activity_webview" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -3883,6 +3897,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -4203,6 +4218,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -4523,6 +4539,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -4786,6 +4803,7 @@
             <xs:enumeration value="@string/Hello" />
             <xs:enumeration value="@string/openDrawer" />
             <xs:enumeration value="@string/status_bar_notification_info_overflow" />
+            <xs:enumeration value="@string/title_activity_webview" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -4954,6 +4972,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -5274,6 +5293,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -5778,6 +5798,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -6041,6 +6062,7 @@
             <xs:enumeration value="@string/Hello" />
             <xs:enumeration value="@string/openDrawer" />
             <xs:enumeration value="@string/status_bar_notification_info_overflow" />
+            <xs:enumeration value="@string/title_activity_webview" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -6161,6 +6183,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -6642,6 +6665,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -7198,6 +7222,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -7579,6 +7604,7 @@
             <xs:enumeration value="@string/Hello" />
             <xs:enumeration value="@string/openDrawer" />
             <xs:enumeration value="@string/status_bar_notification_info_overflow" />
+            <xs:enumeration value="@string/title_activity_webview" />
             <xs:enumeration value="@android:string/cancel" />
             <xs:enumeration value="@android:string/copy" />
             <xs:enumeration value="@android:string/copyUrl" />
@@ -8289,6 +8315,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -8770,6 +8797,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />
@@ -9090,6 +9118,7 @@
             <xs:enumeration value="@drawable/gwg_pic_large" />
             <xs:enumeration value="@drawable/gwg_pic_medium" />
             <xs:enumeration value="@drawable/gwg_pic_small" />
+            <xs:enumeration value="@drawable/ic_arrow_back" />
             <xs:enumeration value="@drawable/icon" />
             <xs:enumeration value="@drawable/inputpassword" />
             <xs:enumeration value="@drawable/notification_template_icon_bg" />

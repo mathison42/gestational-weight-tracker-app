@@ -89,6 +89,8 @@ namespace GWG
                 mViewFailureReason.Text = "PIN must be a minimum of 4 digits";
             } else
             {
+                mViewFailureReason.Text = "Confirming...";
+
                 // User has clicked the sign up button and entered a valid pin
                 mREDCapComplete.Invoke(this, new REDCapEventArg(id, pin1));
                 this.Dismiss();

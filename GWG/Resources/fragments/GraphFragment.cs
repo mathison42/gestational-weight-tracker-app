@@ -177,7 +177,7 @@ namespace GWG.Resources.fragments
 
                 for (int i = 0; i < guide.Count; i++)
                 {
-                    Console.WriteLine("Guide Weight: " + guide[i]);
+                    // Console.WriteLine("Guide Weight: " + guide[i]);
                     guideSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(initDate).AddDays(i * 7)), initWeight + guide[i] + deviation));
                     guideSeries.Points2.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(initDate).AddDays(i * 7)), initWeight + guide[i] - deviation));
                 }

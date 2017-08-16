@@ -2,6 +2,7 @@
 <Paths>
   <AdditionalAndroidResourcePaths>
     <AdditionalAndroidResourcePath>C:\Users\Nick\AppData\Local\Xamarin\Xamarin.Android.Support.Animated.Vector.Drawable\23.4.0.0\embedded</AdditionalAndroidResourcePath>
+    <AdditionalAndroidResourcePath>C:\Users\Nick\AppData\Local\Xamarin\Xamarin.Android.Support.CustomTabs\23.4.0.0\embedded</AdditionalAndroidResourcePath>
     <AdditionalAndroidResourcePath>C:\Users\Nick\AppData\Local\Xamarin\Xamarin.Android.Support.v4\23.4.0.0\embedded</AdditionalAndroidResourcePath>
     <AdditionalAndroidResourcePath>C:\Users\Nick\AppData\Local\Xamarin\Xamarin.Android.Support.v7.AppCompat\23.4.0.0\embedded</AdditionalAndroidResourcePath>
     <AdditionalAndroidResourcePath>C:\Users\Nick\AppData\Local\Xamarin\Xamarin.Android.Support.v7.RecyclerView\23.4.0.0\embedded</AdditionalAndroidResourcePath>
@@ -9,6 +10,7 @@
   </AdditionalAndroidResourcePaths>
   <AdditionalJavaLibraryReferences>
     <AdditionalJavaLibraryReference>C:\Users\Nick\AppData\Local\Xamarin\Xamarin.Android.Support.Animated.Vector.Drawable\23.4.0.0\embedded\classes.jar</AdditionalJavaLibraryReference>
+    <AdditionalJavaLibraryReference>C:\Users\Nick\AppData\Local\Xamarin\Xamarin.Android.Support.CustomTabs\23.4.0.0\embedded\classes.jar</AdditionalJavaLibraryReference>
     <AdditionalJavaLibraryReference>C:\Users\Nick\AppData\Local\Xamarin\Xamarin.Android.Support.v4\23.4.0.0\embedded\classes.jar</AdditionalJavaLibraryReference>
     <AdditionalJavaLibraryReference>C:\Users\Nick\AppData\Local\Xamarin\Xamarin.Android.Support.v4\23.4.0.0\embedded\libs\internal_impl-23.4.0.jar</AdditionalJavaLibraryReference>
     <AdditionalJavaLibraryReference>C:\Users\Nick\AppData\Local\Xamarin\Xamarin.Android.Support.v7.AppCompat\23.4.0.0\embedded\classes.jar</AdditionalJavaLibraryReference>
