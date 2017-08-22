@@ -56,32 +56,30 @@ namespace GWG.Resources.fragments
             mBtnSaveProfile = view.FindViewById<Button>(Resource.Id.btnSaveProfile);
 
             Bundle bundle = Arguments;
-            long tempDueDate = bundle.GetLong("dueDate");
-            if (tempDueDate > 0)
+            mDueDate = new DateTime(bundle.GetLong("dueDate"));
+            if (mDueDate.Ticks > 0)
             {
                 // Set values
-                mViewDate.Text = new DateTime(tempDueDate).ToShortDateString();
-                mTxtHeight.Text = bundle.GetDouble("height").ToString() + " inches";
-                mTxtWeight.Text = bundle.GetInt("weight").ToString() + " lbs";
+                mViewDate.Text = mDueDate.ToShortDateString();
+                mTxtHeight.Text = bundle.GetDouble("height").ToString();
+                mTxtWeight.Text = bundle.GetInt("weight").ToString();
                 mTxtBMI.Text = bundle.GetDouble("bmi").ToString();
 
-                // Disable Buttons and EditTexts
-                mBtnCalcPeriod.Enabled = false;
-                mBtnSetADate.Enabled = false;
+                // Disable EditTexts
                 mTxtHeight.Enabled = false;
                 mTxtWeight.Enabled = false;
-                mBtnSaveProfile.Visibility = ViewStates.Invisible;
             } else
             {
-                // Set on Button Clicks
-                mBtnCalcPeriod.Click += MBtnCalcPeriod_Click;
-                mBtnSetADate.Click += MBtnSetADate_Click;
-                mBtnSaveProfile.Click += MBtnSaveProfile_Click;
-
                 // Set Text Listeners
+                mBtnCalcPeriod.Click += MBtnCalcPeriod_Click;
                 mTxtHeight.AfterTextChanged += MTxtHeight_AfterTextChanged;
                 mTxtWeight.AfterTextChanged += MTxtWeight_AfterTextChanged;
             }
+
+            // Set on Button Clicks
+            mBtnSetADate.Click += MBtnSetADate_Click;
+            mBtnSaveProfile.Click += MBtnSaveProfile_Click;
+
             return view;
         }
 
@@ -164,6 +162,14 @@ namespace GWG.Resources.fragments
         {
             Bundle bundle = new Bundle();
             bundle.PutString("title", "Select Due Date");
+            if (mDueDate.Ticks > 0)
+            {
+                bundle.PutLong("dueDate", mDueDate.Ticks);
+            }
+            else
+            {
+                bundle.PutLong("dueDate", DateTime.UtcNow.AddMonths(9).Ticks);
+            }
 
             //Pull up Calendar Dialog
             dialog_Calendar calendarDialog = new dialog_Calendar();
@@ -216,8 +222,6 @@ namespace GWG.Resources.fragments
             ((MainToolbarActivity)Activity).saveBaseline(dueDate, weight, height, bmi);
 
             // Freeze Baseline View
-            mBtnCalcPeriod.Enabled = false;
-            mBtnSetADate.Enabled = false;
             mTxtHeight.InputType = Android.Text.InputTypes.Null;
             mTxtWeight.InputType = Android.Text.InputTypes.Null;
             mViewSaveProfileError.Text = "Profile Saved";

@@ -167,20 +167,29 @@ namespace GWG.Resources.fragments
                     weightSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(mDates[i])), mWeights[i]));
                 }
 
-                // Get Initial Weight and Date
-                long initDate = mDates.Min();
-                double initWeight = mWeights[mDates.IndexOf(initDate)];
+                // Only calculate guide line if mDueDate is known
+               // if (mDueDate.Ticks > 0 )
+                //{
+                    // Get Start Time based on Due Date (Reverse calcNaegelesRule + extra month because there are 40 week #s)
+                
+                   // long conceptionDate = mDueDate.AddYears(-1).AddMonths(2).AddDays(-7).Ticks;
 
-                // Set trendline area
-                List<double> guide = WeightGain.getWeightList(mBMI);
-                double deviation = WeightGain.getWeightDeviation(mBMI);
+                    // Get Initial Weight and Date
+                    long initDate = mDates.Min();
+                    double initWeight = mWeights[mDates.IndexOf(initDate)];
 
-                for (int i = 0; i < guide.Count; i++)
-                {
-                    // Console.WriteLine("Guide Weight: " + guide[i]);
-                    guideSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(initDate).AddDays(i * 7)), initWeight + guide[i] + deviation));
-                    guideSeries.Points2.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(initDate).AddDays(i * 7)), initWeight + guide[i] - deviation));
-                }
+                    // Set trendline area
+                    List<double> guide = WeightGain.getWeightList(mBMI);
+                    double deviation = WeightGain.getWeightDeviation(mBMI);
+
+                    for (int i = 0; i < guide.Count; i++)
+                    {
+                        // Console.WriteLine("Guide Weight: " + guide[i]);
+                        guideSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(initDate).AddDays(i * 7)), initWeight + guide[i] + deviation));
+                        guideSeries.Points2.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(initDate).AddDays(i * 7)), initWeight + guide[i] - deviation));
+                    }
+
+               // }
 
             }
 
@@ -210,9 +219,14 @@ namespace GWG.Resources.fragments
 
             }
 
+            DateTime absoluteEndDate = endDate;
+            if (mDueDate.Ticks > 0)
+            {
+                absoluteEndDate = mDueDate;
+            }
             plotModel.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = DateTimeAxis.ToDouble(startDate), Maximum = DateTimeAxis.ToDouble(endDate), StringFormat = "M/d",
                 AbsoluteMinimum = DateTimeAxis.ToDouble(startDate),
-                AbsoluteMaximum = DateTimeAxis.ToDouble(mDueDate)
+                AbsoluteMaximum = DateTimeAxis.ToDouble(absoluteEndDate)
             });
             plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = minWeight-3, Maximum = maxWeight+3,
                 AbsoluteMinimum = minWeight - 10,

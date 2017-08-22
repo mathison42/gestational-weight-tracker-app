@@ -309,7 +309,7 @@ namespace GWG
 
             mHeight = 76.5;
             mBMI = 25;
-            mDueDate = DateTime.UtcNow.AddYears(1).AddMonths(-3).AddDays(7).Ticks;
+            //mDueDate = DateTime.UtcNow.AddYears(1).AddMonths(-3).AddDays(7).Ticks;
 
         }
 

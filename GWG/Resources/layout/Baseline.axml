@@ -96,7 +96,7 @@
             android:minHeight="10px"
             android:gravity="center">
             <TextView
-                android:text="Height"
+                android:text="Height (inches)"
                 android:textSize="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
             android:minHeight="10px"
             android:gravity="center">
             <TextView
-                android:text="Pre-Pregnancy Weight"
+                android:text="Pre-Pregnancy Weight (lbs)"
                 android:textSize="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -57,6 +57,15 @@ namespace GWG
 
             // Set Dialog Title
             mCalendarText.Text = this.Arguments.GetString("title");
+
+            // Set Calendar Date
+            long tempDate = this.Arguments.GetLong("dueDate");
+            if (tempDate > 0)
+            {
+                mSelectedDate = new DateTime(tempDate);
+                mCalendarView.UpdateDate(mSelectedDate.Year, mSelectedDate.Month-1, mSelectedDate.Day);
+            }
+
             return view;
         }
 
