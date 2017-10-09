@@ -2,8 +2,10 @@
 <resources>
     <string name="Hello">Hello World, Click Me!</string>
     <string name="ApplicationName">GWG</string>
-    <string name="openDrawer">Drawer Opened</string>
-    <string name="closeDrawer">Drawer Closed</string>
+   <!-- <string name="openDrawer">Drawer Opened</string>
+    <string name="closeDrawer">Drawer Closed</string>-->
+    <string name="openDrawer"></string>
+    <string name="closeDrawer"></string>
     <string-array name="list_items">
       <item>Loading...</item>
     </string-array>

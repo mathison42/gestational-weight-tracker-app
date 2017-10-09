@@ -15,12 +15,17 @@ namespace GWG
     public class DateWeight
     {
         public long mDate { get; set; }
-        public int mWeight { get; set; }
+        public double mWeight { get; set; }
 
-        public DateWeight(long date, int weight)
+        public DateWeight(long date, double weight)
         {
             mDate = date;
             mWeight = weight;
+        }
+
+        public void toString()
+        {
+            Console.WriteLine("Date:Weight -> " + mDate + ":" + mWeight);
         }
         
     }

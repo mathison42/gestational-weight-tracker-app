@@ -6,6 +6,10 @@ using System;
 using System.Threading;
 using Android.Content;
 using Android.Accounts;
+using GWG.Resources.redcap;
+using System.Json;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace GWG
 {
@@ -42,42 +46,86 @@ namespace GWG
 
             mBtnSignUp.Click += MBtnSignUp_Click;
             mBtnLogin.Click  += MBtnLogin_Click;
+
+            REDCapHelper rch = new REDCapHelper("123567");
+            //rch.GetVersion();
+
         }
 
-        private void MBtnLogin_Click(object sender, EventArgs e)
+        private async void MBtnLogin_Click(object sender, EventArgs e)
         {
-            string pin = mLoginPIN.Text;
-            if (!string.IsNullOrWhiteSpace(pin))
+            try
             {
-                bool doCredentialsExist = storeService.DoCredentialsExist();
-                if (!doCredentialsExist)
+                string pin = mLoginPIN.Text;
+                if (!string.IsNullOrWhiteSpace(pin))
                 {
-                    mViewPIN.Text = "Please create an account";
-                    mViewPIN.SetTextColor(Android.Graphics.Color.Red);
-
-                } else
-                {
-                    // Confirm User and PIN
-                    // Console.WriteLine("Pin: " + pin);
-                    // Console.WriteLine("Saved PIN: " + storeService.PIN);
-                    if (pin == storeService.PIN)
+                    bool doCredentialsExist = storeService.DoCredentialsExist();
+                    if (!doCredentialsExist)
                     {
-                        // Reset Values
-                        mLoginPIN.Text = "";
-                        mViewPIN.Text = "Enter PIN";
-                        mViewPIN.SetTextColor(Android.Graphics.Color.ForestGreen);
+                        mViewPIN.Text = "Please create an account";
+                        mViewPIN.SetTextColor(Android.Graphics.Color.Red);
 
-                        var intent = new Intent(this, typeof(MainToolbarActivity));
-                        StartActivity(intent);
                     } else
                     {
-                        mViewPIN.Text = "Invalid PIN";
-                        mViewPIN.SetTextColor(Android.Graphics.Color.Red);
+                        // Confirm User and PIN
+                        // Console.WriteLine("Pin: " + pin);
+                        // Console.WriteLine("Saved PIN: " + storeService.PIN);
+                        if (pin == storeService.PIN)
+                        {
+
+                            REDCapHelper rch = new REDCapHelper(storeService.REDCapID);
+                            //rch.AddBasline(76, 25);
+
+                            Console.WriteLine("1111111111111111111");
+
+                            REDCapResult result = await rch.GetProfile();
+                            result.parseJson2DateWeightList();
+
+                            Console.WriteLine("2222222222222222222222");
+
+                            if (result.redcapid != null)
+                            {
+                                if (result.redcapid == storeService.REDCapID)
+                                {
+                                    result.printRecord();
+
+                                    // Reset Values
+                                    mLoginPIN.Text = "";
+                                    mViewPIN.Text = "Enter PIN";
+                                    mViewPIN.SetTextColor(Android.Graphics.Color.ForestGreen);
+
+                                    var intent = new Intent(this, typeof(MainToolbarActivity));
+                                    intent.PutExtra("record", JsonConvert.SerializeObject(result));
+                                    StartActivity(intent);
+                                }
+                                else if (result.redcapid != storeService.REDCapID)
+                                {
+                                    mViewPIN.Text = "Error: Please contact study cordinator";
+                                    mViewPIN.SetTextColor(Android.Graphics.Color.Red);
+                                }
+                            }
+                            else
+                            {
+                                mViewPIN.Text = "Error: Try again";
+                                mViewPIN.SetTextColor(Android.Graphics.Color.Red);
+                            }
+                        }
+                        else
+                        {
+                            mViewPIN.Text = "Invalid PIN";
+                            mViewPIN.SetTextColor(Android.Graphics.Color.Red);
+                        }
                     }
+                } else
+                {
+                    mViewPIN.Text = "Enter PIN";
+                    mViewPIN.SetTextColor(Android.Graphics.Color.Red);
                 }
-            } else
+
+            } catch (Exception ex)
             {
-                mViewPIN.Text = "Enter PIN";
+                Console.WriteLine(ex.StackTrace);
+                mViewPIN.Text = "Error: Try again";
                 mViewPIN.SetTextColor(Android.Graphics.Color.Red);
             }
         }
@@ -99,7 +147,7 @@ namespace GWG
             Console.WriteLine("Stored UserName: " + storeService.UserName);
             Console.WriteLine("Stored REDCapID: " + storeService.REDCapID);
             Console.WriteLine("New ID: " + id);
-
+            
             if (!storeService.DoCredentialsExist() || storeService.REDCapID == id)
             {
 

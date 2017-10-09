@@ -19,6 +19,7 @@ using OxyPlot.Series;
 using OxyPlot.Xamarin.Android;
 using OxyPlot.Axes;
 using Android.Graphics;
+using GWG.Resources.redcap;
 
 namespace GWG.Resources.fragments
 {
@@ -31,6 +32,7 @@ namespace GWG.Resources.fragments
         private double mBMI;
         private List<long> mDates;
         private List<int> mWeights;
+        private List<DateWeight> mDateWeights;
 
         private TextView mViewOnTrack;
         private TextView mViewGainGoal;
@@ -51,7 +53,10 @@ namespace GWG.Resources.fragments
             mWeights = tempWeights.ToList();
             mBMI = bundle.GetDouble("bmi");
             mDueDate = new DateTime(bundle.GetLong("dueDate"));
-     
+
+            String dateWeightsStr = bundle.GetString("dateWeights");
+            mDateWeights = REDCapResult.parseJson2DateWeightList(dateWeightsStr);
+
             // Graph Initialization
             View view = inflater.Inflate(Resource.Layout.Graph, container, false);
             mPlotViewGraph = view.FindViewById<PlotView>(Resource.Id.plotViewGraph);
@@ -80,30 +85,38 @@ namespace GWG.Resources.fragments
 
         private void setOnTrackHeader()
         {
-            String resultStr = "";
             String resultColor = "#fbfabe";
 
             // Get Initial Weight and Date
-            long initDate = mDates.Min();
-            double initWeight = mWeights[mDates.IndexOf(initDate)];
+            //long initDate = mDates.Min();
+            //double initWeight = mWeights[mDates.IndexOf(initDate)];
+            DateWeight init = REDCapResult.minDate(mDateWeights);
 
             // Get Last Weight and Date
-            long lastDate = mDates.Max();
-            double lastWeight = mWeights[mDates.IndexOf(lastDate)];
+            //long lastDate = mDates.Max();
+            //double lastWeight = mWeights[mDates.IndexOf(lastDate)];
+            DateWeight last = REDCapResult.maxDate(mDateWeights);
 
-            if (WeightGain.withinWeightRange( mBMI, lastWeight-initWeight,  new DateTime(lastDate), mDueDate))
+
+
+            if (WeightGain.withinWeightRange( mBMI, last.mWeight - init.mWeight,  new DateTime(last.mDate), mDueDate))
             {
-                resultStr = "You are on track!";
                 resultColor = "#bae2e0";
+                mViewOnTrack.Visibility = Android.Views.ViewStates.Visible;
+                mViewOnTrack.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, 0, 5);
+            } 
+            else
+            {
+                resultColor = "#fbfabe";
+                mViewOnTrack.Visibility = Android.Views.ViewStates.Invisible;
+                mViewOnTrack.LayoutParameters = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MatchParent, 0, 0);
             }
-            mViewOnTrack.Text = resultStr;
-            mViewOnTrack.SetBackgroundColor(Color.ParseColor(resultColor));
             mViewGainGoal.SetBackgroundColor(Color.ParseColor(resultColor));
         }
 
         private void MBtnAddWeight_Click(object sender, EventArgs e)
         {
-            if (mDates.Count == 0)
+            if (mDueDate.Ticks == 0)
             {
                 Console.WriteLine("[Error] Complete Baseline first.");
                 return;
@@ -124,8 +137,9 @@ namespace GWG.Resources.fragments
             ((MainToolbarActivity)Activity).saveDateAndWeight(timestamp, weight);
 
             // Get updated lists
-            mDates = ((MainToolbarActivity)Activity).getDates();
-            mWeights = ((MainToolbarActivity)Activity).getWeights();
+            //mDates = ((MainToolbarActivity)Activity).getDates();
+            //mWeights = ((MainToolbarActivity)Activity).getWeights();
+            mDateWeights = ((MainToolbarActivity)Activity).getDateWeights();
 
             // Update graph
             mPlotViewGraph.Model = CreatePlotModel();
@@ -141,55 +155,80 @@ namespace GWG.Resources.fragments
             {
                 MarkerType = MarkerType.Circle,
                 MarkerSize = 4,
-                MarkerStroke = OxyColors.White
+                MarkerStroke = OxyColors.White,
+                MarkerFill = OxyColor.FromRgb(105, 151, 145),
+                Color = OxyColor.FromRgb(105, 151, 145)
             };
 
             var guideSeries = new AreaSeries
             {
-                Color = OxyColors.LightGoldenrodYellow,
-                Fill = OxyColor.FromRgb(251, 250, 190)
+                Color = OxyColor.FromRgb(186, 226, 224),
+                Fill = OxyColor.FromRgb(186, 226, 224)
 
             };
 
-            if (mDates.Count == 0)
+            //if (mDates.Count == 0)
+            if (mDateWeights.Count == 0)
             {
                 Console.WriteLine("[Info] No dates found.");
             }
-            else if (mDates.Count != mWeights.Count)
-            {
-                Console.WriteLine("[Error] Dates and Weights do not equal in size!");
-            }
+            //else if (mDates.Count != mWeights.Count)
+            //{
+            //    Console.WriteLine("[Error] Dates and Weights do not equal in size!");
+            //}
             else
             {
                 // Set main weight line
-                for (int i = 0; i < mDates.Count; i++)
+                //for (int i = 0; i < mDates.Count; i++)
+                for (int i = 0; i < mDateWeights.Count; i++)
                 {
-                    weightSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(mDates[i])), mWeights[i]));
+                    //weightSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(mDates[i])), mWeights[i]));
+                    weightSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(mDateWeights[i].mDate)), mDateWeights[i].mWeight));
                 }
 
                 // Only calculate guide line if mDueDate is known
-               // if (mDueDate.Ticks > 0 )
+                // if (mDueDate.Ticks > 0 )
                 //{
-                    // Get Start Time based on Due Date (Reverse calcNaegelesRule + extra month because there are 40 week #s)
-                
-                   // long conceptionDate = mDueDate.AddYears(-1).AddMonths(2).AddDays(-7).Ticks;
+                // Get Start Time based on Due Date (Reverse calcNaegelesRule + extra month because there are 40 week #s)
 
-                    // Get Initial Weight and Date
-                    long initDate = mDates.Min();
-                    double initWeight = mWeights[mDates.IndexOf(initDate)];
+                // long conceptionDate = mDueDate.AddYears(-1).AddMonths(2).AddDays(-7).Ticks;
 
+                // Get Initial Weight and Date
+                //long initDate = mDates.Min();
+                //double initWeight = mWeights[mDates.IndexOf(initDate)];
+                //DateWeight init = REDCapResult.minDate(mDateWeights);
+
+                // Set trendline area
+                //List<double> guide = WeightGain.getWeightList(mBMI);
+                //double deviation = WeightGain.getWeightDeviation(mBMI);
+
+                /*
+                for (int i = 0; i < guide.Count; i++)
+                {
+                    // Console.WriteLine("Guide Weight: " + guide[i]);
+                    guideSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(init.mDate).AddDays(i * 7)), init.mWeight + guide[i] + deviation));
+                    guideSeries.Points2.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(init.mDate).AddDays(i * 7)), init.mWeight + guide[i] - deviation));
+                }*/
+
+                Console.WriteLine("mDueDate!!!!: " + mDueDate);
+                if (mDueDate.Ticks > 0)
+                {
                     // Set trendline area
                     List<double> guide = WeightGain.getWeightList(mBMI);
                     double deviation = WeightGain.getWeightDeviation(mBMI);
+                    DateWeight init = REDCapResult.minDate(mDateWeights);
+                    long conceptionDate = mDueDate.AddYears(-1).AddMonths(2).AddDays(-7).Ticks;
 
                     for (int i = 0; i < guide.Count; i++)
                     {
                         // Console.WriteLine("Guide Weight: " + guide[i]);
-                        guideSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(initDate).AddDays(i * 7)), initWeight + guide[i] + deviation));
-                        guideSeries.Points2.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(initDate).AddDays(i * 7)), initWeight + guide[i] - deviation));
+                        guideSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(conceptionDate).AddDays(i * 7)), init.mWeight + guide[i] + deviation));
+                        guideSeries.Points2.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(conceptionDate).AddDays(i * 7)), init.mWeight + guide[i] - deviation));
                     }
 
-               // }
+                }
+
+                // }
 
             }
 
@@ -197,25 +236,32 @@ namespace GWG.Resources.fragments
 
 
             // Get the min and max weights for the initial bounds
-            int minWeight = 0;
-            int maxWeight = 50;
-            if (mWeights.Count > 0)
+            double minWeight = 0;
+            double maxWeight = 50;
+            //if (mWeights.Count > 0)
+            if (mDateWeights.Count > 0)
             {
-                minWeight = (int)mWeights.Min();
-                maxWeight = (int)mWeights.Max();
+                //minWeight = (int)mWeights.Min();
+                //maxWeight = (int)mWeights.Max
+                minWeight = REDCapResult.minWeight(mDateWeights).mWeight;
+                maxWeight = REDCapResult.maxWeight(mDateWeights).mWeight;
             }
 
             DateTime startDate;
             DateTime endDate;
-            if (mDates.Count > 0)
+            //if (mDates.Count > 0)
+            if (mDateWeights.Count > 0)
             {
-                startDate = new DateTime(mDates.Min()).AddDays(-1);
-                endDate = new DateTime(mDates.Max()).AddDays(1);
+                //startDate = new DateTime(mDates.Min()).AddDays(-1);
+                //endDate = new DateTime(mDates.Max()).AddDays(1);
+                startDate = new DateTime(REDCapResult.minDate(mDateWeights).mDate).AddDays(-1);
+                endDate = new DateTime(REDCapResult.maxDate(mDateWeights).mDate).AddDays(1);
 
-            } else
+            }
+            else
             {
-                startDate = DateTime.UtcNow.AddDays(-5);
-                endDate = DateTime.UtcNow.AddDays(5);
+                startDate = DateTime.Today.AddDays(-5);
+                endDate = DateTime.Today.AddDays(5);
 
             }
 
@@ -224,13 +270,21 @@ namespace GWG.Resources.fragments
             {
                 absoluteEndDate = mDueDate;
             }
+            Console.WriteLine("startDate: " + startDate);
+            Console.WriteLine("endDate: " + endDate);
+            Console.WriteLine("absoluteEndDate: " + absoluteEndDate);
+            Console.WriteLine("minWeight: " + minWeight);
+            Console.WriteLine("maxWeight: " + maxWeight);
+
             plotModel.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = DateTimeAxis.ToDouble(startDate), Maximum = DateTimeAxis.ToDouble(endDate), StringFormat = "M/d",
                 AbsoluteMinimum = DateTimeAxis.ToDouble(startDate),
-                AbsoluteMaximum = DateTimeAxis.ToDouble(absoluteEndDate)
+                AbsoluteMaximum = DateTimeAxis.ToDouble(absoluteEndDate),
+                Title = "Date"
             });
             plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = minWeight-3, Maximum = maxWeight+3,
                 AbsoluteMinimum = minWeight - 10,
-                AbsoluteMaximum = maxWeight + 10
+                AbsoluteMaximum = maxWeight + 10,
+                Title = "Weight ( lbs )"
             });
 
             plotModel.Series.Add(guideSeries);

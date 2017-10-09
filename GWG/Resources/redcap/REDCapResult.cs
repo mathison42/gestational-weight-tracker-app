@@ -1,0 +1,337 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using System.Data;
+using Newtonsoft.Json;
+
+namespace GWG.Resources.redcap
+{
+    public class REDCapResult
+    {
+        public string record_id { get; set; }
+        public string redcapid { get; set; }
+        public string height { get; set; }
+        public string bmi { get; set; }
+        public string weights { get; set; }
+        public string dates { get; set; }
+        public string json { get; set; }
+        public string dueDate { get; set; }
+
+        private double bmiDouble = -1;
+        private double heightDouble = -1;
+        private long dueDateLong = -1;
+
+        public List<long> datesParsed = new List<long>();
+        public List<double> weightsParsed = new List<double>();
+        public List<DateWeight> dateWeights = new List<DateWeight>();
+
+        public double getBMI()
+        {
+            if (bmiDouble == -1)
+            {
+                if (!Double.TryParse(bmi, out bmiDouble))
+                {
+                    Console.WriteLine("[Error] BMI is not a double value.");
+                }
+            }
+            return bmiDouble;
+        }
+
+        public double getHeight()
+        {
+            if (heightDouble == -1)
+            {
+                if (!Double.TryParse(height, out heightDouble))
+                {
+                    Console.WriteLine("[Error] Height is not a double value.");
+                }
+            }
+            return heightDouble;
+        }
+
+        public long getDueDate()
+        {
+            if (dueDateLong == -1)
+            {
+                if (!Int64.TryParse(dueDate, out dueDateLong))
+                {
+                    Console.WriteLine("[Error] Height is not a double value.");
+                }
+            }
+            return dueDateLong;
+        }
+
+        public void parseJson2DateWeightList()
+        {
+            dateWeights = parseJson2DateWeightList(json);
+        }
+        public static List<DateWeight> parseJson2DateWeightList(string json)
+        {
+            List<DateWeight> result = new List<DateWeight>();
+
+            // To dictionary to remove duplicates
+            Dictionary<long, double> datesWeightsDict = JsonConvert.DeserializeObject<Dictionary<long, double>>(json);
+
+            // To list for easier sorting
+            List<KeyValuePair<long, double>> datesWeightsList = datesWeightsDict.ToList();
+            datesWeightsList.Sort(
+                delegate (KeyValuePair<long, double> pair1,
+                KeyValuePair<long, double> pair2)
+                {
+                    return pair1.Key.CompareTo(pair2.Key);
+                }
+            );
+
+            // Create List<DateWeight>
+            foreach (KeyValuePair<long, double> entry in datesWeightsList)
+            {
+                // do something with entry.Value or entry.Key
+                result.Add(new DateWeight(entry.Key, entry.Value));
+            }
+            return result;
+        }
+
+        public void parseDateWeightList2Json()
+        {
+            json = parseDateWeightList2Json(dateWeights);
+        }
+
+        public static string parseDateWeightList2Json(List<DateWeight> dateWeights)
+        {
+            string result;
+
+            Dictionary<long, double> tempDic = new Dictionary<long, double>();
+            foreach(DateWeight dw in dateWeights){
+                tempDic.Add(dw.mDate, dw.mWeight);
+            }
+            result = JsonConvert.SerializeObject(tempDic, Formatting.Indented);
+            return result;
+        }
+
+        public void parseDatesAndWeights()
+        {
+            //this.datesParsed = this.dates.Split(',').Split("\n").Selec
+            List<string> tempDates = dates.Split(new string[] { "\n", "\r\n", "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            List<string> tempWeights = weights.Split(new string[] { "\n", "\r\n", "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            int minSize = tempDates.Count;
+            
+            // Confirm weights and dates are the same size 
+            if (tempDates.Count != tempWeights.Count)
+            {
+                Console.WriteLine("[Error] Dates and Weights lengths do not match.");
+                Console.WriteLine("[Info] Dates Length: " + tempDates.Count);
+                Console.WriteLine("[Info] Weights Length: " + tempWeights.Count);
+                if (tempWeights.Count < tempDates.Count)
+                {
+                    // Weights count is smaller, losing values in weights
+                    minSize = tempWeights.Count;
+                } else
+                {
+                    // count is good, but losing values in Dates
+                }
+            }
+
+            datesParsed   = new List<long>();
+            weightsParsed = new List<double>();
+            for (int i = 0; i < minSize; i++)
+            {
+                long date;
+                double weight;
+                bool isValidDate   = long.TryParse(tempDates[i].Trim(), out date);
+                bool isValidWeight = double.TryParse(tempWeights[i].Trim(), out weight);
+
+                if (isValidDate && isValidWeight)
+                {
+                    datesParsed.Add(date);
+                    weightsParsed.Add(weight);
+                } else
+                {
+                    // else skip becausae something is bad
+                    Console.WriteLine("[Error] Invalid Date or Weight value.");
+                    Console.WriteLine("[Info] Date: " + date);
+                    Console.WriteLine("[Info] Weight: " + weight);
+                }
+            }
+        }
+
+        public DateWeight minDate()
+        {
+            return minDate(dateWeights);
+        }
+        public static DateWeight minDate(List<DateWeight> dateWeights)
+        {
+            DateWeight min = null;
+
+            foreach(DateWeight dw in dateWeights)
+            {
+                if (min == null || min.mDate > dw.mDate)
+                {
+                    min = dw;
+                }
+            }
+
+            return min;
+        }
+
+
+        public DateWeight maxDate()
+        {
+            return maxDate(dateWeights);
+        }
+        public static DateWeight maxDate(List<DateWeight> dateWeights)
+        {
+            DateWeight max = null;
+
+            foreach (DateWeight dw in dateWeights)
+            {
+                if (max == null || max.mDate < dw.mDate)
+                {
+                    max = dw;
+                }
+            }
+
+            return max;
+        }
+
+        public DateWeight minWeight()
+        {
+            return minWeight(dateWeights);
+        }
+        public static DateWeight minWeight(List<DateWeight> dateWeights)
+        {
+            DateWeight min = null;
+
+            foreach (DateWeight dw in dateWeights)
+            {
+                if (min == null || min.mWeight > dw.mWeight)
+                {
+                    min = dw;
+                }
+            }
+
+            return min;
+        }
+
+
+        public DateWeight maxWeight()
+        {
+            return maxWeight(dateWeights);
+        }
+        public static DateWeight maxWeight(List<DateWeight> dateWeights)
+        {
+            DateWeight max = null;
+
+            foreach (DateWeight dw in dateWeights)
+            {
+                if (max == null || max.mWeight < dw.mWeight)
+                {
+                    max = dw;
+                }
+            }
+
+            return max;
+        }
+
+        public DateWeight getDateWeight(long date)
+        {
+            return getDateWeight(dateWeights, date);
+        }
+
+        public static DateWeight getDateWeight(List<DateWeight> dateWeights, long date)
+        {
+            DateWeight result = null;
+
+            foreach(DateWeight dw in dateWeights)
+            {
+                if (dw.mDate == date)
+                {
+                    result = dw;
+                    break;
+                }
+            }
+            return result;
+        }
+
+        public bool setDateWeight(long date, double weight)
+        {
+            bool result = false;
+            foreach (DateWeight dw in dateWeights)
+            {
+                if (dw.mDate == date)
+                {
+                    dw.mWeight = weight;
+                    result = true;
+                    break;
+                }
+            }
+            return result;
+        }
+
+        public void addDateWeight(DateWeight dw)
+        {
+            dateWeights = addDateWeight(dateWeights, dw);
+        }
+        public static List<DateWeight> addDateWeight(List<DateWeight> dateWeights, DateWeight dw)
+        {
+            dateWeights.Add(dw);
+            return sort(dateWeights);
+        }
+
+        public static List<DateWeight> sort(List<DateWeight> dateWeights)
+        {
+            dateWeights.Sort(
+                delegate (DateWeight pair1,
+                DateWeight pair2)
+                {
+                    return pair1.mDate.CompareTo(pair2.mDate);
+                }
+            );
+            return dateWeights;
+        }
+ 
+        public void printRecord()
+        {
+            Console.WriteLine("===========");
+            Console.WriteLine("Record ID: " + record_id);
+            Console.WriteLine("REDCapID: " + redcapid);
+            Console.WriteLine("Height: " + height);
+            Console.WriteLine("BMI: " + bmi);
+            Console.WriteLine("Weights: [" + String.Join(", ", weightsParsed) + "]");
+            Console.WriteLine("Dates: [" + String.Join(", ", datesParsed) + "]");
+            Console.WriteLine("JSON: " + json);
+            foreach(DateWeight dw in dateWeights)
+            {
+                dw.toString();
+            }
+            Console.WriteLine("===========");
+        }
+
+        public void printFullRecord()
+        {
+            Console.WriteLine("===================");
+            Console.WriteLine("Record ID: " + record_id);
+            Console.WriteLine("REDCapID: " + redcapid);
+            Console.WriteLine("Height: " + height);
+            Console.WriteLine("BMI: " + bmi);
+            Console.WriteLine("Weights: [" + String.Join(", ", weightsParsed) + "]");
+            Console.WriteLine("Dates: [" + String.Join(", ", datesParsed) + "]");
+            Console.WriteLine("JSON: " + json);
+            foreach (DateWeight dw in dateWeights)
+            {
+                dw.toString();
+            }
+            Console.WriteLine("======= Raw =======");
+            Console.WriteLine("Weights: " + weights);
+            Console.WriteLine("Dates: " + dates);
+            Console.WriteLine("===================");
+        }
+    }
+}

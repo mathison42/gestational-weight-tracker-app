@@ -24,3 +24,5 @@ UpgradeLog.*
 
 # dotCover
 *.dotCover
+
+hidden/

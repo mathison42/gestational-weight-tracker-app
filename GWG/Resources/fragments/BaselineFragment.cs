@@ -62,7 +62,7 @@ namespace GWG.Resources.fragments
                 // Set values
                 mViewDate.Text = mDueDate.ToShortDateString();
                 mTxtHeight.Text = bundle.GetDouble("height").ToString();
-                mTxtWeight.Text = bundle.GetInt("weight").ToString();
+                mTxtWeight.Text = bundle.GetDouble("weight").ToString();
                 mTxtBMI.Text = bundle.GetDouble("bmi").ToString();
 
                 // Disable EditTexts
@@ -168,7 +168,7 @@ namespace GWG.Resources.fragments
             }
             else
             {
-                bundle.PutLong("dueDate", DateTime.UtcNow.AddMonths(9).Ticks);
+                bundle.PutLong("dueDate", DateTime.Today.AddMonths(9).Ticks);
             }
 
             //Pull up Calendar Dialog

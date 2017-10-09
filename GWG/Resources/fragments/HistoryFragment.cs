@@ -15,6 +15,7 @@ using Android.Support.V7.Widget;
 using Android.Support.V7.App;
 using GWG.Resources.adapter;
 using Java.Util;
+using GWG.Resources.redcap;
 
 namespace GWG.Resources.fragments
 {
@@ -33,15 +34,18 @@ namespace GWG.Resources.fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             Bundle bundle = Arguments;
-            long[] dates = bundle.GetLongArray("dates");
-            int[] weights = bundle.GetIntArray("weights");
+            //long[] dates = bundle.GetLongArray("dates");
+            //int[] weights = bundle.GetIntArray("weights");
+            string dateWeightsStr = bundle.GetString("dateWeights");
+            mDateWeights = REDCapResult.parseJson2DateWeightList(dateWeightsStr);
+            mDateWeights.Reverse();
 
             View view = inflater.Inflate(Resource.Layout.History, container, false);
             mWeightList = view.FindViewById<RecyclerView>(Resource.Id.weightList);
             mWeightList.HasFixedSize = true;
 
-            mDateWeights = new List<DateWeight>();
-            if (dates.Length != weights.Length)
+            //mDateWeights = new List<DateWeight>();
+            /**if (dates.Length != weights.Length)
             {
                 Console.WriteLine("[Error] Dates and Weights do not equal in size!");
             } else
@@ -50,7 +54,7 @@ namespace GWG.Resources.fragments
                 {
                     mDateWeights.Add(new DateWeight(dates[i], weights[i]));
                 }
-            }
+            }*/
             
             mLayoutManager = new LinearLayoutManager(this.Context);
             mWeightList.SetLayoutManager(mLayoutManager);

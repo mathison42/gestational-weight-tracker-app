@@ -43,6 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="65"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:id="@+id/plotViewGraph" />
@@ -51,6 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="5"
+        android:layout_marginTop="25dp"
         android:id="@+id/viewUpdateWeight"
         android:textColor="#699791"
         android:gravity="center"

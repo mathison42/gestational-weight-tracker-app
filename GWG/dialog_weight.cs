@@ -40,6 +40,7 @@ namespace GWG
     public class dialog_weight : Android.Support.V4.App.DialogFragment
     {
         private EditText mTxtWeight;
+        private DatePicker mCalendarView;
         private TextView mViewSaveWeightError;
         private Button mBtnSetWeight;
 
@@ -61,6 +62,11 @@ namespace GWG
             var view = inflater.Inflate(Resource.Layout.dialog_weight, container, false);
 
             mTxtWeight = view.FindViewById<EditText>(Resource.Id.txtWeight);
+            mCalendarView = view.FindViewById<DatePicker>(Resource.Id.viewCalendar);
+            //mCalendarView.MinDate = DateTime.Today.AddMonths(-1).Millisecond;
+            var origin = new DateTime(1970, 1, 1);
+            mCalendarView.MinDate = (long)(DateTime.Today.AddMonths(-1).AddDays(1).Date - origin).TotalMilliseconds;
+            mCalendarView.MaxDate = (long)(DateTime.Today.AddDays(1).Date - origin).TotalMilliseconds;
             mViewSaveWeightError = view.FindViewById<TextView>(Resource.Id.viewSaveWeightError);
             mBtnSetWeight = view.FindViewById<Button>(Resource.Id.btnSetWeight);
 
@@ -82,7 +88,7 @@ namespace GWG
                 weight = Math.Round(weight, 1);
 
                 // User has clicked the Save Weight button and entered a valid weight
-                mDailyWeightComplete.Invoke(this, new DailyWeightEventArg(DateTime.UtcNow.Ticks, weight));
+                mDailyWeightComplete.Invoke(this, new DailyWeightEventArg(mCalendarView.DateTime.Ticks, weight));
                 this.Dismiss();
             } else
             {

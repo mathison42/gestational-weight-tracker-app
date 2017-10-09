@@ -256,39 +256,51 @@ namespace GWG
             bool result = false;
 
             // Calculate index to retrieve based on weeks until pregnancy
-            int weeksTilDueDate = (int)(dueDate - lastDate).TotalDays / 7;
-            int index = TOTAL_WEEKS - weeksTilDueDate;
+            //int weeksTilDueDate = (int)(dueDate - lastDate).TotalDays / 7;
+            double weeksTilDueDate = Convert.ToInt32((dueDate - lastDate).TotalDays / 7);
+            double index = TOTAL_WEEKS - weeksTilDueDate;
+            int minIndex = (int)Math.Floor(index);
+            int maxIndex = (int)Math.Floor(index) + 1;
+            double modWeek = (dueDate - lastDate).TotalDays % 7;
             if (index < 0)
             {
-                index = 0;
+                minIndex = 0;
+                maxIndex = 0;
+                modWeek = 0;
             }
             else  if (index > 39)
             {
-                index = 39;
+                minIndex = 39;
+                maxIndex = 39;
+                modWeek = 0;
             }
-
             // Grab how much weight they should have gained
             double idealWeightGain = 0;
+            double extra = 0;
             if (bmi < 18.5)
             {
-                idealWeightGain = UNDERWEIGHT_WEIGHTS[index];
+                idealWeightGain = UNDERWEIGHT_WEIGHTS[minIndex];
+                extra = (UNDERWEIGHT_WEIGHTS[maxIndex] - UNDERWEIGHT_WEIGHTS[minIndex]) * modWeek;
             }
             else if (bmi < 25)
             {
-                idealWeightGain = NORMAL_WEIGHTS[index];
+                idealWeightGain = NORMAL_WEIGHTS[minIndex];
+                extra = (UNDERWEIGHT_WEIGHTS[maxIndex] - UNDERWEIGHT_WEIGHTS[minIndex]) * modWeek;
             }
             else if (bmi < 30)
             {
-                idealWeightGain = OVERWEIGHT_WEIGHTS[index];
+                idealWeightGain = OVERWEIGHT_WEIGHTS[minIndex];
+                extra = (UNDERWEIGHT_WEIGHTS[maxIndex] - UNDERWEIGHT_WEIGHTS[minIndex]) * modWeek;
             }
             else
             {
-                idealWeightGain = OBESE_WEIGHTS[index];
+                idealWeightGain = OBESE_WEIGHTS[minIndex];
+                extra = (UNDERWEIGHT_WEIGHTS[maxIndex] - UNDERWEIGHT_WEIGHTS[minIndex]) * modWeek;
             }
 
             // Calculate if out of range
             double dev = getWeightDeviation(bmi);
-            if (idealWeightGain + dev > weightGained && idealWeightGain - dev < weightGained)
+            if (idealWeightGain + dev + extra > weightGained && idealWeightGain - dev - extra < weightGained)
             {
                 result = true;
             }

@@ -6,7 +6,7 @@
     <TextView
         android:layout_alignParentTop="true"
         android:id="@+id/viewWeightText"
-        android:text="How much do you weigh today?"
+        android:text="Record new weight"
         android:textSize="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,15 +14,24 @@
         android:gravity="center"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="10dp" />
     <View
         android:layout_below="@id/viewWeightText"
         android:id="@+id/line1"
         android:layout_width="match_parent"
         android:layout_height="4dp"
         android:background="#bae2e0" />
-    <EditText
+    <DatePicker
         android:layout_below="@id/line1"
+        android:id="@+id/viewCalendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minDate=""
+        android:maxDate=""
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false" />
+    <EditText
+        android:layout_below="@id/viewCalendar"
         android:id="@+id/txtWeight"
         android:inputType="numberDecimal"
         android:textColor="#699791"
@@ -45,28 +54,28 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:paddingBottom="20dp">
-      <TextView
-          android:id="@+id/viewSaveWeightError"
-          android:text=""
-          android:textSize="20dp"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:textColor="#FF0000"
-          android:gravity="center"
-          android:textStyle="bold"
-          android:layout_alignParentTop="true"
-          android:layout_marginBottom="10dp" />
-      <Button
-          android:layout_below="@id/viewSaveWeightError"
-          android:text="Save Weight"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:id="@+id/btnSetWeight"
-          android:textSize="36dp"
-          android:textColor="#699791"
-          android:background="@drawable/btnLogin"
-          android:layout_marginLeft="20dp"
-          android:layout_marginRight="20dp"
-          android:textAllCaps="false" />
+        <TextView
+            android:id="@+id/viewSaveWeightError"
+            android:text=""
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#FF0000"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="10dp" />
+        <Button
+            android:layout_below="@id/viewSaveWeightError"
+            android:text="Save Weight"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/btnSetWeight"
+            android:textSize="36dp"
+            android:textColor="#699791"
+            android:background="@drawable/btnLogin"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textAllCaps="false" />
     </RelativeLayout>
 </RelativeLayout>
