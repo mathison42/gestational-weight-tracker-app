@@ -98,7 +98,7 @@ namespace GWG.Resources.fragments
             DateWeight last = REDCapResult.maxDate(mDateWeights);
 
 
-
+            
             if (WeightGain.withinWeightRange( mBMI, last.mWeight - init.mWeight,  new DateTime(last.mDate), mDueDate))
             {
                 resultColor = "#bae2e0";
@@ -217,7 +217,8 @@ namespace GWG.Resources.fragments
                     List<double> guide = WeightGain.getWeightList(mBMI);
                     double deviation = WeightGain.getWeightDeviation(mBMI);
                     DateWeight init = REDCapResult.minDate(mDateWeights);
-                    long conceptionDate = mDueDate.AddYears(-1).AddMonths(2).AddDays(-7).Ticks;
+                    //long conceptionDate = mDueDate.AddYears(-1).AddMonths(2).AddDays(-7).Ticks;
+                    long conceptionDate = mDueDate.AddDays(-7*guide.Count).Ticks;
 
                     for (int i = 0; i < guide.Count; i++)
                     {

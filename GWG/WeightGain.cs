@@ -250,61 +250,100 @@ namespace GWG
         }
 
         // Determine if user is within weight range
-        public static bool withinWeightRange(double bmi, double weightGained,
-            DateTime lastDate, DateTime dueDate)
+        public static bool withinWeightRange(double bmi, double actualGain, DateTime lastDate, DateTime dueDate)
         {
             bool result = false;
+            double weeks = 40 - (dueDate - lastDate).TotalDays / 7;
+            if (weeks > 40)
+            {
+                weeks = 40;
+            } else if (weeks < 0)
+            {
+                weeks = 0;
+            }
 
-            // Calculate index to retrieve based on weeks until pregnancy
-            //int weeksTilDueDate = (int)(dueDate - lastDate).TotalDays / 7;
-            double weeksTilDueDate = Convert.ToInt32((dueDate - lastDate).TotalDays / 7);
-            double index = TOTAL_WEEKS - weeksTilDueDate;
-            int minIndex = (int)Math.Floor(index);
-            int maxIndex = (int)Math.Floor(index) + 1;
-            double modWeek = (dueDate - lastDate).TotalDays % 7;
-            if (index < 0)
-            {
-                minIndex = 0;
-                maxIndex = 0;
-                modWeek = 0;
-            }
-            else  if (index > 39)
-            {
-                minIndex = 39;
-                maxIndex = 39;
-                modWeek = 0;
-            }
-            // Grab how much weight they should have gained
-            double idealWeightGain = 0;
-            double extra = 0;
+            double expectedGain = 0;
+            double deviation = getWeightDeviation(bmi);
             if (bmi < 18.5)
             {
-                idealWeightGain = UNDERWEIGHT_WEIGHTS[minIndex];
-                extra = (UNDERWEIGHT_WEIGHTS[maxIndex] - UNDERWEIGHT_WEIGHTS[minIndex]) * modWeek;
+                expectedGain = underweightCalc(weeks);
             }
             else if (bmi < 25)
             {
-                idealWeightGain = NORMAL_WEIGHTS[minIndex];
-                extra = (UNDERWEIGHT_WEIGHTS[maxIndex] - UNDERWEIGHT_WEIGHTS[minIndex]) * modWeek;
+                expectedGain = normalweightCalc(weeks);
             }
             else if (bmi < 30)
             {
-                idealWeightGain = OVERWEIGHT_WEIGHTS[minIndex];
-                extra = (UNDERWEIGHT_WEIGHTS[maxIndex] - UNDERWEIGHT_WEIGHTS[minIndex]) * modWeek;
+                expectedGain = overweightCalc(weeks);
             }
             else
             {
-                idealWeightGain = OBESE_WEIGHTS[minIndex];
-                extra = (UNDERWEIGHT_WEIGHTS[maxIndex] - UNDERWEIGHT_WEIGHTS[minIndex]) * modWeek;
+                expectedGain = obeseCalc(weeks);
             }
-
-            // Calculate if out of range
-            double dev = getWeightDeviation(bmi);
-            if (idealWeightGain + dev + extra > weightGained && idealWeightGain - dev - extra < weightGained)
+            //Console.WriteLine("weeks: " + weeks);
+            //Console.WriteLine("expectedGain: " + expectedGain);
+            //Console.WriteLine("Math.Abs(actualGain): " + Math.Abs(actualGain));
+            //Console.WriteLine("deviation: " + deviation);
+            if (expectedGain-deviation < actualGain && actualGain < expectedGain + deviation)
             {
                 result = true;
             }
+            return result;
+        }
 
+        // y = -1E-07x^6 + 1E-05x^5 - 0.0007x^4 + 0.0139x^3 - 0.0857x^2 + 0.1927x - 0.1321
+        public static double underweightCalc(double weeks)
+        {
+            double result = 0;
+            result = result - 1 * Math.Pow(10, -7) * Math.Pow(weeks, 6);
+            result = result + 1 * Math.Pow(10, -5) * Math.Pow(weeks, 5);
+            result = result - 0.0007 * Math.Pow(weeks, 4);
+            result = result + 0.0139 * Math.Pow(weeks, 3);
+            result = result - 0.0857 * Math.Pow(weeks, 2);
+            result = result + 0.1927 * weeks;
+            result = result - 1.321;
+            return result;
+        }
+
+        // y = -8E-08x^6 + 1E-05x^5 - 0.0005x^4 + 0.0094x^3 - 0.0422x^2 + 0.0344x + 0.0202
+        public static double normalweightCalc(double weeks)
+        {
+            double result = 0;
+            result = result - 8 * Math.Pow(10, -8) * Math.Pow(weeks, 6);
+            result = result + 1 * Math.Pow(10, -5) * Math.Pow(weeks, 5);
+            result = result - 0.0005 * Math.Pow(weeks, 4);
+            result = result + 0.0094 * Math.Pow(weeks, 3);
+            result = result - 0.0422 * Math.Pow(weeks, 2);
+            result = result + 0.0344 * weeks;
+            result = result + 0.0202;
+            return result;
+        }
+
+        // y = -1E-08x^6 + 1E-06x^5 - 9E-06x^4 - 0.0016x^3 + 0.0658x^2 - 0.3585x + 0.3979
+        public static double overweightCalc(double weeks)
+        {
+            double result = 0;
+            result = result - 1 * Math.Pow(10, -8) * Math.Pow(weeks, 6);
+            result = result + 1 * Math.Pow(10, -6) * Math.Pow(weeks, 5);
+            result = result - 9 * Math.Pow(10, -6) * Math.Pow(weeks, 4);
+            result = result - 0.0016 * Math.Pow(weeks, 3);
+            result = result + 0.0658 * Math.Pow(weeks, 2);
+            result = result - 0.3585 * weeks;
+            result = result + 0.3979;
+            return result;
+        }
+
+        // y = 2E-08x^6 - 3E-06x^5 + 0.0002x^4 - 0.0066x^3 + 0.1143x^2 - 0.535x + 0.5675
+        public static double obeseCalc(double weeks)
+        {
+            double result = 0;
+            result = result + 2 * Math.Pow(10, -8) * Math.Pow(weeks, 6);
+            result = result - 3 * Math.Pow(10, -6) * Math.Pow(weeks, 5);
+            result = result + 0.0002 * Math.Pow(weeks, 4);
+            result = result - 0.0066 * Math.Pow(weeks, 3);
+            result = result + 0.1143 * Math.Pow(weeks, 2);
+            result = result - 0.5350 * weeks;
+            result = result + 0.5675;
             return result;
         }
 
