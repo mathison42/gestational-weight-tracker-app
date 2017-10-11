@@ -56,14 +56,12 @@ namespace GWG
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             // Use this to return your custom view for this Fragment
-            // return inflater.Inflate(Resource.Layout.YourFragment, container, false);
 
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.dialog_weight, container, false);
 
             mTxtWeight = view.FindViewById<EditText>(Resource.Id.txtWeight);
             mCalendarView = view.FindViewById<DatePicker>(Resource.Id.viewCalendar);
-            //mCalendarView.MinDate = DateTime.Today.AddMonths(-1).Millisecond;
             var origin = new DateTime(1970, 1, 1);
             mCalendarView.MinDate = (long)(DateTime.Today.AddMonths(-1).AddDays(1).Date - origin).TotalMilliseconds;
             mCalendarView.MaxDate = (long)(DateTime.Today.AddDays(1).Date - origin).TotalMilliseconds;

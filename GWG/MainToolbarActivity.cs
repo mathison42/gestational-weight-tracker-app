@@ -271,21 +271,26 @@ namespace GWG
             if (mRecord.dateWeights.Count > 0)
             {
                 DateWeight maxDWDate = mRecord.maxDate();
+                DateWeight minDWDate = mRecord.minDate();
                 Console.WriteLine("new DateTime(timestamp).Date: " + new DateTime(timestamp).Date);
                 Console.WriteLine("new DateTime(maxDWDate.mDate).Date: " + new DateTime(maxDWDate.mDate).Date);
                 Console.WriteLine("new DateTime(DateTime.Today.Ticks).Date: " + new DateTime(DateTime.Today.Ticks).Date);
-                if (new DateTime(timestamp).Date == new DateTime(DateTime.Today.Ticks).Date && 
+                if (new DateTime(timestamp).Date == new DateTime(DateTime.Today.Ticks).Date &&
                     new DateTime(timestamp).Date == new DateTime(maxDWDate.mDate).Date)
                 {
                     mRecord.setDateWeight(maxDWDate.mDate, weight);
                 }
+                else if (new DateTime(timestamp).Date <= new DateTime(minDWDate.mDate).Date) {
+                    Console.WriteLine("[User Error] Unable to add a date prior to the init date.");
+                }
                 else if (mRecord.getDateWeight(timestamp) == null)
                 {
                     mRecord.addDateWeight(new DateWeight(timestamp, weight));
-                } 
+                }
                 else
                 {
                     // value already exists at this date
+                    Console.WriteLine("[User Error] Unable to add a date that already exists.");
                 }
             }
             else
