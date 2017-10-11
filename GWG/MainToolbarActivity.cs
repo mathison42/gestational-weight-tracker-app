@@ -40,22 +40,10 @@ namespace GWG
         private BaselineFragment mBaselineFragment;
         private Stack<SupportFragment> mStackFragment;
 
-        private REDCapResult mRecord;
-        private List<long> mDates = new List<long>();
-        private List<int> mWeights = new List<int>();
+        private REDCapResult mRecord; 
         private long mDueDate;
         private double mHeight;
         private double mBMI;
-
-        public List<long> getDates()
-        {
-            return mDates;
-        }
-
-        public List<int> getWeights()
-        {
-            return mWeights;
-        }
 
         public List<DateWeight> getDateWeights()
         {
@@ -118,15 +106,12 @@ namespace GWG
 
             // Retrieve Actual Data
             mRecord = JsonConvert.DeserializeObject<REDCapResult>(Intent.GetStringExtra("record"));
-            mRecord.parseDatesAndWeights();
             mRecord.printRecord();
             mRecord.parseJson2DateWeightList();
             mRecord.printRecord();
 
             // Set initial graph data
             Bundle args = new Bundle();
-            args.PutLongArray("dates", mDates.ToArray());
-            args.PutIntArray("weights", mWeights.ToArray());
             args.PutDouble("bmi", mRecord.getBMI());
             args.PutLong("dueDate", mRecord.getDueDate());
             args.PutString("dateWeights", REDCapResult.parseDateWeightList2Json(mRecord.dateWeights));
@@ -161,8 +146,6 @@ namespace GWG
                 if (!mGraphFragment.IsVisible)
                 {
                     Bundle args = new Bundle();
-                    args.PutLongArray("dates", mDates.ToArray());
-                    args.PutIntArray("weights", mWeights.ToArray());
                     args.PutDouble("bmi", mRecord.getBMI());
                     args.PutLong("dueDate", mRecord.getDueDate());
                     args.PutString("dateWeights", REDCapResult.parseDateWeightList2Json(mRecord.dateWeights));
@@ -179,8 +162,6 @@ namespace GWG
                 if (!mHistoryFragment.IsVisible)
                 {
                     Bundle args = new Bundle();
-                    //args.PutLongArray("dates", mDates.ToArray());
-                    //args.PutIntArray("weights", mWeights.ToArray());
                     args.PutString("dateWeights", REDCapResult.parseDateWeightList2Json(mRecord.dateWeights));
                     mHistoryFragment.Arguments = args;
                 }
@@ -196,11 +177,6 @@ namespace GWG
                 if (!mBaselineFragment.IsVisible)
                 {
                     Bundle args = new Bundle();
-                    /**if (mDates.Count > 0)
-                    {
-                        int index = mDates.IndexOf(mDates.Min());
-                        args.PutInt("weight", mWeights[index]);
-                    }*/
                     if (mRecord.dateWeights.Count > 0)
                     {
                         args.PutDouble("weight", mRecord.minDate().mWeight);
@@ -276,8 +252,7 @@ namespace GWG
         public void saveBaseline(DateTime dueDate, double weight, double height, double BMI)
         {
             mDueDate = dueDate.Ticks;
-
-            //if (mDates.Count == 0)
+            
             if (mRecord.dateWeights.Count == 0)
             {
                 mBMI = BMI;
@@ -293,23 +268,6 @@ namespace GWG
 
         public void saveDateAndWeight(long timestamp, double weight)
         {
-            /*long maxTimestamp = 0;
-            if (mDates.Count> 0)
-            {
-                maxTimestamp = mDates.Max();
-            }
-            if (new DateTime(timestamp).Date == new DateTime(maxTimestamp).Date)
-            {
-                int index = mDates.IndexOf(maxTimestamp);
-                mDates[index] = timestamp;
-                mWeights[index] = (int)weight;
-            }
-            else
-            {
-                mDates.Add(timestamp);
-                mWeights.Add((int)weight);
-            }*/
-
             if (mRecord.dateWeights.Count > 0)
             {
                 DateWeight maxDWDate = mRecord.maxDate();
@@ -319,8 +277,6 @@ namespace GWG
                 if (new DateTime(timestamp).Date == new DateTime(DateTime.Today.Ticks).Date && 
                     new DateTime(timestamp).Date == new DateTime(maxDWDate.mDate).Date)
                 {
-                    //int index = mRecord.dateWeights.IndexOf(maxDWDate);
-                    //mRecord.dateWeights[index].mWeight = weight;
                     mRecord.setDateWeight(maxDWDate.mDate, weight);
                 }
                 else if (mRecord.getDateWeight(timestamp) == null)
@@ -334,8 +290,6 @@ namespace GWG
             }
             else
             {
-                /** mDates.Add(timestamp);
-                 mWeights.Add((int)weight);*/
                 mRecord.dateWeights.Add(new DateWeight(timestamp, weight));
             }
 
@@ -345,23 +299,9 @@ namespace GWG
         public void createTestData()
         {
             // Retrieve data from database... for right now, falsify data
-            mDates = new List<long>();
-            mDates.Add(DateTime.Today.AddDays(-14).Ticks);
-            mDates.Add(DateTime.Today.AddDays(-7).Ticks);
-            mDates.Add(DateTime.Today.AddDays(-1).Ticks);
-            /**mDates.Add(DateTime.Today.Ticks / TimeSpan.TicksPerMillisecond);
-            mDates.Add(DateTime.Today.AddDays(7).Ticks / TimeSpan.TicksPerMillisecond);
-            mDates.Add(DateTime.Today.AddDays(14).Ticks / TimeSpan.TicksPerMillisecond);
-            Console.WriteLine("TIMES: " + mDates[0].ToString());
-            Console.WriteLine("TIMES: " + mDates[1].ToString());
-            Console.WriteLine("TIMES: " + mDates[2].ToString());*/
-            mWeights = new List<int>();
-            mWeights.Add(205);
-            mWeights.Add(206);
-            mWeights.Add(209);
 
-            mHeight = 76.5;
-            mBMI = 25;
+             mHeight = 76.5;
+             mBMI = 25; 
             //mDueDate = DateTime.Today.AddYears(1).AddMonths(-3).AddDays(7).Ticks;
 
         }

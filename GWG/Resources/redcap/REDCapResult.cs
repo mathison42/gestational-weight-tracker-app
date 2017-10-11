@@ -20,17 +20,13 @@ namespace GWG.Resources.redcap
         public string redcapid { get; set; }
         public string height { get; set; }
         public string bmi { get; set; }
-        public string weights { get; set; }
-        public string dates { get; set; }
         public string json { get; set; }
         public string dueDate { get; set; }
 
         private double bmiDouble = -1;
         private double heightDouble = -1;
         private long dueDateLong = -1;
-
-        public List<long> datesParsed = new List<long>();
-        public List<double> weightsParsed = new List<double>();
+        
         public List<DateWeight> dateWeights = new List<DateWeight>();
 
         public double getBMI()
@@ -115,53 +111,7 @@ namespace GWG.Resources.redcap
             result = JsonConvert.SerializeObject(tempDic, Formatting.Indented);
             return result;
         }
-
-        public void parseDatesAndWeights()
-        {
-            //this.datesParsed = this.dates.Split(',').Split("\n").Selec
-            List<string> tempDates = dates.Split(new string[] { "\n", "\r\n", "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            List<string> tempWeights = weights.Split(new string[] { "\n", "\r\n", "," }, StringSplitOptions.RemoveEmptyEntries).ToList();
-            int minSize = tempDates.Count;
-            
-            // Confirm weights and dates are the same size 
-            if (tempDates.Count != tempWeights.Count)
-            {
-                Console.WriteLine("[Error] Dates and Weights lengths do not match.");
-                Console.WriteLine("[Info] Dates Length: " + tempDates.Count);
-                Console.WriteLine("[Info] Weights Length: " + tempWeights.Count);
-                if (tempWeights.Count < tempDates.Count)
-                {
-                    // Weights count is smaller, losing values in weights
-                    minSize = tempWeights.Count;
-                } else
-                {
-                    // count is good, but losing values in Dates
-                }
-            }
-
-            datesParsed   = new List<long>();
-            weightsParsed = new List<double>();
-            for (int i = 0; i < minSize; i++)
-            {
-                long date;
-                double weight;
-                bool isValidDate   = long.TryParse(tempDates[i].Trim(), out date);
-                bool isValidWeight = double.TryParse(tempWeights[i].Trim(), out weight);
-
-                if (isValidDate && isValidWeight)
-                {
-                    datesParsed.Add(date);
-                    weightsParsed.Add(weight);
-                } else
-                {
-                    // else skip becausae something is bad
-                    Console.WriteLine("[Error] Invalid Date or Weight value.");
-                    Console.WriteLine("[Info] Date: " + date);
-                    Console.WriteLine("[Info] Weight: " + weight);
-                }
-            }
-        }
-
+        
         public DateWeight minDate()
         {
             return minDate(dateWeights);
@@ -304,34 +254,12 @@ namespace GWG.Resources.redcap
             Console.WriteLine("REDCapID: " + redcapid);
             Console.WriteLine("Height: " + height);
             Console.WriteLine("BMI: " + bmi);
-            Console.WriteLine("Weights: [" + String.Join(", ", weightsParsed) + "]");
-            Console.WriteLine("Dates: [" + String.Join(", ", datesParsed) + "]");
             Console.WriteLine("JSON: " + json);
             foreach(DateWeight dw in dateWeights)
             {
                 dw.toString();
             }
             Console.WriteLine("===========");
-        }
-
-        public void printFullRecord()
-        {
-            Console.WriteLine("===================");
-            Console.WriteLine("Record ID: " + record_id);
-            Console.WriteLine("REDCapID: " + redcapid);
-            Console.WriteLine("Height: " + height);
-            Console.WriteLine("BMI: " + bmi);
-            Console.WriteLine("Weights: [" + String.Join(", ", weightsParsed) + "]");
-            Console.WriteLine("Dates: [" + String.Join(", ", datesParsed) + "]");
-            Console.WriteLine("JSON: " + json);
-            foreach (DateWeight dw in dateWeights)
-            {
-                dw.toString();
-            }
-            Console.WriteLine("======= Raw =======");
-            Console.WriteLine("Weights: " + weights);
-            Console.WriteLine("Dates: " + dates);
-            Console.WriteLine("===================");
         }
     }
 }

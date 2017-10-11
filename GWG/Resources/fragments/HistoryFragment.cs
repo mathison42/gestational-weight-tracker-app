@@ -34,8 +34,6 @@ namespace GWG.Resources.fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             Bundle bundle = Arguments;
-            //long[] dates = bundle.GetLongArray("dates");
-            //int[] weights = bundle.GetIntArray("weights");
             string dateWeightsStr = bundle.GetString("dateWeights");
             mDateWeights = REDCapResult.parseJson2DateWeightList(dateWeightsStr);
             mDateWeights.Reverse();
@@ -43,18 +41,6 @@ namespace GWG.Resources.fragments
             View view = inflater.Inflate(Resource.Layout.History, container, false);
             mWeightList = view.FindViewById<RecyclerView>(Resource.Id.weightList);
             mWeightList.HasFixedSize = true;
-
-            //mDateWeights = new List<DateWeight>();
-            /**if (dates.Length != weights.Length)
-            {
-                Console.WriteLine("[Error] Dates and Weights do not equal in size!");
-            } else
-            {
-                for (int i = dates.Length - 1; i >= 0; i--)
-                {
-                    mDateWeights.Add(new DateWeight(dates[i], weights[i]));
-                }
-            }*/
             
             mLayoutManager = new LinearLayoutManager(this.Context);
             mWeightList.SetLayoutManager(mLayoutManager);

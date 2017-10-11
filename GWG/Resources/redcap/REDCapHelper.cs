@@ -35,7 +35,7 @@ namespace GWG.Resources.redcap
 
         public async Task<REDCapResult> GetProfile()
         {
-            var fields = new String[] { "record_id", "redcapid", "height", "bmi", "weights", "dates", "json" };
+            var fields = new String[] { "record_id", "redcapid", "height", "bmi", "json" };
             var forms = new String[] { c.DATABASE };
 
             var content = new FormUrlEncodedContent(new[]
