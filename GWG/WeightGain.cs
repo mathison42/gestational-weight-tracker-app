@@ -262,32 +262,42 @@ namespace GWG
                 weeks = 0;
             }
 
-            double expectedGain = 0;
+            double expectedGain = getExpectedGain(bmi, weeks);
             double deviation = getWeightDeviation(bmi);
-            if (bmi < 18.5)
-            {
-                expectedGain = underweightCalc(weeks);
-            }
-            else if (bmi < 25)
-            {
-                expectedGain = normalweightCalc(weeks);
-            }
-            else if (bmi < 30)
-            {
-                expectedGain = overweightCalc(weeks);
-            }
-            else
-            {
-                expectedGain = obeseCalc(weeks);
-            }
+
             //Console.WriteLine("weeks: " + weeks);
             //Console.WriteLine("expectedGain: " + expectedGain);
             //Console.WriteLine("Math.Abs(actualGain): " + Math.Abs(actualGain));
             //Console.WriteLine("deviation: " + deviation);
+
             if (expectedGain-deviation < actualGain && actualGain < expectedGain + deviation)
             {
                 result = true;
             }
+            return result;
+        }
+
+        public static double getExpectedGain(double bmi, double weeks)
+        {
+            double result = 0;
+            double deviation = getWeightDeviation(bmi);
+            if (bmi < 18.5)
+            {
+                result = underweightCalc(weeks);
+            }
+            else if (bmi < 25)
+            {
+                result = normalweightCalc(weeks);
+            }
+            else if (bmi < 30)
+            {
+                result = overweightCalc(weeks);
+            }
+            else
+            {
+                result = obeseCalc(weeks);
+            }
+
             return result;
         }
 

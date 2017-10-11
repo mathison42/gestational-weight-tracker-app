@@ -30,8 +30,6 @@ namespace GWG.Resources.fragments
 
         private DateTime mDueDate;
         private double mBMI;
-        private List<long> mDates;
-        private List<int> mWeights;
         private List<DateWeight> mDateWeights;
 
         private TextView mViewOnTrack;
@@ -47,13 +45,8 @@ namespace GWG.Resources.fragments
         {
             // Retreive Due Date, BMI, dates, and weights
             Bundle bundle = Arguments;
-            long[] tempDates = bundle.GetLongArray("dates");
-            mDates = tempDates.ToList();
-            int[] tempWeights = bundle.GetIntArray("weights");
-            mWeights = tempWeights.ToList();
             mBMI = bundle.GetDouble("bmi");
             mDueDate = new DateTime(bundle.GetLong("dueDate"));
-
             String dateWeightsStr = bundle.GetString("dateWeights");
             mDateWeights = REDCapResult.parseJson2DateWeightList(dateWeightsStr);
 
@@ -88,13 +81,9 @@ namespace GWG.Resources.fragments
             String resultColor = "#fbfabe";
 
             // Get Initial Weight and Date
-            //long initDate = mDates.Min();
-            //double initWeight = mWeights[mDates.IndexOf(initDate)];
             DateWeight init = REDCapResult.minDate(mDateWeights);
 
             // Get Last Weight and Date
-            //long lastDate = mDates.Max();
-            //double lastWeight = mWeights[mDates.IndexOf(lastDate)];
             DateWeight last = REDCapResult.maxDate(mDateWeights);
 
 
@@ -137,8 +126,6 @@ namespace GWG.Resources.fragments
             ((MainToolbarActivity)Activity).saveDateAndWeight(timestamp, weight);
 
             // Get updated lists
-            //mDates = ((MainToolbarActivity)Activity).getDates();
-            //mWeights = ((MainToolbarActivity)Activity).getWeights();
             mDateWeights = ((MainToolbarActivity)Activity).getDateWeights();
 
             // Update graph
@@ -166,71 +153,37 @@ namespace GWG.Resources.fragments
                 Fill = OxyColor.FromRgb(186, 226, 224)
 
             };
-
-            //if (mDates.Count == 0)
+            
             if (mDateWeights.Count == 0)
             {
                 Console.WriteLine("[Info] No dates found.");
             }
-            //else if (mDates.Count != mWeights.Count)
-            //{
-            //    Console.WriteLine("[Error] Dates and Weights do not equal in size!");
-            //}
             else
             {
                 // Set main weight line
-                //for (int i = 0; i < mDates.Count; i++)
                 for (int i = 0; i < mDateWeights.Count; i++)
                 {
-                    //weightSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(mDates[i])), mWeights[i]));
                     weightSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(mDateWeights[i].mDate)), mDateWeights[i].mWeight));
                 }
-
-                // Only calculate guide line if mDueDate is known
-                // if (mDueDate.Ticks > 0 )
-                //{
-                // Get Start Time based on Due Date (Reverse calcNaegelesRule + extra month because there are 40 week #s)
-
-                // long conceptionDate = mDueDate.AddYears(-1).AddMonths(2).AddDays(-7).Ticks;
-
-                // Get Initial Weight and Date
-                //long initDate = mDates.Min();
-                //double initWeight = mWeights[mDates.IndexOf(initDate)];
-                //DateWeight init = REDCapResult.minDate(mDateWeights);
-
-                // Set trendline area
-                //List<double> guide = WeightGain.getWeightList(mBMI);
-                //double deviation = WeightGain.getWeightDeviation(mBMI);
-
-                /*
-                for (int i = 0; i < guide.Count; i++)
-                {
-                    // Console.WriteLine("Guide Weight: " + guide[i]);
-                    guideSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(init.mDate).AddDays(i * 7)), init.mWeight + guide[i] + deviation));
-                    guideSeries.Points2.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(init.mDate).AddDays(i * 7)), init.mWeight + guide[i] - deviation));
-                }*/
 
                 Console.WriteLine("mDueDate!!!!: " + mDueDate);
                 if (mDueDate.Ticks > 0)
                 {
+                    int TOTAL_WEEKS = 40;
                     // Set trendline area
                     List<double> guide = WeightGain.getWeightList(mBMI);
                     double deviation = WeightGain.getWeightDeviation(mBMI);
                     DateWeight init = REDCapResult.minDate(mDateWeights);
-                    //long conceptionDate = mDueDate.AddYears(-1).AddMonths(2).AddDays(-7).Ticks;
-                    long conceptionDate = mDueDate.AddDays(-7*guide.Count).Ticks;
-
-                    for (int i = 0; i < guide.Count; i++)
+                    long conceptionDate = mDueDate.AddDays(-7*TOTAL_WEEKS).Ticks;
+                    for (double week = 0; week < TOTAL_WEEKS; week = week + 0.1)
                     {
                         // Console.WriteLine("Guide Weight: " + guide[i]);
-                        guideSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(conceptionDate).AddDays(i * 7)), init.mWeight + guide[i] + deviation));
-                        guideSeries.Points2.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(conceptionDate).AddDays(i * 7)), init.mWeight + guide[i] - deviation));
+                        double expectedGain = WeightGain.getExpectedGain(mBMI, week);
+                        guideSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(conceptionDate).AddDays(week * 7)), init.mWeight + expectedGain + deviation));
+                        guideSeries.Points2.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(conceptionDate).AddDays(week * 7)), init.mWeight + expectedGain - deviation));
                     }
 
                 }
-
-                // }
-
             }
 
             var plotModel = new PlotModel { Title = "" };
@@ -239,22 +192,16 @@ namespace GWG.Resources.fragments
             // Get the min and max weights for the initial bounds
             double minWeight = 0;
             double maxWeight = 50;
-            //if (mWeights.Count > 0)
             if (mDateWeights.Count > 0)
             {
-                //minWeight = (int)mWeights.Min();
-                //maxWeight = (int)mWeights.Max
                 minWeight = REDCapResult.minWeight(mDateWeights).mWeight;
                 maxWeight = REDCapResult.maxWeight(mDateWeights).mWeight;
             }
 
             DateTime startDate;
             DateTime endDate;
-            //if (mDates.Count > 0)
             if (mDateWeights.Count > 0)
             {
-                //startDate = new DateTime(mDates.Min()).AddDays(-1);
-                //endDate = new DateTime(mDates.Max()).AddDays(1);
                 startDate = new DateTime(REDCapResult.minDate(mDateWeights).mDate).AddDays(-1);
                 endDate = new DateTime(REDCapResult.maxDate(mDateWeights).mDate).AddDays(1);
 
