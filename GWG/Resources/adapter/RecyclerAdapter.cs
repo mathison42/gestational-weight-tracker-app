@@ -35,8 +35,8 @@ namespace GWG.Resources.adapter
             RecyclerViewHolder vh = holder as RecyclerViewHolder;
             var item = weightData[position];
             // Need to convert to current timezone
-            vh.mText1.Text = new DateTime(item.mDate).ToString();
-            vh.mText2.Text = item.mWeight.ToString();
+            vh.mText1.Text = new DateTime(item.mDate).ToLongDateString();
+            vh.mText2.Text = item.mWeight.ToString() + " lbs";
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)
