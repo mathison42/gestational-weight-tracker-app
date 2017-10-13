@@ -74,14 +74,9 @@ namespace GWG
                         {
 
                             REDCapHelper rch = new REDCapHelper(storeService.REDCapID);
-                            //rch.AddBasline(76, 25);
-
-                            Console.WriteLine("1111111111111111111");
-
                             REDCapResult result = await rch.GetProfile();
                             result.parseJson2DateWeightList();
-
-                            Console.WriteLine("2222222222222222222222");
+                            
 
                             if (result.redcapid != null)
                             {

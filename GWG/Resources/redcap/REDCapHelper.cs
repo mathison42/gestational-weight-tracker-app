@@ -27,10 +27,17 @@ namespace GWG.Resources.redcap
     {
         private readonly Config c = new Config();
         private string mId;
+        private string mRecordID;
 
         public REDCapHelper(string id)
         {
             mId = id;
+        }
+
+        public REDCapHelper(string id, string record_id)
+        {
+            mId = id;
+            mRecordID = record_id;
         }
 
         public async Task<REDCapResult> GetProfile()
@@ -88,62 +95,100 @@ namespace GWG.Resources.redcap
                 //REDCapResult post = JsonConvert.DeserializeObject<REDCapResult>(resultString);
                 REDCapResult post = JsonConvert.DeserializeObject<REDCapResult>(resultString);
 
+                mRecordID = post.record_id;
+
                 return post;
             }
 
         }
 
-        public async Task<JsonValue> AddBasline(double height, double bmi)
+
+        public class PostCountResult
         {
-            // Create an HTTP web request using the URL:
-            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(new Uri(c.API_URL));
-            request.ContentType = "application/x-www-form-urlencoded";
-            request.Method = "POST";
+            public int Count { get; set; }
+        };
+    
+        public async Task<bool> SaveBaseline(double height, double bmi, long duedate)
+        {
+            return await AddRecord(height, bmi, duedate, null);
+        }
 
-            var input = new
-            {
-                id = mId,
-                height = height,
-                bmi = bmi
-            };
-            List<Object> records = new List<Object>();
-            records.Add(input);
-            string json = JsonConvert.SerializeObject(records);
+        public async Task<bool> SaveDueDate(long duedate)
+        {
+            return await AddRecord(Double.MinValue, Double.MinValue, duedate, null);
+        }
 
-            string parameters = JsonConvert.SerializeObject(new
+        public async Task<bool> SaveDateWeights(string json)
+        {
+            return await AddRecord(Double.MinValue, Double.MinValue, Int64.MinValue, json);
+        }
+
+        private async Task<bool> AddRecord(double height, double bmi, long duedate, string json)
+        {
+            bool success = false;
+
+            if (String.IsNullOrWhiteSpace(mRecordID))
             {
-                token = c.API_TOKEN,
-                content = "record",
-                format = "json",
-                type = "flat",
-                overwriteBehavior = "normal",
-                data = json,
-                returnFormat = "json"
+                Console.WriteLine("[Error] Must first set mRecordID to add new records.");
+                return false;
+            }
+
+            String data = "<records><item><record_id>" + mRecordID + "</record_id>";
+            if (bmi != Double.MinValue) {
+                data = data + "<bmi>" + bmi.ToString("0.0") + "</bmi>";
+            }
+            if (height != Double.MinValue)
+            {
+                data = data + "<height>" + height.ToString("0.0") + "</height>";
+            }
+            if (duedate != Int64.MinValue)
+            {
+                data = data + "<duedate>" + duedate.ToString() + "</duedate>";
+            }
+            if (!String.IsNullOrWhiteSpace(json))
+            {
+                data = data + "<json>" + json.ToString() + "</json>";
+            }
+            data = data + "</item></records>";
+
+            var content = new FormUrlEncodedContent(new[]
+            {
+                new KeyValuePair<string, string>("token", c.API_TOKEN),
+                new KeyValuePair<string, string>("content", "record"),
+                new KeyValuePair<string, string>("format", "xml"),
+                new KeyValuePair<string, string>("type", "flat"),
+                new KeyValuePair<string, string>("overwriteBehavior", "normal"),
+                new KeyValuePair<string, string>("forceAutoNumber", "false"),
+                new KeyValuePair<string, string>("data", data),
+                new KeyValuePair<string, string>("returnContent", "count"),
+                new KeyValuePair<string, string>("returnFormat", "json")
             });
 
-            Console.WriteLine("json: " + json);
 
-            Console.WriteLine("parameters: " + parameters);
-
-            // Add parameters body
-            var newStream = request.GetRequestStream();
-            var byteParams = Encoding.ASCII.GetBytes(parameters);
-            newStream.Write(byteParams, 0, byteParams.Length);
-            newStream.Close();
-
-            // Send the request to the server and wait for the response:
-            using (WebResponse response = await request.GetResponseAsync())
+            using (var client = new HttpClient())
             {
-                // Get a stream representation of the HTTP web response:
-                using (Stream stream = response.GetResponseStream())
-                {
-                    // Use this stream to build a JSON document object:
-                    JsonValue jsonDoc = await Task.Run(() => JsonObject.Load(stream));
-                    Console.Out.WriteLine("Response: {0}", jsonDoc.ToString());
+                var result = await client.PostAsync(c.API_URL, content);
 
-                    // Return the JSON document:
-                    return jsonDoc;
+                // handling the answer  
+                var resultString = await result.Content.ReadAsStringAsync();
+
+                try
+                {
+                    // on error throw a exception  
+                    result.EnsureSuccessStatusCode();
                 }
+                finally
+                {
+                    Console.WriteLine("content: " + content.ToString());
+                }
+                PostCountResult pcr = JsonConvert.DeserializeObject<PostCountResult>(resultString);
+
+                if (pcr.Count == 1)
+                {
+                    success = true;
+                }
+
+                return success;
             }
 
         }

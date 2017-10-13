@@ -21,7 +21,7 @@ namespace GWG.Resources.redcap
         public string height { get; set; }
         public string bmi { get; set; }
         public string json { get; set; }
-        public string dueDate { get; set; }
+        public string duedate { get; set; }
 
         private double bmiDouble = -1;
         private double heightDouble = -1;
@@ -57,7 +57,7 @@ namespace GWG.Resources.redcap
         {
             if (dueDateLong == -1)
             {
-                if (!Int64.TryParse(dueDate, out dueDateLong))
+                if (!Int64.TryParse(duedate, out dueDateLong))
                 {
                     Console.WriteLine("[Error] Height is not a double value.");
                 }
@@ -73,31 +73,36 @@ namespace GWG.Resources.redcap
         {
             List<DateWeight> result = new List<DateWeight>();
 
-            // To dictionary to remove duplicates
-            Dictionary<long, double> datesWeightsDict = JsonConvert.DeserializeObject<Dictionary<long, double>>(json);
-
-            // To list for easier sorting
-            List<KeyValuePair<long, double>> datesWeightsList = datesWeightsDict.ToList();
-            datesWeightsList.Sort(
-                delegate (KeyValuePair<long, double> pair1,
-                KeyValuePair<long, double> pair2)
-                {
-                    return pair1.Key.CompareTo(pair2.Key);
-                }
-            );
-
-            // Create List<DateWeight>
-            foreach (KeyValuePair<long, double> entry in datesWeightsList)
+            if (!String.IsNullOrWhiteSpace(json))
             {
+                // To dictionary to remove duplicates
+                Dictionary<long, double> datesWeightsDict = JsonConvert.DeserializeObject<Dictionary<long, double>>(json);
+
+                // To list for easier sorting
+                List<KeyValuePair<long, double>> datesWeightsList = datesWeightsDict.ToList();
+                datesWeightsList.Sort(
+                    delegate (KeyValuePair<long, double> pair1,
+                    KeyValuePair<long, double> pair2)
+                    {
+                        return pair1.Key.CompareTo(pair2.Key);
+                    }
+                );
+
+                // Create List<DateWeight>
+                foreach (KeyValuePair<long, double> entry in datesWeightsList)
+                {
                 // do something with entry.Value or entry.Key
                 result.Add(new DateWeight(entry.Key, entry.Value));
+                }
+
             }
             return result;
         }
 
-        public void parseDateWeightList2Json()
+        public String parseDateWeightList2Json()
         {
             json = parseDateWeightList2Json(dateWeights);
+            return json;
         }
 
         public static string parseDateWeightList2Json(List<DateWeight> dateWeights)

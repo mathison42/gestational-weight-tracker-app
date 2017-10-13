@@ -70,10 +70,13 @@ namespace GWG.Resources.fragments
 
         private void setWeightGainGoalHeader()
         {
-            List<double> guide = WeightGain.getWeightList(mBMI);
-            double max = guide.Max();
-            double dev = WeightGain.getWeightDeviation(mBMI);
-            mViewGainGoal.Text = "Your weight gain goal is " + (max - dev)  + " - " + (max + dev) + " lbs.";
+            if (mBMI > 0)
+            {
+                List<double> guide = WeightGain.getWeightList(mBMI);
+                double max = guide.Max();
+                double dev = WeightGain.getWeightDeviation(mBMI);
+                mViewGainGoal.Text = "Your weight gain goal is " + (max - dev) + " - " + (max + dev) + " lbs.";
+            }
         }
 
         private void setOnTrackHeader()
@@ -88,7 +91,7 @@ namespace GWG.Resources.fragments
 
 
             
-            if (WeightGain.withinWeightRange( mBMI, last.mWeight - init.mWeight,  new DateTime(last.mDate), mDueDate))
+            if (init == null || WeightGain.withinWeightRange( mBMI, last.mWeight - init.mWeight,  new DateTime(last.mDate), mDueDate))
             {
                 resultColor = "#bae2e0";
                 mViewOnTrack.Visibility = Android.Views.ViewStates.Visible;

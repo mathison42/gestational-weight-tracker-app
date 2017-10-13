@@ -40,7 +40,8 @@ namespace GWG
         private BaselineFragment mBaselineFragment;
         private Stack<SupportFragment> mStackFragment;
 
-        private REDCapResult mRecord; 
+        private REDCapResult mRecord;
+        private REDCapHelper mRCH;
         private long mDueDate;
         private double mHeight;
         private double mBMI;
@@ -109,6 +110,9 @@ namespace GWG
             mRecord.printRecord();
             mRecord.parseJson2DateWeightList();
             mRecord.printRecord();
+
+            // Set REDCapHelper
+            mRCH = new REDCapHelper(mRecord.redcapid, mRecord.record_id);
 
             // Set initial graph data
             Bundle args = new Bundle();
@@ -249,27 +253,38 @@ namespace GWG
             mDrawerToggle.SyncState();
         }
 
-        public void saveBaseline(DateTime dueDate, double weight, double height, double BMI)
+        public async void saveBaseline(DateTime dueDate, double weight, double height, double BMI)
         {
             mDueDate = dueDate.Ticks;
-            
+            Console.WriteLine("SAVE BASLINE1");
             if (mRecord.dateWeights.Count == 0)
             {
                 mBMI = BMI;
                 mHeight = height;
                 saveDateAndWeight(DateTime.Today.Ticks, weight);
 
-                // Update Database with BMI and Height
+                // Update Database with Height, BMI, and Due Date
+                Console.WriteLine("SAVE BASLINE2");
+                await mRCH.SaveBaseline(height, BMI, dueDate.Ticks);
+            }
+            else
+            {
+                Console.WriteLine("SAVE BASLINE3");
+                // Update Database with new Due Date
+                await mRCH.SaveDueDate(dueDate.Ticks);
             }
 
             // Update Database with Due Date
 
         }
 
-        public void saveDateAndWeight(long timestamp, double weight)
+        public async void saveDateAndWeight(long timestamp, double weight)
         {
+
+            Console.WriteLine("saveDateAndWeight1");
             if (mRecord.dateWeights.Count > 0)
             {
+                Console.WriteLine("saveDateAndWeight2");
                 DateWeight maxDWDate = mRecord.maxDate();
                 DateWeight minDWDate = mRecord.minDate();
                 Console.WriteLine("new DateTime(timestamp).Date: " + new DateTime(timestamp).Date);
@@ -295,10 +310,12 @@ namespace GWG
             }
             else
             {
-                mRecord.dateWeights.Add(new DateWeight(timestamp, weight));
+                Console.WriteLine("saveDateAndWeight3");
+                mRecord.addDateWeight(new DateWeight(timestamp, weight));
             }
 
             // Update Database with Weights and Dates
+            await mRCH.SaveDateWeights(mRecord.parseDateWeightList2Json());
         }
 
         public void createTestData()
