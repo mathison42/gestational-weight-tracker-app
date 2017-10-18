@@ -301,59 +301,60 @@ namespace GWG
             return result;
         }
 
-        // y = -1E-07x^6 + 1E-05x^5 - 0.0007x^4 + 0.0139x^3 - 0.0857x^2 + 0.1927x - 0.1321
+        // y = -1.052686895·10^-7 x6 + 1.369386823·10^-5 x5 - 6.62842444·10^-4 x4 + 1.389435657·10^-2 x3 - 8.568140272·10^-2 x2 + 1.926622195·10^-1 x - 0.132085101
         public static double underweightCalc(double weeks)
         {
             double result = 0;
-            result = result - 1 * Math.Pow(10, -7) * Math.Pow(weeks, 6);
-            result = result + 1 * Math.Pow(10, -5) * Math.Pow(weeks, 5);
-            result = result - 0.0007 * Math.Pow(weeks, 4);
-            result = result + 0.0139 * Math.Pow(weeks, 3);
-            result = result - 0.0857 * Math.Pow(weeks, 2);
-            result = result + 0.1927 * weeks;
-            result = result - 1.321;
+            result = result - 1.052686895 * Math.Pow(10, -7) * Math.Pow(weeks, 6);
+            result = result + 1.369386823 * Math.Pow(10, -5) * Math.Pow(weeks, 5);
+            result = result - 6.62842444  * Math.Pow(10, -4) * Math.Pow(weeks, 4);
+            result = result + 1.389435657 * Math.Pow(10, -2) * Math.Pow(weeks, 3);
+            result = result - 8.568140272 * Math.Pow(10, -2) * Math.Pow(weeks, 2);
+            result = result + 1.926622195 * Math.Pow(10, -1) * weeks;
+            result = result - 0.132085101;
             return result;
         }
 
-        // y = -8E-08x^6 + 1E-05x^5 - 0.0005x^4 + 0.0094x^3 - 0.0422x^2 + 0.0344x + 0.0202
+        // y = -7.813190673·10^-8 x^6 + 1.00370615·10^-5 x^5 - 4.751214689·10^-4 x^4 + 9.446875773·10^-3 x^3 - 4.219931529·10^-2 x^2 + 3.439708576·10^-2 x + 2.018593893·10^-2
         public static double normalweightCalc(double weeks)
         {
             double result = 0;
-            result = result - 8 * Math.Pow(10, -8) * Math.Pow(weeks, 6);
-            result = result + 1 * Math.Pow(10, -5) * Math.Pow(weeks, 5);
-            result = result - 0.0005 * Math.Pow(weeks, 4);
-            result = result + 0.0094 * Math.Pow(weeks, 3);
-            result = result - 0.0422 * Math.Pow(weeks, 2);
-            result = result + 0.0344 * weeks;
-            result = result + 0.0202;
+            result = result - 7.813190673 * Math.Pow(10, -8) * Math.Pow(weeks, 6);
+            result = result + 1.00370615  * Math.Pow(10, -5) * Math.Pow(weeks, 5);
+            result = result - 4.751214689 * Math.Pow(10, -4) * Math.Pow(weeks, 4);
+            //result = result - 5.0 * Math.Pow(10, -4) * Math.Pow(weeks, 4);
+            result = result + 9.446875773 * Math.Pow(10, -3) * Math.Pow(weeks, 3);
+            result = result - 4.219931529 * Math.Pow(10, -2) * Math.Pow(weeks, 2);
+            result = result + 3.439708576 * Math.Pow(10, -2) * weeks;
+            result = result + 2.018593893 * Math.Pow(10, -2);
             return result;
         }
 
-        // y = -1E-08x^6 + 1E-06x^5 - 9E-06x^4 - 0.0016x^3 + 0.0658x^2 - 0.3585x + 0.3979
+        // y = -1.100759936·10^-8 x6 + 9.778200104·10^-7 x5 - 9.453655366·10^-6 x4 - 1.596620154·10^-3 x3 + 6.578722611·10^-2 x2 - 3.584762929·10^-1 x + 3.978835699·10^-1
         public static double overweightCalc(double weeks)
         {
             double result = 0;
-            result = result - 1 * Math.Pow(10, -8) * Math.Pow(weeks, 6);
-            result = result + 1 * Math.Pow(10, -6) * Math.Pow(weeks, 5);
-            result = result - 9 * Math.Pow(10, -6) * Math.Pow(weeks, 4);
-            result = result - 0.0016 * Math.Pow(weeks, 3);
-            result = result + 0.0658 * Math.Pow(weeks, 2);
-            result = result - 0.3585 * weeks;
-            result = result + 0.3979;
+            result = result - 1.100759936 * Math.Pow(10, -8) * Math.Pow(weeks, 6);
+            result = result + 9.778200104 * Math.Pow(10, -7) * Math.Pow(weeks, 5);
+            result = result - 9.453655366 * Math.Pow(10, -6) * Math.Pow(weeks, 4);
+            result = result - 1.596620154 * Math.Pow(10, -3) * Math.Pow(weeks, 3);
+            result = result + 6.578722611 * Math.Pow(10, -2) * Math.Pow(weeks, 2);
+            result = result - 3.584762929 * Math.Pow(10, -1) * weeks;
+            result = result + 3.978835699 * Math.Pow(10, -1);
             return result;
         }
 
-        // y = 2E-08x^6 - 3E-06x^5 + 0.0002x^4 - 0.0066x^3 + 0.1143x^2 - 0.535x + 0.5675
+        // y = 1.912657401·10^-8 x6 - 3.09056113·10^-6 x5 + 1.997333984·10^-4 x4 - 6.558672715·10^-3 x3 + 0.114309302 x2 - 5.349903678·10^-1 x + 0.567549507
         public static double obeseCalc(double weeks)
         {
             double result = 0;
-            result = result + 2 * Math.Pow(10, -8) * Math.Pow(weeks, 6);
-            result = result - 3 * Math.Pow(10, -6) * Math.Pow(weeks, 5);
-            result = result + 0.0002 * Math.Pow(weeks, 4);
-            result = result - 0.0066 * Math.Pow(weeks, 3);
-            result = result + 0.1143 * Math.Pow(weeks, 2);
-            result = result - 0.5350 * weeks;
-            result = result + 0.5675;
+            result = result + 1.912657401 * Math.Pow(10, -8) * Math.Pow(weeks, 6);
+            result = result - 3.09056113  * Math.Pow(10, -6) * Math.Pow(weeks, 5);
+            result = result + 1.997333984 * Math.Pow(10, -4) * Math.Pow(weeks, 4);
+            result = result - 6.558672715 * Math.Pow(10, -3) * Math.Pow(weeks, 3);
+            result = result + 0.114309302 * Math.Pow(weeks, 2);
+            result = result - 5.349903678 * Math.Pow(10, -1) * weeks;
+            result = result + 0.567549507;
             return result;
         }
 
