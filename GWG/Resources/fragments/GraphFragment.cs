@@ -113,7 +113,7 @@ namespace GWG.Resources.fragments
                 Console.WriteLine("[Error] Complete Baseline first.");
                 return;
             }
-            //Pull up Calendar Dialog
+            //Pull up Daily Weight Dialog
             dialog_weight weightDialog = new dialog_weight();
             weightDialog.Show(this.FragmentManager, "Add Weight Fragment");
             

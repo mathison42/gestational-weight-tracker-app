@@ -140,6 +140,14 @@ namespace GWG
             mLeftDrawer.Adapter = mLeftAdapter;
             mLeftDrawer.OnItemClickListener = this;
 
+            // If mBMI is empty, show disclaimer
+            if (mRecord.getBMI() <= 0)
+            {
+                //Pull up Disclaimer Dialog
+                dialog_disclaimer disclaimerDialog = new dialog_disclaimer();
+                disclaimerDialog.Show(SupportFragmentManager, "Show App Disclaimer");
+            }
+
         }
 
         public void OnItemClick(AdapterView container, View view, int position, long id)
@@ -324,8 +332,8 @@ namespace GWG
         {
             // Retrieve data from database... for right now, falsify data
 
-             mHeight = 76.5;
-             mBMI = 25; 
+             //mHeight = 76.5;
+             //mBMI = 25; 
             //mDueDate = DateTime.Today.AddYears(1).AddMonths(-3).AddDays(7).Ticks;
 
         }

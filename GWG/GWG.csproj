@@ -147,6 +147,7 @@
     <Compile Include="CredentialsService.cs" />
     <Compile Include="DateWeight.cs" />
     <Compile Include="dialog_Calendar.cs" />
+    <Compile Include="dialog_disclaimer.cs" />
     <Compile Include="dialog_weight.cs" />
     <Compile Include="dialog_SignUp1.cs" />
     <Compile Include="MainActivity.cs" />
@@ -192,6 +193,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\weightItem.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\dialog_disclaimer.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

@@ -83,3 +83,4 @@ C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\as
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\OxyPlot.dll.mdb
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\android\assets\Xamarin.Auth.dll.mdb
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\GWG.csprojResolveAssemblyReference.cache
+C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\dialog_disclaimer.xml

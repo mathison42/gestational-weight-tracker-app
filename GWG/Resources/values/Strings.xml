@@ -9,5 +9,7 @@
     <string-array name="list_items">
       <item>Loading...</item>
     </string-array>
-  
+    <string name="disclaimer">The information in this app is intended for your general knowledge only and is not a substitute for profession medical advice, diagnosis, or treatment. You should not use this information to diagnose or treat a health problem or disease without consulting with a qualified healthcare provider. Please consult your healthcare provider with any questions or concerns you may have regarding your condition.</string>
+    <string name="acceptance">I have read and agree with the above statement.</string>
+
 </resources>
