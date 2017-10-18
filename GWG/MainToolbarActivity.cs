@@ -22,10 +22,11 @@ using Java.Lang;
 using GWG.Resources.fragments;
 using Newtonsoft.Json;
 using GWG.Resources.redcap;
+using Android.Content.PM;
 
 namespace GWG
 {
-    [Activity(Label = "MainToolbarActivity", Theme = "@style/MyTheme")]
+    [Activity(Label = "MainToolbarActivity", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainToolbarActivity : ActionBarActivity, AdapterView.IOnItemClickListener
     {
         private SupportToolbar mToolbar;
@@ -53,6 +54,7 @@ namespace GWG
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+
             //RequestWindowFeature(WindowFeatures.NoTitle);
             base.OnCreate(savedInstanceState);
 

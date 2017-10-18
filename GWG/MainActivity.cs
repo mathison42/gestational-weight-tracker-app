@@ -10,10 +10,11 @@ using GWG.Resources.redcap;
 using System.Json;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using Android.Content.PM;
 
 namespace GWG
 {
-    [Activity(Label = "GWG", MainLauncher = true, Icon = "@drawable/icon")]
+    [Activity(Label = "GWG", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : Activity
     {
         public static string AppName { get { return "GWG"; } }
