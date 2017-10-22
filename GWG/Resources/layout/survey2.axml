@@ -29,34 +29,19 @@
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
       android:layout_marginBottom="10dp" />
-  <RadioGroup
-      android:minWidth="25px"
-      android:minHeight="25px"
+  <EditText
+      android:id="@+id/q4Value"
+      android:inputType="text"
+      android:textColor="#699791"
       android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1"
-      android:id="@+id/radioSurveyQ4"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="10dp"
+      android:layout_marginBottom="10dp"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
-      android:layout_marginBottom="10dp"
-      android:layout_gravity="top|center"
-      android:gravity="top|center"
-      android:orientation="horizontal">
-      <RadioButton
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textSize="20dp"
-          android:text="Yes"
-          android:id="@+id/yes"
-          android:layout_marginRight="20dp" />
-      <RadioButton
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:textSize="20dp"
-          android:text="No"
-          android:id="@+id/no"
-          android:layout_marginLeft="20dp" />
-  </RadioGroup>
+      android:ems="30"
+      android:layout_gravity="top|left"
+      android:gravity="top|left" />
   <TextView
       android:text="5. What would you consider your weight just before this pregnancy?"
       android:layout_width="match_parent"
@@ -87,31 +72,31 @@
           android:layout_height="wrap_content"
           android:textSize="20dp"
           android:text="Underweight"
-          android:id="@+id/underweight" />
+          android:id="@+id/q5Underweight" />
       <RadioButton
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:textSize="20dp"
           android:text="Normal Weight"
-          android:id="@+id/normalWeight" />
+          android:id="@+id/q5NormalWeight" />
       <RadioButton
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:textSize="20dp"
           android:text="Overweight"
-          android:id="@+id/overweight" />
+          android:id="@+id/q5Overweight" />
       <RadioButton
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:textSize="20dp"
           android:text="Obese"
-          android:id="@+id/obese" />
+          android:id="@+id/q5Obese" />
       <RadioButton
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:textSize="20dp"
           android:text="Not Sure"
-          android:id="@+id/notSure" />
+          android:id="@+id/q5NotSure" />
   </RadioGroup>
   <Button
       android:text="Continue Survey..."

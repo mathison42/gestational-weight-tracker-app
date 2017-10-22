@@ -16,6 +16,8 @@ using Android.Support.V7.App;
 using SupportToolbar = Android.Support.V7.Widget.Toolbar;
 using SupportFragment = Android.Support.V4.App.Fragment;
 using GWG.Resources.fragments;
+using GWG.survey;
+using Newtonsoft.Json;
 
 namespace GWG.Resources.fragments
 {
@@ -23,8 +25,10 @@ namespace GWG.Resources.fragments
         
         private Button mBtnCompleteSurvey;
 
-        private Survey3Fragment mSurvey3Fragment;
-        Java.IO.ISerializable mRecord;
+        private EditText mQ6Value;
+        private EditText mQ7Value;
+
+        private SurveyResults mSurveyResults = new SurveyResults();
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -35,8 +39,14 @@ namespace GWG.Resources.fragments
         {
             View view = inflater.Inflate(Resource.Layout.survey3, container, false);
 
+            Bundle bundle = Arguments;
+            mSurveyResults = JsonConvert.DeserializeObject<SurveyResults>(bundle.GetString("surveyResults"));
+
             mBtnCompleteSurvey = view.FindViewById<Button>(Resource.Id.btnCompleteSurvey);
             mBtnCompleteSurvey.Click += MBtnCompleteSurvey_Click;
+
+            mQ6Value = view.FindViewById<EditText>(Resource.Id.q6Value);
+            mQ7Value = view.FindViewById<EditText>(Resource.Id.q7Value);
 
             return view;
         }
@@ -44,14 +54,17 @@ namespace GWG.Resources.fragments
         private void MBtnCompleteSurvey_Click(object sender, EventArgs e)
         {
             // Confirm Values
+            mSurveyResults.q6 = mQ6Value.Text;
+            mSurveyResults.q7 = mQ7Value.Text;
 
             // Save Survey
+            mSurveyResults.toString();
 
             // Send user back to Graph View
-
             var intent = new Intent(this.Context, typeof(MainToolbarActivity));
             Bundle bundle = Arguments;
             intent.PutExtra("record", bundle.GetString("record"));
+            intent.PutExtra("surveyResults", JsonConvert.SerializeObject(mSurveyResults));
             StartActivity(intent);
         }
     }

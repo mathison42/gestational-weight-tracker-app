@@ -42,8 +42,20 @@
       android:layout_gravity="top|center"
       android:gravity="top|center"
       android:orientation="horizontal">
-      <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Yes" android:id="@+id/yes" android:layout_marginRight="20dp"/>
-      <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="No" android:id="@+id/no"   android:layout_marginLeft="20dp"/>
+      <RadioButton 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp" 
+        android:text="Yes" 
+        android:id="@+id/q1Yes" 
+        android:layout_marginRight="20dp"/>
+      <RadioButton 
+        android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:textSize="20dp" 
+        android:text="No" 
+        android:id="@+id/q1No"   
+        android:layout_marginLeft="20dp"/>
     </RadioGroup>
     <TextView
       android:text="2. At any time during this pregnancy has a healthcare provider talked to you about how much weight you should gain during pregnancy?"
@@ -77,14 +89,14 @@
           android:layout_height="wrap_content"
           android:textSize="20dp"
           android:text="Yes"
-          android:id="@+id/yes"
+          android:id="@+id/q2Yes"
           android:layout_marginRight="20dp" />
       <RadioButton
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:textSize="20dp"
           android:text="No"
-          android:id="@+id/no"
+          android:id="@+id/q2No"
           android:layout_marginLeft="20dp" />
     </RadioGroup>
     <TextView
@@ -119,14 +131,14 @@
           android:layout_height="wrap_content"
           android:textSize="20dp"
           android:text="Yes"
-          android:id="@+id/yes"
+          android:id="@+id/q3Yes"
           android:layout_marginRight="20dp" />
       <RadioButton
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:textSize="20dp"
           android:text="No"
-          android:id="@+id/no"
+          android:id="@+id/q3No"
           android:layout_marginLeft="20dp" />
     </RadioGroup>
     <Button

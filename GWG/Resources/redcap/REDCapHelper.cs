@@ -20,6 +20,7 @@ using System.Net;
 using System.IO;
 using Newtonsoft.Json;
 using System.Net.Http;
+using GWG.survey;
 
 namespace GWG.Resources.redcap
 {
@@ -125,16 +126,9 @@ namespace GWG.Resources.redcap
 
         private async Task<bool> AddRecord(double height, double bmi, long duedate, string json)
         {
-            bool success = false;
-
-            if (String.IsNullOrWhiteSpace(mRecordID))
-            {
-                Console.WriteLine("[Error] Must first set mRecordID to add new records.");
-                return false;
-            }
-
             String data = "<records><item><record_id>" + mRecordID + "</record_id>";
-            if (bmi != Double.MinValue) {
+            if (bmi != Double.MinValue)
+            {
                 data = data + "<bmi>" + bmi.ToString("0.0") + "</bmi>";
             }
             if (height != Double.MinValue)
@@ -150,6 +144,55 @@ namespace GWG.Resources.redcap
                 data = data + "<json>" + json.ToString() + "</json>";
             }
             data = data + "</item></records>";
+
+            return await AddRecord(data);
+        }
+
+        public Task<bool> AddRecord(SurveyResults survey)
+        {
+            String data = "<records><item><record_id>" + mRecordID + "</record_id>";
+            if (!String.IsNullOrWhiteSpace(survey.q1))
+            {
+                data = data + "<q1>" + survey.q1.ToString() + "</q1>";
+            }
+            if (!String.IsNullOrWhiteSpace(survey.q2))
+            {
+                data = data + "<q2>" + survey.q2.ToString() + "</q2>";
+            }
+            if (!String.IsNullOrWhiteSpace(survey.q3))
+            {
+                data = data + "<q3>" + survey.q3.ToString() + "</q3>";
+            }
+            if (!String.IsNullOrWhiteSpace(survey.q4))
+            {
+                data = data + "<q4>" + survey.q4.ToString() + "</q4>";
+            }
+            if (!String.IsNullOrWhiteSpace(survey.q5))
+            {
+                data = data + "<q5>" + survey.q5.ToString() + "</q5>";
+            }
+            if (!String.IsNullOrWhiteSpace(survey.q6))
+            {
+                data = data + "<q6>" + survey.q6.ToString() + "</q6>";
+            }
+            if (!String.IsNullOrWhiteSpace(survey.q7))
+            {
+                data = data + "<q7>" + survey.q7.ToString() + "</q7>";
+            }
+            data = data + "</item></records>";
+
+            return AddRecord(data);
+        }
+
+        private async Task<bool> AddRecord(string data)
+        {
+            bool success = false;
+
+            if (String.IsNullOrWhiteSpace(mRecordID))
+            {
+                Console.WriteLine("[Error] Must first set mRecordID to add new records.");
+                return false;
+            }
 
             var content = new FormUrlEncodedContent(new[]
             {

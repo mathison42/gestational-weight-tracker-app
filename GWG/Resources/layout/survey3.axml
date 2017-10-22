@@ -30,7 +30,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp" />
     <EditText
-        android:id="@+id/txtSurveyQ6"
+        android:id="@+id/q6Value"
         android:inputType="text"
         android:textColor="#699791"
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="10dp" />
     <EditText
-        android:id="@+id/txtSurveyQ7"
+        android:id="@+id/q7Value"
         android:inputType="text"
         android:textColor="#699791"
         android:layout_width="match_parent"
@@ -68,7 +68,7 @@
         android:layout_gravity="top|left"
         android:gravity="top|left" />
     <TextView
-        android:id="@+id/txtSurveyQ7"
+        android:id="@+id/pageFiller"
         android:inputType="text"
         android:textColor="#699791"
         android:layout_width="match_parent"

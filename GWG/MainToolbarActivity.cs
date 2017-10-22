@@ -23,6 +23,7 @@ using GWG.Resources.fragments;
 using Newtonsoft.Json;
 using GWG.Resources.redcap;
 using Android.Content.PM;
+using GWG.survey;
 
 namespace GWG
 {
@@ -117,6 +118,15 @@ namespace GWG
 
             // Set REDCapHelper
             mRCH = new REDCapHelper(mRecord.redcapid, mRecord.record_id);
+
+            // Some check to see if dueDate is within 10 weeks and survey isn't completed
+            // Check for survey data, save if exists...
+            if (!System.String.IsNullOrWhiteSpace(Intent.GetStringExtra("surveyResults")))
+            {
+                // Save Survey Results
+                SurveyResults surveyResults = JsonConvert.DeserializeObject<SurveyResults>(Intent.GetStringExtra("surveyResults"));
+                mRCH.AddRecord(surveyResults);
+            }
 
             // Set initial graph data
             Bundle args = new Bundle();
