@@ -21,10 +21,11 @@ namespace GWG.Resources.fragments
 {
     public class Survey1Fragment : Android.Support.V4.App.Fragment {
 
-        private Button mBtnStartSurvey;
+        private Button mBtnContSurvey;
 
 
-        private Survey1Fragment mSurvey1Fragment;
+        private Survey2Fragment mSurvey2Fragment;
+        Bundle mArgs = new Bundle();
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -34,22 +35,25 @@ namespace GWG.Resources.fragments
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
 
-            mSurvey1Fragment = new Survey1Fragment();
+            mSurvey2Fragment = new Survey2Fragment();
+            Bundle bundle = Arguments;
+            mArgs.PutString("record", bundle.GetString("record"));
 
             View view = inflater.Inflate(Resource.Layout.survey1, container, false);
 
-            mBtnStartSurvey = view.FindViewById<Button>(Resource.Id.btnStartSurvey);
+            mBtnContSurvey = view.FindViewById<Button>(Resource.Id.btnContSurvey);
 
-            mBtnStartSurvey.Click += MBtnStartSurvey_Click;
+            mBtnContSurvey.Click += MBtnContSurvey_Click;
 
             return view;
         }
 
-        private void MBtnStartSurvey_Click(object sender, EventArgs e)
+        private void MBtnContSurvey_Click(object sender, EventArgs e)
         {
+            mSurvey2Fragment.Arguments = mArgs;
             var trans = this.FragmentManager.BeginTransaction();
 
-            trans.Replace(Resource.Id.fragmentContainer, mSurvey1Fragment);
+            trans.Replace(Resource.Id.fragmentContainer, mSurvey2Fragment);
             trans.Commit();
         }
     }

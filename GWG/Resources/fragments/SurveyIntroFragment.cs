@@ -23,8 +23,8 @@ namespace GWG.Resources.fragments
 
         private Button mBtnStartSurvey;
 
-
         private Survey1Fragment mSurvey1Fragment;
+        Bundle mArgs = new Bundle();
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -33,8 +33,9 @@ namespace GWG.Resources.fragments
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-
             mSurvey1Fragment = new Survey1Fragment();
+            Bundle bundle = Arguments;
+            mArgs.PutString("record", bundle.GetString("record"));
 
             View view = inflater.Inflate(Resource.Layout.survey_intro, container, false);
 
@@ -47,6 +48,7 @@ namespace GWG.Resources.fragments
 
         private void MBtnStartSurvey_Click(object sender, EventArgs e)
         {
+            mSurvey1Fragment.Arguments = mArgs;
             var trans = this.FragmentManager.BeginTransaction();
 
             trans.Replace(Resource.Id.fragmentContainer, mSurvey1Fragment);

@@ -39,7 +39,7 @@ namespace GWG
         private GraphFragment mGraphFragment;
         private HistoryFragment mHistoryFragment;
         private BaselineFragment mBaselineFragment;
-        private SurveyIntroFragment mSurveyFragment;
+        private SurveyIntroFragment mSurveyIntroFragment;
         private Stack<SupportFragment> mStackFragment;
 
         private REDCapResult mRecord;
@@ -70,7 +70,7 @@ namespace GWG
             mGraphFragment = new GraphFragment();
             mHistoryFragment = new HistoryFragment();
             mBaselineFragment = new BaselineFragment();
-            mSurveyFragment = new SurveyIntroFragment();
+            mSurveyIntroFragment = new SurveyIntroFragment();
 
             mStackFragment = new Stack<SupportFragment>();
 
@@ -210,13 +210,13 @@ namespace GWG
                 // Load Survey
                 Console.WriteLine("Loading survey...");
 
-                if (!mSurveyFragment.IsVisible)
+                if (!mSurveyIntroFragment.IsVisible)
                 {
                     Bundle args = new Bundle();
-                    args.PutString("dateWeights", REDCapResult.parseDateWeightList2Json(mRecord.dateWeights));
-                    mSurveyFragment.Arguments = args;
+                    args.PutString("record", Intent.GetStringExtra("record"));
+                    mSurveyIntroFragment.Arguments = args;
                 }
-                ReplaceFragment(mSurveyFragment);
+                ReplaceFragment(mSurveyIntroFragment);
             }
             else if (id == 4)
             {

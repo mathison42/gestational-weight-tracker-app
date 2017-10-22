@@ -86,3 +86,5 @@ C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\GWG.csproj
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\dialog_disclaimer.xml
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\survey1.xml
 C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\survey_intro.xml
+C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\survey2.xml
+C:\Users\Nick\documents\visual studio 2017\Projects\GWG\GWG\obj\Debug\res\layout\survey3.xml

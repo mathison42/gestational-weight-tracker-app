@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+  <TextView
+      android:text="Survey Page 2"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="0"
+      android:id="@+id/viewSurveyIntro"
+      android:textColor="#699791"
+      android:textStyle="bold"
+      android:textSize="30dp"
+      android:background="#fbfabe"
+      android:gravity="center" />
+  <TextView
+      android:text="4. What does BMI stand for?"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="0"
+      android:id="@+id/viewSurveyQ4"
+      android:textColor="#699791"
+      android:textStyle="bold"
+      android:textSize="20dp"
+      android:gravity="left"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      android:layout_marginBottom="10dp" />
+  <RadioGroup
+      android:minWidth="25px"
+      android:minHeight="25px"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:id="@+id/radioSurveyQ4"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      android:layout_marginBottom="10dp"
+      android:layout_gravity="top|center"
+      android:gravity="top|center"
+      android:orientation="horizontal">
+      <RadioButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="20dp"
+          android:text="Yes"
+          android:id="@+id/yes"
+          android:layout_marginRight="20dp" />
+      <RadioButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="20dp"
+          android:text="No"
+          android:id="@+id/no"
+          android:layout_marginLeft="20dp" />
+  </RadioGroup>
+  <TextView
+      android:text="5. What would you consider your weight just before this pregnancy?"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="0"
+      android:id="@+id/viewSurveyQ5"
+      android:textColor="#699791"
+      android:textStyle="bold"
+      android:textSize="20dp"
+      android:gravity="left"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      android:layout_marginBottom="10dp" />
+  <RadioGroup
+      android:minWidth="25px"
+      android:minHeight="25px"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:id="@+id/radioSurveyQ5"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      android:layout_marginBottom="10dp"
+      android:orientation="vertical">
+      <RadioButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="20dp"
+          android:text="Underweight"
+          android:id="@+id/underweight" />
+      <RadioButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="20dp"
+          android:text="Normal Weight"
+          android:id="@+id/normalWeight" />
+      <RadioButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="20dp"
+          android:text="Overweight"
+          android:id="@+id/overweight" />
+      <RadioButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="20dp"
+          android:text="Obese"
+          android:id="@+id/obese" />
+      <RadioButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="20dp"
+          android:text="Not Sure"
+          android:id="@+id/notSure" />
+  </RadioGroup>
+  <Button
+      android:text="Continue Survey..."
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_weight="0"
+      android:id="@+id/btnContSurvey"
+      android:textSize="50dp"
+      android:textColor="#699791"
+      android:background="@drawable/btnLogin"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp"
+      android:textAllCaps="false"
+      android:layout_margin="20dp" />
+</LinearLayout>

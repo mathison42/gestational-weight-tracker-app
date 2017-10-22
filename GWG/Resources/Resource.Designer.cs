@@ -2334,6 +2334,12 @@ namespace GWG
 			// aapt resource value: 0x7f0a006f
 			public const int btnCalcPeriod = 2131361903;
 			
+			// aapt resource value: 0x7f0a00e6
+			public const int btnCompleteSurvey = 2131362022;
+			
+			// aapt resource value: 0x7f0a00d8
+			public const int btnContSurvey = 2131362008;
+			
 			// aapt resource value: 0x7f0a00a4
 			public const int btnLogin = 2131361956;
 			
@@ -2355,8 +2361,8 @@ namespace GWG
 			// aapt resource value: 0x7f0a00a6
 			public const int btnSignUp = 2131361958;
 			
-			// aapt resource value: 0x7f0a00e3
-			public const int btnStartSurvey = 2131362019;
+			// aapt resource value: 0x7f0a00e8
+			public const int btnStartSurvey = 2131362024;
 			
 			// aapt resource value: 0x7f0a0044
 			public const int buttonPanel = 2131361860;
@@ -2514,8 +2520,8 @@ namespace GWG
 			// aapt resource value: 0x7f0a00ab
 			public const int left_drawer = 2131361963;
 			
-			// aapt resource value: 0x7f0a00e6
-			public const int line = 2131362022;
+			// aapt resource value: 0x7f0a00ea
+			public const int line = 2131362026;
 			
 			// aapt resource value: 0x7f0a0087
 			public const int line1 = 2131361927;
@@ -2571,11 +2577,20 @@ namespace GWG
 			// aapt resource value: 0x7f0a0038
 			public const int never = 2131361848;
 			
+			// aapt resource value: 0x7f0a00d3
+			public const int no = 2131362003;
+			
 			// aapt resource value: 0x7f0a000f
 			public const int none = 2131361807;
 			
 			// aapt resource value: 0x7f0a0021
 			public const int normal = 2131361825;
+			
+			// aapt resource value: 0x7f0a00de
+			public const int normalWeight = 2131362014;
+			
+			// aapt resource value: 0x7f0a00e1
+			public const int notSure = 2131362017;
 			
 			// aapt resource value: 0x7f0a00c9
 			public const int notification_background = 2131361993;
@@ -2586,14 +2601,11 @@ namespace GWG
 			// aapt resource value: 0x7f0a00c2
 			public const int notification_main_column_container = 2131361986;
 			
-			// aapt resource value: 0x7f0a00da
-			public const int originNo = 2131362010;
+			// aapt resource value: 0x7f0a00e0
+			public const int obese = 2131362016;
 			
-			// aapt resource value: 0x7f0a00d9
-			public const int originYes = 2131362009;
-			
-			// aapt resource value: 0x7f0a00d6
-			public const int other = 2131362006;
+			// aapt resource value: 0x7f0a00df
+			public const int overweight = 2131362015;
 			
 			// aapt resource value: 0x7f0a0010
 			public const int parallax = 2131361808;
@@ -2619,29 +2631,23 @@ namespace GWG
 			// aapt resource value: 0x7f0a0008
 			public const int progress_horizontal = 2131361800;
 			
-			// aapt resource value: 0x7f0a00d4
-			public const int raceAsianPacific = 2131362004;
-			
-			// aapt resource value: 0x7f0a00d3
-			public const int raceBlack = 2131362003;
-			
-			// aapt resource value: 0x7f0a00d5
-			public const int raceIndianNative = 2131362005;
-			
-			// aapt resource value: 0x7f0a00d2
-			public const int raceWhite = 2131362002;
-			
 			// aapt resource value: 0x7f0a0056
 			public const int radio = 2131361878;
 			
-			// aapt resource value: 0x7f0a00d8
-			public const int radioHLSOrigin = 2131362008;
-			
 			// aapt resource value: 0x7f0a00d1
-			public const int radioRacialBackground = 2131362001;
+			public const int radioSurveyQ1 = 2131362001;
 			
-			// aapt resource value: 0x7f0a00db
-			public const int radioSchool = 2131362011;
+			// aapt resource value: 0x7f0a00d5
+			public const int radioSurveyQ2 = 2131362005;
+			
+			// aapt resource value: 0x7f0a00d7
+			public const int radioSurveyQ3 = 2131362007;
+			
+			// aapt resource value: 0x7f0a00da
+			public const int radioSurveyQ4 = 2131362010;
+			
+			// aapt resource value: 0x7f0a00dc
+			public const int radioSurveyQ5 = 2131362012;
 			
 			// aapt resource value: 0x7f0a0019
 			public const int right = 2131361817;
@@ -2654,24 +2660,6 @@ namespace GWG
 			
 			// aapt resource value: 0x7f0a00ae
 			public const int route_name = 2131361966;
-			
-			// aapt resource value: 0x7f0a00e0
-			public const int schoolAssociate = 2131362016;
-			
-			// aapt resource value: 0x7f0a00e1
-			public const int schoolBachelors = 2131362017;
-			
-			// aapt resource value: 0x7f0a00de
-			public const int schoolCollege = 2131362014;
-			
-			// aapt resource value: 0x7f0a00e2
-			public const int schoolGraduate = 2131362018;
-			
-			// aapt resource value: 0x7f0a00dc
-			public const int schoolLessEight = 2131362012;
-			
-			// aapt resource value: 0x7f0a00df
-			public const int schoolTechnical = 2131362015;
 			
 			// aapt resource value: 0x7f0a002d
 			public const int screen = 2131361837;
@@ -2726,9 +2714,6 @@ namespace GWG
 			
 			// aapt resource value: 0x7f0a00af
 			public const int settings = 2131361967;
-			
-			// aapt resource value: 0x7f0a00dd
-			public const int shcoolHighScool = 2131362013;
 			
 			// aapt resource value: 0x7f0a0055
 			public const int shortcut = 2131361877;
@@ -2787,8 +2772,8 @@ namespace GWG
 			// aapt resource value: 0x7f0a00cd
 			public const int text = 2131361997;
 			
-			// aapt resource value: 0x7f0a00e5
-			public const int text1 = 2131362021;
+			// aapt resource value: 0x7f0a00e9
+			public const int text1 = 2131362025;
 			
 			// aapt resource value: 0x7f0a00cc
 			public const int text2 = 2131361996;
@@ -2844,11 +2829,20 @@ namespace GWG
 			// aapt resource value: 0x7f0a008f
 			public const int txtREDCapId = 2131361935;
 			
+			// aapt resource value: 0x7f0a00e3
+			public const int txtSurveyQ6 = 2131362019;
+			
+			// aapt resource value: 0x7f0a00e5
+			public const int txtSurveyQ7 = 2131362021;
+			
 			// aapt resource value: 0x7f0a009f
 			public const int txtTitle = 2131361951;
 			
 			// aapt resource value: 0x7f0a007b
 			public const int txtWeight = 2131361915;
+			
+			// aapt resource value: 0x7f0a00dd
+			public const int underweight = 2131362013;
 			
 			// aapt resource value: 0x7f0a000a
 			public const int up = 2131361802;
@@ -2901,8 +2895,8 @@ namespace GWG
 			// aapt resource value: 0x7f0a0095
 			public const int viewSaveWeightError = 2131361941;
 			
-			// aapt resource value: 0x7f0a00e4
-			public const int viewSurveyDescrip = 2131362020;
+			// aapt resource value: 0x7f0a00e7
+			public const int viewSurveyDescrip = 2131362023;
 			
 			// aapt resource value: 0x7f0a00cf
 			public const int viewSurveyIntro = 2131361999;
@@ -2910,8 +2904,23 @@ namespace GWG
 			// aapt resource value: 0x7f0a00d0
 			public const int viewSurveyQ1 = 2131362000;
 			
-			// aapt resource value: 0x7f0a00d7
-			public const int viewSurveyQ2 = 2131362007;
+			// aapt resource value: 0x7f0a00d4
+			public const int viewSurveyQ2 = 2131362004;
+			
+			// aapt resource value: 0x7f0a00d6
+			public const int viewSurveyQ3 = 2131362006;
+			
+			// aapt resource value: 0x7f0a00d9
+			public const int viewSurveyQ4 = 2131362009;
+			
+			// aapt resource value: 0x7f0a00db
+			public const int viewSurveyQ5 = 2131362011;
+			
+			// aapt resource value: 0x7f0a00e2
+			public const int viewSurveyQ6 = 2131362018;
+			
+			// aapt resource value: 0x7f0a00e4
+			public const int viewSurveyQ7 = 2131362020;
 			
 			// aapt resource value: 0x7f0a009b
 			public const int viewUpdateWeight = 2131361947;
@@ -2939,6 +2948,9 @@ namespace GWG
 			
 			// aapt resource value: 0x7f0a0032
 			public const int wrap_content = 2131361842;
+			
+			// aapt resource value: 0x7f0a00d2
+			public const int yes = 2131362002;
 			
 			static Id()
 			{
@@ -3189,10 +3201,16 @@ namespace GWG
 			public const int survey1 = 2130903108;
 			
 			// aapt resource value: 0x7f030045
-			public const int survey_intro = 2130903109;
+			public const int survey2 = 2130903109;
 			
 			// aapt resource value: 0x7f030046
-			public const int weightItem = 2130903110;
+			public const int survey3 = 2130903110;
+			
+			// aapt resource value: 0x7f030047
+			public const int survey_intro = 2130903111;
+			
+			// aapt resource value: 0x7f030048
+			public const int weightItem = 2130903112;
 			
 			static Layout()
 			{

@@ -15,8 +15,8 @@
       android:textSize="30dp"
       android:background="#fbfabe"
       android:gravity="center" />
-  <TextView
-      android:text="1. Which of the following terms best describes your racial background?" 
+    <TextView
+      android:text="1. Have you been weighed during this pregnancy?"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_weight="0"
@@ -25,7 +25,7 @@
       android:textStyle="bold"
       android:textSize="20dp"
       android:gravity="left"
-      android:layout_marginTop="10dp"
+      android:layout_marginTop="20dp"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
       android:layout_marginBottom="10dp" />
@@ -33,34 +33,20 @@
       android:minWidth="25px"
       android:minHeight="25px"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_weight="0"
-      android:id="@+id/radioRacialBackground"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:id="@+id/radioSurveyQ1"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
-      android:layout_marginBottom="10dp" >
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="White" android:id="@+id/raceWhite" android:layout_gravity="center|left" />
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Black or African American" android:id="@+id/raceBlack" android:layout_gravity="center|left" />
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Asian or Pacific Islander" android:id="@+id/raceAsianPacific" android:layout_gravity="center|left" />
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="American Indian or Alaska Native" android:id="@+id/raceIndianNative" android:layout_gravity="center|left" />
-        <LinearLayout
-          android:orientation="horizontal" >
-          <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Other" android:id="@+id/other" android:layout_gravity="center|left" />
-          <EditText
-              android:id="@+id/txtWeight"
-              android:inputType="text"
-              android:textColor="#699791"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="10dp"
-              android:layout_marginBottom="10dp"
-              android:layout_marginLeft="20dp"
-              android:layout_marginRight="20dp"
-              android:ems="30"/>
-        </LinearLayout>
+      android:layout_marginBottom="10dp"
+      android:layout_gravity="top|center"
+      android:gravity="top|center"
+      android:orientation="horizontal">
+      <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Yes" android:id="@+id/yes" android:layout_marginRight="20dp"/>
+      <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="No" android:id="@+id/no"   android:layout_marginLeft="20dp"/>
     </RadioGroup>
     <TextView
-      android:text="2. Do you consider yourself Hispanic, Latino, or of Spanish origin?"
+      android:text="2. At any time during this pregnancy has a healthcare provider talked to you about how much weight you should gain during pregnancy?"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_weight="0"
@@ -69,7 +55,7 @@
       android:textStyle="bold"
       android:textSize="20dp"
       android:gravity="left"
-      android:layout_marginTop="10dp"
+      android:layout_marginTop="20dp"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
       android:layout_marginBottom="10dp" />
@@ -77,29 +63,41 @@
       android:minWidth="25px"
       android:minHeight="25px"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_weight="0"
-      android:id="@+id/radioHLSOrigin"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:id="@+id/radioSurveyQ2"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
       android:layout_marginBottom="10dp"
       android:layout_gravity="top|center"
       android:gravity="top|center"
       android:orientation="horizontal">
-      <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Yes" android:id="@+id/originYes" android:layout_marginRight="20dp"/>
-      <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="No" android:id="@+id/originNo"   android:layout_marginLeft="20dp"/>
+      <RadioButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="20dp"
+          android:text="Yes"
+          android:id="@+id/yes"
+          android:layout_marginRight="20dp" />
+      <RadioButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="20dp"
+          android:text="No"
+          android:id="@+id/no"
+          android:layout_marginLeft="20dp" />
     </RadioGroup>
     <TextView
-      android:text="3. What is the highest level of school you have completed?" 
+      android:text="3. Have you heard of the term BMI?"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_weight="0"
-      android:id="@+id/viewSurveyQ1"
+      android:id="@+id/viewSurveyQ3"
       android:textColor="#699791"
       android:textStyle="bold"
       android:textSize="20dp"
       android:gravity="left"
-      android:layout_marginTop="10dp"
+      android:layout_marginTop="20dp"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
       android:layout_marginBottom="10dp" />
@@ -107,27 +105,36 @@
       android:minWidth="25px"
       android:minHeight="25px"
       android:layout_width="match_parent"
-      android:layout_height="0dip"
+      android:layout_height="0dp"
       android:layout_weight="1"
-      android:id="@+id/radioSchool"
+      android:id="@+id/radioSurveyQ3"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
-      android:layout_marginBottom="10dp">
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Eighth grade or less" android:id="@+id/schoolLessEight" android:layout_gravity="center|left" />
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="High school or general education diploma (GED)" android:id="@+id/shcoolHighScool" android:layout_gravity="center|left" />
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Some college" android:id="@+id/schoolCollege" android:layout_gravity="center|left" />
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Trade/technical/vocational training" android:id="@+id/schoolTechnical" android:layout_gravity="center|left" />
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Associate degree (2 year college degree)" android:id="@+id/schoolAssociate" android:layout_gravity="center|left" />
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Bachelor’s degree (4 year college degree)" android:id="@+id/schoolBachelors" android:layout_gravity="center|left" />
-        <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Graduate degree (Master’s, Professional, Doctorate)" android:id="@+id/schoolGraduate" android:layout_gravity="center|left" />
+      android:layout_marginBottom="10dp"
+      android:layout_gravity="top|center"
+      android:gravity="top|center"
+      android:orientation="horizontal">
+      <RadioButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="20dp"
+          android:text="Yes"
+          android:id="@+id/yes"
+          android:layout_marginRight="20dp" />
+      <RadioButton
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:textSize="20dp"
+          android:text="No"
+          android:id="@+id/no"
+          android:layout_marginLeft="20dp" />
     </RadioGroup>
     <Button
-      android:layout_below="@id/radioHLSOrigin"
-      android:text="Start Survey!"
+      android:text="Continue Survey..."
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_weight="0"
-      android:id="@+id/btnStartSurvey"
+      android:id="@+id/btnContSurvey"
       android:textSize="50dp"
       android:textColor="#699791"
       android:background="@drawable/btnLogin"
