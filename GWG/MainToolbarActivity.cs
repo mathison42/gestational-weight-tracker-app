@@ -39,6 +39,7 @@ namespace GWG
         private GraphFragment mGraphFragment;
         private HistoryFragment mHistoryFragment;
         private BaselineFragment mBaselineFragment;
+        private SurveyIntroFragment mSurveyFragment;
         private Stack<SupportFragment> mStackFragment;
 
         private REDCapResult mRecord;
@@ -69,6 +70,7 @@ namespace GWG
             mGraphFragment = new GraphFragment();
             mHistoryFragment = new HistoryFragment();
             mBaselineFragment = new BaselineFragment();
+            mSurveyFragment = new SurveyIntroFragment();
 
             mStackFragment = new Stack<SupportFragment>();
 
@@ -135,6 +137,7 @@ namespace GWG
             mLeftDataSet.Add("Tracker");
             mLeftDataSet.Add("History");
             mLeftDataSet.Add("Baseline");
+            mLeftDataSet.Add("Survey");
             mLeftDataSet.Add("Logout");
             mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
             mLeftDrawer.Adapter = mLeftAdapter;
@@ -180,14 +183,14 @@ namespace GWG
                     mHistoryFragment.Arguments = args;
                 }
                 ReplaceFragment(mHistoryFragment);
-                
+
 
             }
             else if (id == 2)
             {
                 // Baseline
                 Console.WriteLine("Loading Baseline...");
-                
+
                 if (!mBaselineFragment.IsVisible)
                 {
                     Bundle args = new Bundle();
@@ -203,6 +206,19 @@ namespace GWG
                 ReplaceFragment(mBaselineFragment);
             }
             else if (id == 3)
+            {
+                // Load Survey
+                Console.WriteLine("Loading survey...");
+
+                if (!mSurveyFragment.IsVisible)
+                {
+                    Bundle args = new Bundle();
+                    args.PutString("dateWeights", REDCapResult.parseDateWeightList2Json(mRecord.dateWeights));
+                    mSurveyFragment.Arguments = args;
+                }
+                ReplaceFragment(mSurveyFragment);
+            }
+            else if (id == 4)
             {
                 // Logout
                 Console.WriteLine("Logging out...");

@@ -30,6 +30,14 @@ GWG.Resources.fragments.BaselineFragment, GWG;md5123eb17f879984f6bf34ed2d928dce5
 GWG.Resources.fragments.BaselineFragment, GWG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5123eb17f879984f6bf34ed2d928dce54.BaselineFragment
 GWG.Resources.fragments.BaselineFragment;md5123eb17f879984f6bf34ed2d928dce54.BaselineFragment
 gwg.resources.fragments.BaselineFragment;md5123eb17f879984f6bf34ed2d928dce54.BaselineFragment
+GWG.Resources.fragments.Survey1Fragment, GWG;md5123eb17f879984f6bf34ed2d928dce54.Survey1Fragment
+GWG.Resources.fragments.Survey1Fragment, GWG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5123eb17f879984f6bf34ed2d928dce54.Survey1Fragment
+GWG.Resources.fragments.Survey1Fragment;md5123eb17f879984f6bf34ed2d928dce54.Survey1Fragment
+gwg.resources.fragments.Survey1Fragment;md5123eb17f879984f6bf34ed2d928dce54.Survey1Fragment
+GWG.Resources.fragments.SurveyIntroFragment, GWG;md5123eb17f879984f6bf34ed2d928dce54.SurveyIntroFragment
+GWG.Resources.fragments.SurveyIntroFragment, GWG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5123eb17f879984f6bf34ed2d928dce54.SurveyIntroFragment
+GWG.Resources.fragments.SurveyIntroFragment;md5123eb17f879984f6bf34ed2d928dce54.SurveyIntroFragment
+gwg.resources.fragments.SurveyIntroFragment;md5123eb17f879984f6bf34ed2d928dce54.SurveyIntroFragment
 GWG.Resources.fragments.HistoryFragment, GWG;md5123eb17f879984f6bf34ed2d928dce54.HistoryFragment
 GWG.Resources.fragments.HistoryFragment, GWG, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5123eb17f879984f6bf34ed2d928dce54.HistoryFragment
 GWG.Resources.fragments.HistoryFragment;md5123eb17f879984f6bf34ed2d928dce54.HistoryFragment

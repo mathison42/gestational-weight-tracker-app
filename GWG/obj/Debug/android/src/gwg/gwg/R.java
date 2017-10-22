@@ -2668,6 +2668,7 @@ containing a value of this type.
         public static final int btnSetCalendar=0x7f0a008a;
         public static final int btnSetWeight=0x7f0a0096;
         public static final int btnSignUp=0x7f0a00a6;
+        public static final int btnStartSurvey=0x7f0a00e3;
         public static final int buttonPanel=0x7f0a0044;
         public static final int buttons=0x7f0a00b7;
         public static final int cancel_action=0x7f0a00be;
@@ -2720,7 +2721,7 @@ containing a value of this type.
         public static final int layoutWeight=0x7f0a0079;
         public static final int left=0x7f0a0018;
         public static final int left_drawer=0x7f0a00ab;
-        public static final int line=0x7f0a00d0;
+        public static final int line=0x7f0a00e6;
         public static final int line1=0x7f0a0087;
         public static final int line2=0x7f0a0074;
         public static final int line3=0x7f0a0078;
@@ -2744,6 +2745,9 @@ containing a value of this type.
         public static final int notification_background=0x7f0a00c9;
         public static final int notification_main_column=0x7f0a00c3;
         public static final int notification_main_column_container=0x7f0a00c2;
+        public static final int originNo=0x7f0a00da;
+        public static final int originYes=0x7f0a00d9;
+        public static final int other=0x7f0a00d6;
         public static final int parallax=0x7f0a0010;
         public static final int parentPanel=0x7f0a0046;
         public static final int pin=0x7f0a0011;
@@ -2752,11 +2756,24 @@ containing a value of this type.
         public static final int progressBar1=0x7f0a00a2;
         public static final int progress_circular=0x7f0a0007;
         public static final int progress_horizontal=0x7f0a0008;
+        public static final int raceAsianPacific=0x7f0a00d4;
+        public static final int raceBlack=0x7f0a00d3;
+        public static final int raceIndianNative=0x7f0a00d5;
+        public static final int raceWhite=0x7f0a00d2;
         public static final int radio=0x7f0a0056;
+        public static final int radioHLSOrigin=0x7f0a00d8;
+        public static final int radioRacialBackground=0x7f0a00d1;
+        public static final int radioSchool=0x7f0a00db;
         public static final int right=0x7f0a0019;
         public static final int right_icon=0x7f0a00c8;
         public static final int right_side=0x7f0a00c4;
         public static final int route_name=0x7f0a00ae;
+        public static final int schoolAssociate=0x7f0a00e0;
+        public static final int schoolBachelors=0x7f0a00e1;
+        public static final int schoolCollege=0x7f0a00de;
+        public static final int schoolGraduate=0x7f0a00e2;
+        public static final int schoolLessEight=0x7f0a00dc;
+        public static final int schoolTechnical=0x7f0a00df;
         public static final int screen=0x7f0a002d;
         public static final int scroll=0x7f0a000e;
         public static final int scrollIndicatorDown=0x7f0a004c;
@@ -2775,6 +2792,7 @@ containing a value of this type.
         public static final int search_voice_btn=0x7f0a006a;
         public static final int select_dialog_listview=0x7f0a006b;
         public static final int settings=0x7f0a00af;
+        public static final int shcoolHighScool=0x7f0a00dd;
         public static final int shortcut=0x7f0a0055;
         public static final int showCustom=0x7f0a0028;
         public static final int showHome=0x7f0a0029;
@@ -2794,7 +2812,7 @@ containing a value of this type.
         public static final int subtitle=0x7f0a00b4;
         public static final int tabMode=0x7f0a0025;
         public static final int text=0x7f0a00cd;
-        public static final int text1=0x7f0a00cf;
+        public static final int text1=0x7f0a00e5;
         public static final int text2=0x7f0a00cc;
         public static final int textDueDate=0x7f0a006d;
         public static final int textSpacerNoButtons=0x7f0a004b;
@@ -2832,6 +2850,10 @@ containing a value of this type.
         public static final int viewPIN=0x7f0a00a3;
         public static final int viewSaveProfileError=0x7f0a0082;
         public static final int viewSaveWeightError=0x7f0a0095;
+        public static final int viewSurveyDescrip=0x7f0a00e4;
+        public static final int viewSurveyIntro=0x7f0a00cf;
+        public static final int viewSurveyQ1=0x7f0a00d0;
+        public static final int viewSurveyQ2=0x7f0a00d7;
         public static final int viewUpdateWeight=0x7f0a009b;
         public static final int viewWGTracket=0x7f0a0099;
         public static final int viewWeight=0x7f0a007a;
@@ -2918,7 +2940,9 @@ containing a value of this type.
         public static final int select_dialog_multichoice_material=0x7f030041;
         public static final int select_dialog_singlechoice_material=0x7f030042;
         public static final int support_simple_spinner_dropdown_item=0x7f030043;
-        public static final int weightitem=0x7f030044;
+        public static final int survey1=0x7f030044;
+        public static final int survey_intro=0x7f030045;
+        public static final int weightitem=0x7f030046;
     }
     public static final class string {
         public static final int ApplicationName=0x7f05002f;
@@ -2975,6 +2999,7 @@ containing a value of this type.
         public static final int openDrawer=0x7f050030;
         public static final int search_menu_title=0x7f050020;
         public static final int status_bar_notification_info_overflow=0x7f050021;
+        public static final int surveyDescription=0x7f050034;
         public static final int title_activity_webview=0x7f05000c;
     }
     public static final class style {
