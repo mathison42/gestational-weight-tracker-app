@@ -18,14 +18,19 @@ using SupportFragment = Android.Support.V4.App.Fragment;
 using GWG.Resources.fragments;
 using GWG.survey;
 using Newtonsoft.Json;
+using Android.Text;
+using Android.Text.Style;
 
 namespace GWG.Resources.fragments
 {
     public class Survey2Fragment : Android.Support.V4.App.Fragment {
 
+        private TextView mTxtErrorMessage;
         private Button mBtnContSurvey;
 
+        private TextView mViewSurveyQ4;
         private EditText mQ4Value;
+        private TextView mViewSurveyQ5;
 
         private SurveyResults mSurveyResults = new SurveyResults();
         private Survey3Fragment mSurvey3Fragment;
@@ -46,9 +51,12 @@ namespace GWG.Resources.fragments
 
             View view = inflater.Inflate(Resource.Layout.survey2, container, false);
 
+            mTxtErrorMessage = view.FindViewById<TextView>(Resource.Id.txtErrorMessage);
+
             mBtnContSurvey = view.FindViewById<Button>(Resource.Id.btnContSurvey);
             mBtnContSurvey.Click += MBtnContSurvey_Click;
 
+            mViewSurveyQ4 = view.FindViewById<TextView>(Resource.Id.viewSurveyQ4);
             mQ4Value = view.FindViewById<EditText>(Resource.Id.q4Value);
             RadioButton q5Underweight = view.FindViewById<RadioButton>(Resource.Id.q5Underweight);
             RadioButton q5NormalWeight = view.FindViewById<RadioButton>(Resource.Id.q5NormalWeight);
@@ -61,6 +69,25 @@ namespace GWG.Resources.fragments
             q5Obese.Click += Q5_Click;
             q5NotSure.Click += Q5_Click;
 
+            // Make Q4 invisible if Q3 is No
+            if (mSurveyResults.q3.ToLower() == "no" || mSurveyResults.q3.ToLower() == "n")
+            {
+                mViewSurveyQ4.Visibility = Android.Views.ViewStates.Invisible;
+                mQ4Value.Visibility = Android.Views.ViewStates.Invisible;
+                mQ4Value.Text = "N/A";
+            }
+
+            // Underline Q5 "just before"
+            mViewSurveyQ5 = view.FindViewById<TextView>(Resource.Id.viewSurveyQ5);
+            SpannableStringBuilder builderQ5 = new SpannableStringBuilder();
+            string q5Str = Resources.GetString(Resource.String.surveyQ5);
+            string q5UnderlineStr = Resources.GetString(Resource.String.surveyQ5Underline);
+            builderQ5.Append(q5Str);
+            int startUnderline = q5Str.IndexOf(q5UnderlineStr);
+            int endUnderline = startUnderline + q5UnderlineStr.Length;
+
+            builderQ5.SetSpan(new UnderlineSpan(), startUnderline, endUnderline, SpanTypes.ExclusiveExclusive);
+            mViewSurveyQ5.TextFormatted = builderQ5;
             return view;
         }
 
@@ -79,10 +106,22 @@ namespace GWG.Resources.fragments
 
             // Confirm all Values
 
-            var trans = this.FragmentManager.BeginTransaction();
 
-            trans.Replace(Resource.Id.fragmentContainer, mSurvey3Fragment);
-            trans.Commit();
+            // Confirm all Values
+            if (String.IsNullOrWhiteSpace(mSurveyResults.q4))
+            {
+                mTxtErrorMessage.Text = "Please answer question #4";
+            }
+            else if (String.IsNullOrWhiteSpace(mSurveyResults.q5))
+            {
+                mTxtErrorMessage.Text = "Please answer question #5";
+            }
+            else
+            {
+                var trans = this.FragmentManager.BeginTransaction();
+                trans.Replace(Resource.Id.fragmentContainer, mSurvey3Fragment);
+                trans.Commit();
+            }
         }
     }
 }

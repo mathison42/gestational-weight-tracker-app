@@ -2662,7 +2662,7 @@ containing a value of this type.
         public static final int btnAddWeight=0x7f0a009c;
         public static final int btnCalcPeriod=0x7f0a006f;
         public static final int btnCompleteSurvey=0x7f0a00eb;
-        public static final int btnContSurvey=0x7f0a00dc;
+        public static final int btnContSurvey=0x7f0a00dd;
         public static final int btnLogin=0x7f0a00a4;
         public static final int btnREDCap=0x7f0a0093;
         public static final int btnSaveProfile=0x7f0a0083;
@@ -2747,7 +2747,6 @@ containing a value of this type.
         public static final int notification_background=0x7f0a00c9;
         public static final int notification_main_column=0x7f0a00c3;
         public static final int notification_main_column_container=0x7f0a00c2;
-        public static final int pageFiller=0x7f0a00ea;
         public static final int parallax=0x7f0a0010;
         public static final int parentPanel=0x7f0a0046;
         public static final int pin=0x7f0a0011;
@@ -2762,19 +2761,19 @@ containing a value of this type.
         public static final int q2Yes=0x7f0a00d6;
         public static final int q3No=0x7f0a00db;
         public static final int q3Yes=0x7f0a00da;
-        public static final int q4Value=0x7f0a00de;
-        public static final int q5NormalWeight=0x7f0a00e2;
-        public static final int q5NotSure=0x7f0a00e5;
-        public static final int q5Obese=0x7f0a00e4;
-        public static final int q5Overweight=0x7f0a00e3;
-        public static final int q5Underweight=0x7f0a00e1;
-        public static final int q6Value=0x7f0a00e7;
-        public static final int q7Value=0x7f0a00e9;
+        public static final int q4Value=0x7f0a00df;
+        public static final int q5NormalWeight=0x7f0a00e3;
+        public static final int q5NotSure=0x7f0a00e6;
+        public static final int q5Obese=0x7f0a00e5;
+        public static final int q5Overweight=0x7f0a00e4;
+        public static final int q5Underweight=0x7f0a00e2;
+        public static final int q6Value=0x7f0a00e8;
+        public static final int q7Value=0x7f0a00ea;
         public static final int radio=0x7f0a0056;
         public static final int radioSurveyQ1=0x7f0a00d1;
         public static final int radioSurveyQ2=0x7f0a00d5;
         public static final int radioSurveyQ3=0x7f0a00d9;
-        public static final int radioSurveyQ5=0x7f0a00e0;
+        public static final int radioSurveyQ5=0x7f0a00e1;
         public static final int right=0x7f0a0019;
         public static final int right_icon=0x7f0a00c8;
         public static final int right_side=0x7f0a00c4;
@@ -2830,6 +2829,7 @@ containing a value of this type.
         public static final int top=0x7f0a001b;
         public static final int topPanel=0x7f0a004f;
         public static final int txtBMI=0x7f0a007f;
+        public static final int txtErrorMessage=0x7f0a00dc;
         public static final int txtHeight=0x7f0a0077;
         public static final int txtNeedAnAccount=0x7f0a00a5;
         public static final int txtPin=0x7f0a0090;
@@ -2859,10 +2859,10 @@ containing a value of this type.
         public static final int viewSurveyQ1=0x7f0a00d0;
         public static final int viewSurveyQ2=0x7f0a00d4;
         public static final int viewSurveyQ3=0x7f0a00d8;
-        public static final int viewSurveyQ4=0x7f0a00dd;
-        public static final int viewSurveyQ5=0x7f0a00df;
-        public static final int viewSurveyQ6=0x7f0a00e6;
-        public static final int viewSurveyQ7=0x7f0a00e8;
+        public static final int viewSurveyQ4=0x7f0a00de;
+        public static final int viewSurveyQ5=0x7f0a00e0;
+        public static final int viewSurveyQ6=0x7f0a00e7;
+        public static final int viewSurveyQ7=0x7f0a00e9;
         public static final int viewUpdateWeight=0x7f0a009b;
         public static final int viewWGTracket=0x7f0a0099;
         public static final int viewWeight=0x7f0a007a;
@@ -3005,12 +3005,18 @@ containing a value of this type.
         public static final int mr_system_route_name=0x7f050009;
         public static final int mr_user_route_category_name=0x7f05000a;
         /**  <string name="openDrawer">Drawer Opened</string>
-    <string name="closeDrawer">Drawer Closed</string>
+  <string name="closeDrawer">Drawer Closed</string>
          */
         public static final int openDrawer=0x7f050030;
         public static final int search_menu_title=0x7f050020;
         public static final int status_bar_notification_info_overflow=0x7f050021;
         public static final int surveyDescription=0x7f050034;
+        public static final int surveyQ5=0x7f050035;
+        public static final int surveyQ5Underline=0x7f050036;
+        public static final int surveyQ6=0x7f050037;
+        public static final int surveyQ6Underline=0x7f050038;
+        public static final int surveyQ7=0x7f050039;
+        public static final int surveyQ7Underline=0x7f05003a;
         public static final int title_activity_webview=0x7f05000c;
     }
     public static final class style {

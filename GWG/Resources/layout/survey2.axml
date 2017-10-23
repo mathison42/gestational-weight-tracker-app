@@ -60,8 +60,8 @@
       android:minWidth="25px"
       android:minHeight="25px"
       android:layout_width="match_parent"
-      android:layout_height="0dp"
-      android:layout_weight="1"
+      android:layout_height="wrap_content"
+      android:layout_weight="0"
       android:id="@+id/radioSurveyQ5"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
@@ -98,6 +98,21 @@
           android:text="Not Sure"
           android:id="@+id/q5NotSure" />
   </RadioGroup>
+  <TextView
+      android:id="@+id/txtErrorMessage"
+      android:inputType="text"
+      android:textColor="#FF0000"
+      android:text=""
+      android:layout_gravity="bottom|center"
+      android:gravity="bottom|center"
+      android:textSize="20dp"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:layout_marginTop="10dp"
+      android:layout_marginBottom="10dp"
+      android:layout_marginLeft="20dp"
+      android:layout_marginRight="20dp" />
   <Button
       android:text="Continue Survey..."
       android:layout_width="match_parent"

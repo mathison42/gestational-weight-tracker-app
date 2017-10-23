@@ -23,8 +23,8 @@ namespace GWG.Resources.fragments
 {
     public class Survey1Fragment : Android.Support.V4.App.Fragment {
 
+        private TextView mTxtErrorMessage;
         private Button mBtnContSurvey;
-
         private SurveyResults mSurveyResults = new SurveyResults();
         private Survey2Fragment mSurvey2Fragment;
         Bundle mArgs = new Bundle();
@@ -42,6 +42,8 @@ namespace GWG.Resources.fragments
             mArgs.PutString("record", bundle.GetString("record"));
 
             View view = inflater.Inflate(Resource.Layout.survey1, container, false);
+
+            mTxtErrorMessage = view.FindViewById<TextView>(Resource.Id.txtErrorMessage);
 
             mBtnContSurvey = view.FindViewById<Button>(Resource.Id.btnContSurvey);
             mBtnContSurvey.Click += MBtnContSurvey_Click;
@@ -87,11 +89,23 @@ namespace GWG.Resources.fragments
             mSurvey2Fragment.Arguments = mArgs;
 
             // Confirm all Values
-
-
-            var trans = this.FragmentManager.BeginTransaction();
-            trans.Replace(Resource.Id.fragmentContainer, mSurvey2Fragment);
-            trans.Commit();
+            if (String.IsNullOrWhiteSpace(mSurveyResults.q1))
+            {
+                mTxtErrorMessage.Text = "Please answer question #1";
+            }
+            else if (String.IsNullOrWhiteSpace(mSurveyResults.q2))
+            {
+                mTxtErrorMessage.Text = "Please answer question #2";
+            }
+            else if (String.IsNullOrWhiteSpace(mSurveyResults.q3))
+            {
+                mTxtErrorMessage.Text = "Please answer question #3";
+            } else
+            {
+                var trans = this.FragmentManager.BeginTransaction();
+                trans.Replace(Resource.Id.fragmentContainer, mSurvey2Fragment);
+                trans.Commit();
+            }
         }
     }
 }

@@ -1,16 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="Hello">Hello World, Click Me!</string>
-    <string name="ApplicationName">GWG</string>
-   <!-- <string name="openDrawer">Drawer Opened</string>
-    <string name="closeDrawer">Drawer Closed</string>-->
-    <string name="openDrawer"></string>
-    <string name="closeDrawer"></string>
-    <string-array name="list_items">
-      <item>Loading...</item>
-    </string-array>
-    <string name="disclaimer">The information in this app is intended for your general knowledge only and is not a substitute for profession medical advice, diagnosis, or treatment. You should not use this information to diagnose or treat a health problem or disease without consulting with a qualified healthcare provider. Please consult your healthcare provider with any questions or concerns you may have regarding your condition.</string>
-    <string name="acceptance">I have read and agree with the above statement.</string>
-    <string name="surveyDescription">Thank you for choosing to participate in this survey! The questions help us learn more about your thoughts on pregnancy and weight gain. This survey will only take a few minutes, and your responses will be kept confidential. Please write your answer in the blank space provided or check the box next to your answer.</string>
+  <string name="Hello">Hello World, Click Me!</string>
+  <string name="ApplicationName">GWG</string>
+  <!-- <string name="openDrawer">Drawer Opened</string>
+  <string name="closeDrawer">Drawer Closed</string>-->
+  <string name="openDrawer"></string>
+  <string name="closeDrawer"></string>
+  <string-array name="list_items">
+    <item>Loading...</item>
+  </string-array>
+  <string name="disclaimer">The information in this app is intended for your general knowledge only and is not a substitute for profession medical advice, diagnosis, or treatment. You should not use this information to diagnose or treat a health problem or disease without consulting with a qualified healthcare provider. Please consult your healthcare provider with any questions or concerns you may have regarding your condition.</string>
+  <string name="acceptance">I have read and agree with the above statement.</string>
+  <string name="surveyDescription">Thank you for choosing to participate in this survey! The questions help us learn more about your thoughts on pregnancy and weight gain. This survey will only take a few minutes, and your responses will be kept confidential. Please write your answer in the blank space provided or check the box next to your answer.</string>
+
+  <string name="surveyQ5">5. What would you consider your weight just before this pregnancy?</string>
+  <string name="surveyQ5Underline">just before</string>
+  <string name="surveyQ6">6. How much weight do you think you should ideally gain during this pregnancy?</string>
+  <string name="surveyQ6Underline">should ideally gain</string>
+  <string name="surveyQ7">7. How much weight do you think you will gain during this pregnancy?</string>
+  <string name="surveyQ7Underline">will gain</string>
 
 </resources>
