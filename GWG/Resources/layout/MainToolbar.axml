@@ -17,7 +17,7 @@
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
         <ImageView
             android:id="@+id/viewIconToolbar"
-            android:src="@drawable/gwg_pic_small"
+            android:src="@drawable/gwg_pic_smaller"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:adjustViewBounds="true" />

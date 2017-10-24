@@ -27,8 +27,7 @@
       android:gravity="left"
       android:layout_marginTop="20dp"
       android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
-      android:layout_marginBottom="10dp" />
+      android:layout_marginRight="20dp" />
     <RadioGroup
       android:minWidth="25px"
       android:minHeight="25px"
@@ -38,7 +37,6 @@
       android:id="@+id/radioSurveyQ1"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
-      android:layout_marginBottom="10dp"
       android:layout_gravity="top|center"
       android:gravity="top|center"
       android:orientation="horizontal">
@@ -69,8 +67,7 @@
       android:gravity="left"
       android:layout_marginTop="20dp"
       android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
-      android:layout_marginBottom="10dp" />
+      android:layout_marginRight="20dp" />
     <RadioGroup
       android:minWidth="25px"
       android:minHeight="25px"
@@ -80,7 +77,6 @@
       android:id="@+id/radioSurveyQ2"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
-      android:layout_marginBottom="10dp"
       android:layout_gravity="top|center"
       android:gravity="top|center"
       android:orientation="horizontal">
@@ -111,8 +107,7 @@
       android:gravity="left"
       android:layout_marginTop="20dp"
       android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
-      android:layout_marginBottom="10dp" />
+      android:layout_marginRight="20dp" />
     <RadioGroup
       android:minWidth="25px"
       android:minHeight="25px"
@@ -122,7 +117,6 @@
       android:id="@+id/radioSurveyQ3"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
-      android:layout_marginBottom="10dp"
       android:layout_gravity="top|center"
       android:gravity="top|center"
       android:orientation="horizontal">
@@ -152,8 +146,6 @@
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="1"
-      android:layout_marginTop="10dp"
-      android:layout_marginBottom="10dp"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp" />
     <Button
@@ -162,7 +154,7 @@
       android:layout_height="wrap_content"
       android:layout_weight="0"
       android:id="@+id/btnContSurvey"
-      android:textSize="50dp"
+      android:textSize="30dp"
       android:textColor="#699791"
       android:background="@drawable/btnLogin"
       android:layout_marginLeft="20dp"

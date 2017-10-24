@@ -37,7 +37,7 @@
     android:layout_height="wrap_content" 
     android:layout_weight="0"
     android:id="@+id/btnStartSurvey"
-    android:textSize="50dp"
+    android:textSize="30dp"
     android:textColor="#699791"
     android:background="@drawable/btnLogin"
     android:layout_marginLeft="20dp"

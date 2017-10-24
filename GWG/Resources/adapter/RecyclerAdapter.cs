@@ -37,6 +37,10 @@ namespace GWG.Resources.adapter
             // Need to convert to current timezone
             vh.mText1.Text = new DateTime(item.mDate).ToLongDateString();
             vh.mText2.Text = item.mWeight.ToString() + " lbs";
+            vh.mText1.TextSize = 16;
+            vh.mText2.TextSize = 16;
+            vh.mText1.SetTextColor(Android.Graphics.Color.ParseColor("#699791"));
+            vh.mText2.SetTextColor(Android.Graphics.Color.ParseColor("#699791"));
         }
 
         public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType)

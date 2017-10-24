@@ -27,18 +27,15 @@
         android:gravity="left"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginRight="20dp" />
     <EditText
         android:id="@+id/q6Value"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:textColor="#699791"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:hint="Weight (lbs)"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:ems="30" />
@@ -54,18 +51,15 @@
         android:gravity="left"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginRight="20dp"/>
     <EditText
         android:id="@+id/q7Value"
-        android:inputType="text"
+        android:inputType="numberDecimal"
         android:textColor="#699791"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:hint="Weight (lbs)"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:ems="30"
@@ -82,8 +76,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp" />
     <Button
@@ -92,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:id="@+id/btnCompleteSurvey"
-        android:textSize="50dp"
+        android:textSize="30dp"
         android:textColor="#699791"
         android:background="@drawable/btnLogin"
         android:layout_marginLeft="20dp"

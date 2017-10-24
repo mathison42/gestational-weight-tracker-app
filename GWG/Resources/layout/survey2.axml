@@ -27,16 +27,13 @@
       android:gravity="left"
       android:layout_marginTop="20dp"
       android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
-      android:layout_marginBottom="10dp" />
+      android:layout_marginRight="20dp" />
   <EditText
       android:id="@+id/q4Value"
       android:inputType="text"
       android:textColor="#699791"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginTop="10dp"
-      android:layout_marginBottom="10dp"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
       android:ems="30"
@@ -54,8 +51,7 @@
       android:gravity="left"
       android:layout_marginTop="20dp"
       android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
-      android:layout_marginBottom="10dp" />
+      android:layout_marginRight="20dp"/>
   <RadioGroup
       android:minWidth="25px"
       android:minHeight="25px"
@@ -65,7 +61,6 @@
       android:id="@+id/radioSurveyQ5"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp"
-      android:layout_marginBottom="10dp"
       android:orientation="vertical">
       <RadioButton
           android:layout_width="wrap_content"
@@ -109,8 +104,6 @@
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:layout_weight="1"
-      android:layout_marginTop="10dp"
-      android:layout_marginBottom="10dp"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp" />
   <Button
@@ -119,7 +112,7 @@
       android:layout_height="wrap_content"
       android:layout_weight="0"
       android:id="@+id/btnContSurvey"
-      android:textSize="50dp"
+      android:textSize="30dp"
       android:textColor="#699791"
       android:background="@drawable/btnLogin"
       android:layout_marginLeft="20dp"

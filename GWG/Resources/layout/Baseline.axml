@@ -1,247 +1,259 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100" >
+  <TextView
+      android:layout_alignParentTop="true"
+      android:text="Baseline"
+      android:layout_width="match_parent"
+      android:layout_height="50dp"
+      android:textSize="30dp"
+      android:id="@+id/viewBasline"
+      android:textColor="#699791"
+      android:textStyle="bold"
+      android:background="#fbfabe"
+      android:gravity="center" />
+  <TextView
+      android:layout_below="@id/viewBasline"
+      android:id="@+id/textDueDate"
+      android:text="Calcuate Your Due Date"
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="6"
+      android:textColor="#699791"
+      android:gravity="center"
+      android:textAppearance="?android:attr/textAppearanceLarge" />
+    <LinearLayout
+        android:layout_below="@id/textDueDate"
+        android:id="@+id/layoutDateCalc"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:orientation="horizontal"
+        android:paddingLeft="4.0dip"
+        android:paddingTop="5.0dip"
+        android:paddingRight="4.0dip"
+        android:paddingBottom="1.0dip">
+        <Button
+            android:text="From first day of last period"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight=".9"
+            android:id="@+id/btnCalcPeriod"
+            android:textSize="25dp"
+            android:textColor="#699791"
+            android:background="@drawable/btnLogin"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textAllCaps="false" />
+        <Button
+            android:text="Set a date"
+            android:layout_width="0.0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight=".9"
+            android:id="@+id/btnSetADate"
+            android:textSize="25dp"
+            android:textColor="#699791"
+            android:background="@drawable/btnLogin"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:textAllCaps="false" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_below="@id/layoutDateCalc"
+        android:id="@+id/layoutDateView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="7"
+        android:orientation="horizontal"
+        android:gravity="center">
         <TextView
-            android:layout_alignParentTop="true"
-            android:id="@+id/textDueDate"
-            android:text="Calcuate Your Due Date"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:text="Due Date:"
+            android:textSize="22dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewDueDate2"
             android:textColor="#699791"
             android:gravity="center"
+            android:textStyle="bold" />
+        <TextView
+            android:inputType="date"
+            android:text="Calculating..."
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/viewDate"
+            android:textSize="25dp"
+            android:textColor="#699791"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:editable="false" />
+    </LinearLayout>
+    <View
+        android:layout_below="@id/layoutDateView"
+        android:id="@+id/line2"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#bae2e0" />
+    <LinearLayout
+        android:layout_below="@id/line2"
+        android:id="@+id/layoutHeight"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:minWidth="10px"
+        android:minHeight="10px"
+        android:gravity="center">
+        <TextView
+            android:text="Height (inches)"
+            android:textSize="22dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewHeight"
+            android:textColor="#699791"
+            android:gravity="right"
             android:textStyle="bold"
-            android:textSize="30dp" />
-        <LinearLayout
-            android:layout_below="@id/textDueDate"
-            android:id="@+id/layoutDateCalc"
-            android:layout_width="fill_parent"
-            android:layout_height="200dp"
-            android:orientation="horizontal"
-            android:paddingLeft="4.0dip"
-            android:paddingTop="5.0dip"
-            android:paddingRight="4.0dip"
-            android:paddingBottom="1.0dip">
-            <Button
-                android:text="Calculate from first day of last period"
-                android:layout_width="0.0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight=".9"
-                android:id="@+id/btnCalcPeriod"
-                android:textSize="25dp"
-                android:textColor="#699791"
-                android:background="@drawable/btnLogin"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:textAllCaps="false" />
-            <Button
-                android:text="Set a date"
-                android:layout_width="0.0dip"
-                android:layout_height="fill_parent"
-                android:layout_weight=".9"
-                android:id="@+id/btnSetADate"
-                android:textSize="25dp"
-                android:textColor="#699791"
-                android:background="@drawable/btnLogin"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:textAllCaps="false" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_below="@id/layoutDateCalc"
-            android:id="@+id/layoutDateView"
+            android:layout_weight="1.25" />
+        <EditText
+            android:id="@+id/txtHeight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/edit_text_style"
+            android:hint="..."
+            android:textColorHint="#699791"
+            android:paddingLeft="10dp"
+            android:textColor="#699791"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:inputType="numberDecimal"
+            android:layout_weight=".75" />
+    </LinearLayout>
+    <View
+        android:layout_below="@id/layoutHeight"
+        android:id="@+id/line3"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#bae2e0" />
+    <LinearLayout
+        android:layout_below="@id/line3"
+        android:id="@+id/layoutWeight"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="15"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:minWidth="10px"
+        android:minHeight="10px"
+        android:gravity="center">
+        <TextView
+            android:text="Pre-Pregnancy Weight (lbs)"
+            android:textSize="22dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewWeight"
+            android:textColor="#699791"
+            android:gravity="right"
+            android:textStyle="bold"
+            android:layout_weight="1.25" />
+        <EditText
+            android:id="@+id/txtWeight"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/edit_text_style"
+            android:hint="..."
+            android:textColorHint="#699791"
+            android:paddingLeft="10dp"
+            android:textColor="#699791"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:inputType="numberDecimal"
+            android:layout_weight=".75" />
+    </LinearLayout>
+    <View
+        android:layout_below="@id/layoutWeight"
+        android:id="@+id/line4"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#bae2e0" />
+    <LinearLayout
+        android:layout_below="@id/line4"
+        android:id="@+id/layoutBMI"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:weightSum="2"
+        android:orientation="horizontal"
+        android:minWidth="10px"
+        android:minHeight="10px"
+        android:gravity="center">
+        <TextView
+            android:text="Pre-Pregnancy BMI"
+            android:textSize="22dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/viewBMI"
+            android:textColor="#699791"
+            android:gravity="right"
+            android:textStyle="bold"
+            android:layout_weight="1.25" />
+        <TextView
+            android:id="@+id/txtBMI"
+            android:textSize="25dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="..."
+            android:paddingLeft="10dp"
+            android:textColor="#699791"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight=".75" />
+    </LinearLayout>
+    <View
+        android:layout_below="@id/layoutBMI"
+        android:id="@+id/line5"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#bae2e0" />
+    <LinearLayout
+        android:layout_below="@id/line5"
+        android:id="@+id/layoutCreateProfile"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="25"
+        android:weightSum="1.5"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/viewSaveProfileError"
+            android:text=""
+            android:textSize="18dp"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal"
-            android:gravity="center">
-            <TextView
-                android:text="Due Date:"
-                android:textSize="25dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/viewDueDate2"
-                android:textColor="#699791"
-                android:gravity="center"
-                android:textStyle="bold" />
-            <TextView
-                android:inputType="date"
-                android:text="Calculating..."
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/viewDate"
-                android:textSize="25dp"
-                android:textColor="#699791"
-                android:gravity="center"
-                android:paddingLeft="10dp"
-                android:editable="false" />
-        </LinearLayout>
-        <View
-            android:layout_below="@id/layoutDateView"
-            android:id="@+id/line2"
+            android:layout_height="0dp"
+            android:layout_weight=".5"
+            android:textColor="#FF0000"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true" />
+        <Button
+            android:layout_below="@id/viewSaveProfileError"
+            android:id="@+id/btnSaveProfile"
+            android:text="Save Profile"
             android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="#bae2e0" />
-        <LinearLayout
-            android:layout_below="@id/line2"
-            android:id="@+id/layoutHeight"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:weightSum="2"
-            android:orientation="horizontal"
-            android:minWidth="10px"
-            android:minHeight="10px"
-            android:gravity="center">
-            <TextView
-                android:text="Height (inches)"
-                android:textSize="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/viewHeight"
-                android:textColor="#699791"
-                android:gravity="right"
-                android:textStyle="bold"
-                android:layout_weight=".90" />
-            <EditText
-                android:id="@+id/txtHeight"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/edit_text_style"
-                android:hint="Enter height (inches)"
-                android:textColorHint="#699791"
-                android:paddingLeft="10dp"
-                android:textColor="#699791"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:inputType="numberDecimal"
-                android:layout_weight="1.10" />
-        </LinearLayout>
-        <View
-            android:layout_below="@id/layoutHeight"
-            android:id="@+id/line3"
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="#bae2e0" />
-        <LinearLayout
-            android:layout_below="@id/line3"
-            android:id="@+id/layoutWeight"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:weightSum="2"
-            android:orientation="horizontal"
-            android:minWidth="10px"
-            android:minHeight="10px"
-            android:gravity="center">
-            <TextView
-                android:text="Pre-Pregnancy Weight (lbs)"
-                android:textSize="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/viewWeight"
-                android:textColor="#699791"
-                android:gravity="right"
-                android:textStyle="bold"
-                android:layout_weight=".90" />
-            <EditText
-                android:id="@+id/txtWeight"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/edit_text_style"
-                android:hint="Enter weight (pounds)"
-                android:textColorHint="#699791"
-                android:paddingLeft="10dp"
-                android:textColor="#699791"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:inputType="numberDecimal"
-                android:layout_weight="1.10" />
-        </LinearLayout>
-        <View
-            android:layout_below="@id/layoutWeight"
-            android:id="@+id/line4"
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="#bae2e0" />
-        <LinearLayout
-            android:layout_below="@id/line4"
-            android:id="@+id/layoutBMI"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:weightSum="2"
-            android:orientation="horizontal"
-            android:minWidth="10px"
-            android:minHeight="10px"
-            android:gravity="center">
-            <TextView
-                android:text="Pre-Pregnancy BMI"
-                android:textSize="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/viewBMI"
-                android:textColor="#699791"
-                android:gravity="right"
-                android:textStyle="bold"
-                android:layout_weight=".90" />
-            <TextView
-                android:id="@+id/txtBMI"
-                android:textSize="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Calculating..."
-                android:paddingLeft="10dp"
-                android:textColor="#699791"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1.10" />
-        </LinearLayout>
-        <View
-            android:layout_below="@id/layoutBMI"
-            android:id="@+id/line5"
-            android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:background="#bae2e0" />
-        <RelativeLayout
-            android:layout_below="@id/line5"
-            android:id="@+id/layoutCreateProfile"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:weightSum="1.5">
-            <TextView
-                android:id="@+id/viewSaveProfileError"
-                android:text=""
-                android:textSize="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="#FF0000"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:layout_weight=".5"
-                android:layout_alignParentTop="true"
-                android:layout_marginTop="5dp" />
-            <Button
-                android:layout_below="@id/viewSaveProfileError"
-                android:id="@+id/btnSaveProfile"
-                android:text="Save Profile"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="25dp"
-                android:textColor="#699791"
-                android:paddingLeft="10dp"
-                android:height="35dp"
-                android:background="@drawable/btnLogin"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="10dp"
-                android:textAllCaps="false"
-                android:layout_weight="1" />
-        </RelativeLayout>
-    </RelativeLayout>
-</ScrollView>
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textSize="25dp"
+            android:textColor="#699791"
+            android:paddingLeft="10dp"
+            android:background="@drawable/btnLogin"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textAllCaps="false" />
+    </LinearLayout>
+</LinearLayout>

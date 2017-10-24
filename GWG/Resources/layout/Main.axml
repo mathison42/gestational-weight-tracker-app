@@ -8,9 +8,9 @@
     android:minWidth="25px"
     android:minHeight="25px">
     <ImageView
-        android:src="@drawable/gwg_pic_small"
+        android:src="@drawable/gwg_pic_smaller_no_bottom"
         android:layout_width="match_parent"
-        android:layout_weight="30"
+        android:layout_weight="35"
         android:layout_height="0dp"
         android:id="@+id/imgIcon"
         android:layout_marginTop="20dp" />
@@ -18,7 +18,7 @@
         android:text="Gestational Weight Tracker"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
-        android:layout_weight="15"
+        android:layout_weight="10"
         android:layout_height="0dp"
         android:id="@+id/txtTitle"
         android:textColor="#699791"
@@ -37,7 +37,6 @@
         android:layout_marginRight="40dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="10dp"
         android:numeric="integer"
         android:hint="PIN"
         android:textColorHint="#699791"
