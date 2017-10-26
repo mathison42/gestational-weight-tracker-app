@@ -39,6 +39,7 @@ namespace GWG
         private SupportFragment mCurrentFragment;
         private GraphFragment mGraphFragment;
         private HistoryFragment mHistoryFragment;
+        private InformationFragment mInformationFragment;
         private BaselineFragment mBaselineFragment;
         private SurveyIntroFragment mSurveyIntroFragment;
         private Stack<SupportFragment> mStackFragment;
@@ -70,6 +71,7 @@ namespace GWG
 
             mGraphFragment = new GraphFragment();
             mHistoryFragment = new HistoryFragment();
+            mInformationFragment = new InformationFragment();
             mBaselineFragment = new BaselineFragment();
             mSurveyIntroFragment = new SurveyIntroFragment();
 
@@ -146,6 +148,7 @@ namespace GWG
             mLeftDataSet = mLeftDataSet = new List<string>();
             mLeftDataSet.Add("Tracker");
             mLeftDataSet.Add("History");
+            mLeftDataSet.Add("Information");
             mLeftDataSet.Add("Baseline");
             mLeftDataSet.Add("Survey");
             mLeftDataSet.Add("Logout");
@@ -198,6 +201,20 @@ namespace GWG
             }
             else if (id == 2)
             {
+                // History
+                Console.WriteLine("Loading Information and Resources...");
+
+                if (!mInformationFragment.IsVisible)
+                {
+                    Bundle args = new Bundle();
+                    mInformationFragment.Arguments = args;
+                }
+                ReplaceFragment(mInformationFragment);
+
+
+            }
+            else if (id == 3)
+            {
                 // Baseline
                 Console.WriteLine("Loading Baseline...");
 
@@ -215,7 +232,7 @@ namespace GWG
                 }
                 ReplaceFragment(mBaselineFragment);
             }
-            else if (id == 3)
+            else if (id == 4)
             {
                 // Load Survey
                 Console.WriteLine("Loading survey...");
@@ -228,7 +245,7 @@ namespace GWG
                 }
                 ReplaceFragment(mSurveyIntroFragment);
             }
-            else if (id == 4)
+            else if (id == 5)
             {
                 // Logout
                 Console.WriteLine("Logging out...");

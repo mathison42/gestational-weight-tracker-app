@@ -20,4 +20,7 @@
   <string name="surveyQ7">7. How much weight do you think you will gain during this pregnancy?</string>
   <string name="surveyQ7Underline">will gain</string>
 
+  <string name="InfoCongrats">So, you\'re going to have a baby - Congratulations!</string>
+  <string name="InfoDescription">As your baby grows during pregnancy, your body will undergo many changes. The things you eat, drink, and do can have an effect on your baby\'s growth and development.</string>
+  <string name="InfoLearnMore">Choose from the following topics to learn more!</string>
 </resources>

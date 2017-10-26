@@ -155,6 +155,7 @@
     <Compile Include="MyActionBarDrawerToggle.cs" />
     <Compile Include="Resources\adapter\RecyclerAdapter.cs" />
     <Compile Include="Resources\fragments\BaselineFragment.cs" />
+    <Compile Include="Resources\fragments\InformationFragment.cs" />
     <Compile Include="Resources\fragments\Survey3Fragment.cs" />
     <Compile Include="Resources\fragments\Survey2Fragment.cs" />
     <Compile Include="Resources\fragments\Survey1Fragment.cs" />
@@ -213,6 +214,9 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\survey3.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\Information.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
