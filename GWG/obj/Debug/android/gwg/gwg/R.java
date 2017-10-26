@@ -2570,7 +2570,7 @@ containing a value of this type.
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020050;
         public static final int abc_textfield_search_material=0x7f020051;
         public static final int abc_vector_test=0x7f020052;
-        public static final int btnlogin=0x7f020053;
+        public static final int btnstyle=0x7f020053;
         public static final int design_fab_background=0x7f020054;
         public static final int design_snackbar_background=0x7f020055;
         public static final int edit_text_style=0x7f020056;

@@ -2055,7 +2055,7 @@ namespace GWG
 			public const int abc_vector_test = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int btnLogin = 2130837587;
+			public const int btnStyle = 2130837587;
 			
 			// aapt resource value: 0x7f020054
 			public const int design_fab_background = 2130837588;

@@ -3,9 +3,9 @@
 
   <item
       android:state_checked="true"
-      android:drawable="@drawable/btnLogin" />
+      android:drawable="@drawable/btnStyle" />
 
   <item
-      android:drawable="@drawable/btnLogin" />
+      android:drawable="@drawable/btnStyle" />
 
 </selector>

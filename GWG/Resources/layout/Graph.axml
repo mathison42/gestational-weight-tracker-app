@@ -61,7 +61,7 @@
         android:layout_height="0dp"
         android:layout_weight="12"
         android:id="@+id/btnAddWeight"
-        android:background="@drawable/btnLogin"
+        android:background="@drawable/btnStyle"
         android:textColor="#699791"
         android:textAllCaps="false"
         android:layout_marginBottom="15dp"

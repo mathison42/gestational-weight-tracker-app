@@ -82,7 +82,7 @@
             android:textColor="#699791"
             android:paddingLeft="10dp"
             android:height="35dp"
-            android:background="@drawable/btnLogin"
+            android:background="@drawable/btnStyle"
             android:paddingBottom="5dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"

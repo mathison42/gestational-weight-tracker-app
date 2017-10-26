@@ -86,7 +86,7 @@
         android:id="@+id/btnCompleteSurvey"
         android:textSize="30dp"
         android:textColor="#699791"
-        android:background="@drawable/btnLogin"
+        android:background="@drawable/btnStyle"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:textAllCaps="false"
