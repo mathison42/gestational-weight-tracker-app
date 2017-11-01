@@ -18,6 +18,7 @@ namespace GWG.Resources.redcap
     {
         public string record_id { get; set; }
         public string redcapid { get; set; }
+        public string experimental { get; set; }
         public string height { get; set; }
         public string bmi { get; set; }
         public string json { get; set; }
@@ -257,6 +258,7 @@ namespace GWG.Resources.redcap
             Console.WriteLine("===========");
             Console.WriteLine("Record ID: " + record_id);
             Console.WriteLine("REDCapID: " + redcapid);
+            Console.WriteLine("Experimental: " + experimental);
             Console.WriteLine("Height: " + height);
             Console.WriteLine("BMI: " + bmi);
             Console.WriteLine("JSON: " + json);

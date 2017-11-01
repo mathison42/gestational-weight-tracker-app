@@ -10,6 +10,9 @@ using Android.Runtime;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
+using GWG.Resources.redcap;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace GWG
 {
@@ -63,50 +66,46 @@ namespace GWG
             mViewFailureReason = view.FindViewById<TextView>(Resource.Id.viewFailureReason);
             mBtnREDCap = view.FindViewById<Button>(Resource.Id.btnREDCap);
 
-            mBtnREDCap.Click += MBtnREDCap_Click;
+            mBtnREDCap.Click += MBtnREDCap_ClickAsync;
             return view;
 
         }
 
-        private void MBtnREDCap_Click(object sender, EventArgs e)
+        private async void MBtnREDCap_ClickAsync(object sender, EventArgs e)
         {
             string id = mTxtREDCapId.Text;
             string pin1 = mTxtPin.Text;
             string pin2 = mTxtPinRepeat.Text;
 
-            if (string.IsNullOrEmpty(id) || !verifyREDCapId(id))
+            mViewFailureReason.Text = "Confirming...";
+            mViewFailureReason.SetTextColor(Android.Graphics.Color.DarkGreen);
+
+            if (string.IsNullOrEmpty(id) || !(await new REDCapHelper(id).DoesREDCapIdExistAsync()))
             {
                 // Invalid REDCapId
                 mViewFailureReason.Text = "Invalid REDCap ID";
+                mViewFailureReason.SetTextColor(Android.Graphics.Color.Red);
             }
             else if (pin1 != pin2)
             {
                 // PINs do not equal
                 mViewFailureReason.Text = "PINs do not match";
-            } else if (pin1.Length < 4)
+                mViewFailureReason.SetTextColor(Android.Graphics.Color.Red);
+            }
+            else if (pin1.Length < 4)
             {
                 // PIN is not at least 4 digits
                 mViewFailureReason.Text = "PIN must be a minimum of 4 digits";
-            } else
+                mViewFailureReason.SetTextColor(Android.Graphics.Color.Red);
+            }
+            else
             {
-                mViewFailureReason.Text = "Confirming...";
-
                 // User has clicked the sign up button and entered a valid pin
                 mREDCapComplete.Invoke(this, new REDCapEventArg(id, pin1));
                 this.Dismiss();
             }
         }
 
-        private bool verifyREDCapId(string id)
-        {
-            bool result = false;
-            //////////////////////////////
-            // Verify REDCap ID here...
-            result = true;
-            Console.WriteLine("Checking REDCap ID " + id + "...");
-            //////////////////////////////
-            return result;
-        }
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             Dialog.Window.RequestFeature(WindowFeatures.NoTitle); //Sets the title bar to invisible

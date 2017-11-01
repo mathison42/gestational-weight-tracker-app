@@ -21,6 +21,7 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Net.Http;
 using GWG.survey;
+using System.Threading;
 
 namespace GWG.Resources.redcap
 {
@@ -41,9 +42,22 @@ namespace GWG.Resources.redcap
             mRecordID = record_id;
         }
 
+        public async Task<REDCapResult> GetMinimumProfile()
+        {
+            String[] fields = new String[] { "record_id" };
+            return await GetRecord(fields);
+        }
+
         public async Task<REDCapResult> GetProfile()
         {
-            var fields = new String[] { "record_id", "redcapid", "height", "bmi", "json" };
+            String[] fields = new String[] { "record_id", "control", "redcapid", "height", "bmi", "json" };
+            REDCapResult result = await GetRecord(fields);
+            mRecordID = result.record_id;
+            return result;
+        }
+
+        public async Task<REDCapResult> GetRecord(String[] fields)
+        {
             var forms = new String[] { c.DATABASE };
 
             var content = new FormUrlEncodedContent(new[]
@@ -60,7 +74,7 @@ namespace GWG.Resources.redcap
                 new KeyValuePair<string, string>("exportSurveyFields", "false"),
                 new KeyValuePair<string, string>("exportDataAccesGroups", "false"),
                 new KeyValuePair<string, string>("returnFormat", "json"),
-                new KeyValuePair<string, string>("filterLogic", "[redcapid]=" + mId)
+                new KeyValuePair<string, string>("filterLogic", "[redcapid]=" + mId) // Automatically gets everything if specified. Can't get specific fields.
             });
 
 
@@ -95,8 +109,6 @@ namespace GWG.Resources.redcap
                 //REDCapResult post = new REDCapResult();
                 //REDCapResult post = JsonConvert.DeserializeObject<REDCapResult>(resultString);
                 REDCapResult post = JsonConvert.DeserializeObject<REDCapResult>(resultString);
-
-                mRecordID = post.record_id;
 
                 return post;
             }
@@ -269,6 +281,28 @@ namespace GWG.Resources.redcap
                 return version;
             }
 
+        }
+
+
+        public async Task<bool> DoesREDCapIdExistAsync()
+        {
+            bool result = false;
+            //////////////////////////////
+            // Verify REDCap ID here...
+            REDCapResult profile = null;
+            profile = await GetMinimumProfile();
+            if (profile != null)
+            {
+                int redcapid;
+                if (int.TryParse(profile.redcapid, out redcapid) && profile.redcapid == mId)
+                {
+                    result = true;
+                    Console.WriteLine("RESULTS HEREEREE: " + redcapid);
+                }
+            }
+            //result = true;
+            //////////////////////////////
+            return result;
         }
     }
 }

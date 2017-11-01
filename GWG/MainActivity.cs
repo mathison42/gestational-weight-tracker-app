@@ -77,7 +77,6 @@ namespace GWG
                             REDCapHelper rch = new REDCapHelper(storeService.REDCapID);
                             REDCapResult result = await rch.GetProfile();
                             result.parseJson2DateWeightList();
-                            
 
                             if (result.redcapid != null)
                             {
@@ -138,40 +137,13 @@ namespace GWG
 
         private void SignUpDialog_mREDCapComplete(object sender, REDCapEventArg e)
         {
-            string id = e.REDCapId;
-            Console.WriteLine("ID: " + id);
-            Console.WriteLine("Stored UserName: " + storeService.UserName);
-            Console.WriteLine("Stored REDCapID: " + storeService.REDCapID);
-            Console.WriteLine("New ID: " + id);
-            
-            if (!storeService.DoCredentialsExist() || storeService.REDCapID == id)
+
+            if (!storeService.DoCredentialsExist() || storeService.REDCapID == e.REDCapId)
             {
-
-                mImgLock.Visibility = Android.Views.ViewStates.Invisible;
-                mProgressBar.Visibility = Android.Views.ViewStates.Visible;
-                //mImgLock.SetImageDrawable(GetDrawable(Resource.Drawable.ProgressBarStyle));
-                // Confirm that REDCap ID is valid....
-                bool validRedCapId = false;
-                Thread thread = new Thread(() =>
-                {
-                    validRedCapId = ConfirmRedCAPId(id);
-                });
-                thread.Start();
-                thread.Join();
-
                 // Save Password
-                if (validRedCapId)
-                {
-                    storeService.SaveCredentials("user", id, e.PIN);
-                    mViewPIN.Text = "Enter PIN";
-                    mViewPIN.SetTextColor(Android.Graphics.Color.ForestGreen);
-                }
-                else
-                {
-                    // Invalid Red Cap ID
-                    mViewPIN.Text = "Invalid Red Cap ID";
-                    mViewPIN.SetTextColor(Android.Graphics.Color.Red);
-                }
+                storeService.SaveCredentials("user", e.REDCapId, e.PIN);
+                mViewPIN.Text = "Enter PIN";
+                mViewPIN.SetTextColor(Android.Graphics.Color.ForestGreen);
             }
             else
             {
@@ -179,18 +151,6 @@ namespace GWG
                 mViewPIN.Text = "REDCap ID does not match original ID";
                 mViewPIN.SetTextColor(Android.Graphics.Color.Red);
             }
-        }
-
-        private bool ConfirmRedCAPId(string id)
-        {
-            Thread.Sleep(3000);
-            RunOnUiThread(() =>
-            {
-                mProgressBar.Visibility = Android.Views.ViewStates.Invisible;
-                mImgLock.Visibility = Android.Views.ViewStates.Visible;
-            });
-
-            return true;
         }
     }
 }
