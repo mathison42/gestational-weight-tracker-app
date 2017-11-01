@@ -66,6 +66,20 @@ namespace GWG.Resources.redcap
             return dueDateLong;
         }
 
+        public bool isExperimental()
+        {
+            bool result = false;
+            if (!string.IsNullOrWhiteSpace(experimental))
+            {
+                string exp = experimental.ToLower();
+                if (exp == "1" || exp == "y" || exp == "yes")
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
         public void parseJson2DateWeightList()
         {
             dateWeights = parseJson2DateWeightList(json);

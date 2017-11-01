@@ -109,9 +109,6 @@ namespace GWG
                 SupportActionBar.SetTitle(Resource.String.closeDrawer);
             }
 
-            // Retrieve Test Data
-            createTestData();
-
             // Retrieve Actual Data
             mRecord = JsonConvert.DeserializeObject<REDCapResult>(Intent.GetStringExtra("record"));
             mRecord.printRecord();
@@ -130,27 +127,43 @@ namespace GWG
                 mRCH.AddRecord(surveyResults);
             }
 
-            // Set initial graph data
-            Bundle args = new Bundle();
-            args.PutDouble("bmi", mRecord.getBMI());
-            args.PutLong("dueDate", mRecord.getDueDate());
-            args.PutString("dateWeights", REDCapResult.parseDateWeightList2Json(mRecord.dateWeights));
-            mGraphFragment.Arguments = args;
-
-            // Show initial Fragment
             var trans = SupportFragmentManager.BeginTransaction();
-            trans.Add(Resource.Id.fragmentContainer, mGraphFragment, "GraphFragment");
+            if (mRecord.isExperimental())
+            {
+                // Set initial graph data
+                Bundle args = new Bundle();
+                args.PutDouble("bmi", mRecord.getBMI());
+                args.PutLong("dueDate", mRecord.getDueDate());
+                args.PutString("dateWeights", REDCapResult.parseDateWeightList2Json(mRecord.dateWeights));
+                mGraphFragment.Arguments = args;
+
+                // Show initial Fragment
+                trans.Add(Resource.Id.fragmentContainer, mGraphFragment, "GraphFragment");
+
+                mCurrentFragment = mGraphFragment;
+            }
+            else
+            {
+                Bundle args = new Bundle();
+                mInformationFragment.Arguments = args;
+
+                // Show initial Fragment
+                trans.Add(Resource.Id.fragmentContainer, mInformationFragment, "InformationFragment");
+
+                mCurrentFragment = mInformationFragment;
+            }
             trans.Commit();
 
-            mCurrentFragment = mGraphFragment;
-            
             // Drawer Initialization
             mLeftDataSet = mLeftDataSet = new List<string>();
-            mLeftDataSet.Add("Tracker");
-            mLeftDataSet.Add("History");
             mLeftDataSet.Add("Information");
-            mLeftDataSet.Add("Baseline");
-            mLeftDataSet.Add("Survey");
+            if (mRecord.isExperimental())
+            {
+                mLeftDataSet.Add("Tracker");
+                mLeftDataSet.Add("History");
+                mLeftDataSet.Add("Baseline");
+                mLeftDataSet.Add("Survey");
+            }
             mLeftDataSet.Add("Logout");
             mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
             mLeftDrawer.Adapter = mLeftAdapter;
@@ -168,7 +181,9 @@ namespace GWG
 
         public void OnItemClick(AdapterView container, View view, int position, long id)
         {
-            if (id == 0)
+            string name = mLeftAdapter.GetItem(position).ToString();
+            
+            if (name == "Tracker")
             {
                 // Tracker
                 Console.WriteLine("Loading Tracker...");
@@ -184,7 +199,7 @@ namespace GWG
 
                 ReplaceFragment(mGraphFragment);
             }
-            else if (id == 1)
+            else if (name == "History")
             {
                 // History
                 Console.WriteLine("Loading History...");
@@ -199,7 +214,7 @@ namespace GWG
 
 
             }
-            else if (id == 2)
+            else if (name == "Information")
             {
                 // History
                 Console.WriteLine("Loading Information and Resources...");
@@ -213,7 +228,7 @@ namespace GWG
 
 
             }
-            else if (id == 3)
+            else if (name == "Baseline")
             {
                 // Baseline
                 Console.WriteLine("Loading Baseline...");
@@ -232,7 +247,7 @@ namespace GWG
                 }
                 ReplaceFragment(mBaselineFragment);
             }
-            else if (id == 4)
+            else if (name == "Survey")
             {
                 // Load Survey
                 Console.WriteLine("Loading survey...");
@@ -245,7 +260,7 @@ namespace GWG
                 }
                 ReplaceFragment(mSurveyIntroFragment);
             }
-            else if (id == 5)
+            else if (name == "Logout")
             {
                 // Logout
                 Console.WriteLine("Logging out...");
@@ -370,16 +385,5 @@ namespace GWG
             // Update Database with Weights and Dates
             await mRCH.SaveDateWeights(mRecord.parseDateWeightList2Json());
         }
-
-        public void createTestData()
-        {
-            // Retrieve data from database... for right now, falsify data
-
-             //mHeight = 76.5;
-             //mBMI = 25; 
-            //mDueDate = DateTime.Today.AddYears(1).AddMonths(-3).AddDays(7).Ticks;
-
-        }
-
     }
 }
