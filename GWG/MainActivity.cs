@@ -47,10 +47,6 @@ namespace GWG
 
             mBtnSignUp.Click += MBtnSignUp_Click;
             mBtnLogin.Click  += MBtnLogin_Click;
-
-            REDCapHelper rch = new REDCapHelper("123567");
-            //rch.GetVersion();
-
         }
 
         private async void MBtnLogin_Click(object sender, EventArgs e)

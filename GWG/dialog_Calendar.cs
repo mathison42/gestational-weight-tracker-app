@@ -58,12 +58,20 @@ namespace GWG
             // Set Dialog Title
             mCalendarText.Text = this.Arguments.GetString("title");
 
-            // Set Calendar Date
+            // Set Calendar Current, Min, and Max Dates
             long tempDate = this.Arguments.GetLong("dueDate");
+            DateTime origin = new DateTime(1970, 1, 1);
+            long today = (long)(DateTime.Today.Date - origin).TotalMilliseconds;
+            mCalendarView.MinDate = today;
+            mCalendarView.MaxDate = (long)(DateTime.Today.AddMonths(10).Date - origin).TotalMilliseconds;
             if (tempDate > 0)
             {
                 mSelectedDate = new DateTime(tempDate);
                 mCalendarView.UpdateDate(mSelectedDate.Year, mSelectedDate.Month-1, mSelectedDate.Day);
+                if (tempDate < today)
+                {
+                    mCalendarView.MinDate = tempDate;
+                }
             }
 
             return view;
