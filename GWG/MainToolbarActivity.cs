@@ -118,56 +118,66 @@ namespace GWG
             // Set REDCapHelper
             mRCH = new REDCapHelper(mRecord.redcapid, mRecord.record_id);
 
-            // Some check to see if dueDate is within 10 weeks and survey isn't completed
-            // Check for survey data, save if exists...
-            if (!System.String.IsNullOrWhiteSpace(Intent.GetStringExtra("surveyResults")))
-            {
-                // Save Survey Results
-                SurveyResults surveyResults = JsonConvert.DeserializeObject<SurveyResults>(Intent.GetStringExtra("surveyResults"));
-                mRCH.AddRecord(surveyResults);
-            }
-
-            var trans = SupportFragmentManager.BeginTransaction();
-            if (mRecord.isExperimental())
-            {
-                // Set initial graph data
-                Bundle args = new Bundle();
-                args.PutDouble("bmi", mRecord.getBMI());
-                args.PutLong("dueDate", mRecord.getDueDate());
-                args.PutString("dateWeights", REDCapResult.parseDateWeightList2Json(mRecord.dateWeights));
-                mGraphFragment.Arguments = args;
-
-                // Show initial Fragment
-                trans.Add(Resource.Id.fragmentContainer, mGraphFragment, "GraphFragment");
-
-                mCurrentFragment = mGraphFragment;
-            }
-            else
-            {
-                Bundle args = new Bundle();
-                mInformationFragment.Arguments = args;
-
-                // Show initial Fragment
-                trans.Add(Resource.Id.fragmentContainer, mInformationFragment, "InformationFragment");
-
-                mCurrentFragment = mInformationFragment;
-            }
-            trans.Commit();
-
             // Drawer Initialization
             mLeftDataSet = mLeftDataSet = new List<string>();
-            mLeftDataSet.Add("Information");
-            if (mRecord.isExperimental())
+            if (mRecord.showSurvey())
             {
-                mLeftDataSet.Add("Tracker");
-                mLeftDataSet.Add("History");
-                mLeftDataSet.Add("Baseline");
                 mLeftDataSet.Add("Survey");
+            } else
+            {
+                mLeftDataSet.Add("Information");
+                if (mRecord.isExperimental())
+                {
+                    mLeftDataSet.Add("Tracker");
+                    mLeftDataSet.Add("History");
+                }
+                mLeftDataSet.Add("Baseline");
             }
             mLeftDataSet.Add("Logout");
             mLeftAdapter = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleListItem1, mLeftDataSet);
             mLeftDrawer.Adapter = mLeftAdapter;
             mLeftDrawer.OnItemClickListener = this;
+
+            var trans = SupportFragmentManager.BeginTransaction();
+            if (mRecord.showSurvey())
+            {
+                Bundle args = new Bundle();
+                args.PutString("record", Intent.GetStringExtra("record"));
+                mSurveyIntroFragment.Arguments = args;
+
+                // Show initial Fragment
+                trans.Add(Resource.Id.fragmentContainer, mSurveyIntroFragment, "SurveyIntroFragment");
+
+                mCurrentFragment = mSurveyIntroFragment;
+
+            } else
+            {
+                if (mRecord.isExperimental())
+                {
+                    // Set initial graph data
+                    Bundle args = new Bundle();
+                    args.PutDouble("bmi", mRecord.getBMI());
+                    args.PutLong("dueDate", mRecord.getDueDate());
+                    args.PutString("dateWeights", REDCapResult.parseDateWeightList2Json(mRecord.dateWeights));
+                    mGraphFragment.Arguments = args;
+
+                    // Show initial Fragment
+                    trans.Add(Resource.Id.fragmentContainer, mGraphFragment, "GraphFragment");
+
+                    mCurrentFragment = mGraphFragment;
+                }
+                else
+                {
+                    Bundle args = new Bundle();
+                    mInformationFragment.Arguments = args;
+
+                    // Show initial Fragment
+                    trans.Add(Resource.Id.fragmentContainer, mInformationFragment, "InformationFragment");
+
+                    mCurrentFragment = mInformationFragment;
+                }
+            }
+            trans.Commit();
 
             // If mBMI is empty, show disclaimer
             if (mRecord.getBMI() <= 0)
@@ -211,8 +221,6 @@ namespace GWG
                     mHistoryFragment.Arguments = args;
                 }
                 ReplaceFragment(mHistoryFragment);
-
-
             }
             else if (name == "Information")
             {
@@ -225,8 +233,6 @@ namespace GWG
                     mInformationFragment.Arguments = args;
                 }
                 ReplaceFragment(mInformationFragment);
-
-
             }
             else if (name == "Baseline")
             {
@@ -324,7 +330,6 @@ namespace GWG
         public async void saveBaseline(DateTime dueDate, double weight, double height, double BMI)
         {
             mDueDate = dueDate.Ticks;
-            Console.WriteLine("SAVE BASLINE1");
             if (mRecord.dateWeights.Count == 0)
             {
                 mBMI = BMI;
@@ -332,32 +337,21 @@ namespace GWG
                 saveDateAndWeight(DateTime.Today.Ticks, weight);
 
                 // Update Database with Height, BMI, and Due Date
-                Console.WriteLine("SAVE BASLINE2");
                 await mRCH.SaveBaseline(height, BMI, dueDate.Ticks);
             }
             else
             {
-                Console.WriteLine("SAVE BASLINE3");
                 // Update Database with new Due Date
                 await mRCH.SaveDueDate(dueDate.Ticks);
             }
-
-            // Update Database with Due Date
-
         }
 
         public async void saveDateAndWeight(long timestamp, double weight)
         {
-
-            Console.WriteLine("saveDateAndWeight1");
             if (mRecord.dateWeights.Count > 0)
             {
-                Console.WriteLine("saveDateAndWeight2");
                 DateWeight maxDWDate = mRecord.maxDate();
                 DateWeight minDWDate = mRecord.minDate();
-                Console.WriteLine("new DateTime(timestamp).Date: " + new DateTime(timestamp).Date);
-                Console.WriteLine("new DateTime(maxDWDate.mDate).Date: " + new DateTime(maxDWDate.mDate).Date);
-                Console.WriteLine("new DateTime(DateTime.Today.Ticks).Date: " + new DateTime(DateTime.Today.Ticks).Date);
                 if (new DateTime(timestamp).Date == new DateTime(DateTime.Today.Ticks).Date &&
                     new DateTime(timestamp).Date == new DateTime(maxDWDate.mDate).Date)
                 {

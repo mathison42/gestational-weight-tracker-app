@@ -22,6 +22,7 @@ using Android.Text;
 using static Android.Resource;
 using Android.Text.Style;
 using Android.Graphics;
+using GWG.Resources.redcap;
 
 namespace GWG.Resources.fragments
 {
@@ -36,6 +37,7 @@ namespace GWG.Resources.fragments
         private EditText mQ7Value;
 
         private SurveyResults mSurveyResults = new SurveyResults();
+        REDCapResult mRecord;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -48,6 +50,7 @@ namespace GWG.Resources.fragments
 
             Bundle bundle = Arguments;
             mSurveyResults = JsonConvert.DeserializeObject<SurveyResults>(bundle.GetString("surveyResults"));
+            mRecord = JsonConvert.DeserializeObject<REDCapResult>(bundle.GetString("record"));
 
             mTxtErrorMessage = view.FindViewById<TextView>(Resource.Id.txtErrorMessage);
 
@@ -78,6 +81,9 @@ namespace GWG.Resources.fragments
             builderQ7.SetSpan(new UnderlineSpan(), startUnderline, endUnderline, SpanTypes.ExclusiveExclusive);
             mViewSurveyQ7.TextFormatted = builderQ7;
 
+            mQ6Value = view.FindViewById<EditText>(Resource.Id.q6Value);
+            mQ7Value = view.FindViewById<EditText>(Resource.Id.q7Value);
+
             return view;
         }
 
@@ -97,15 +103,15 @@ namespace GWG.Resources.fragments
             }
             else
             {
+                mTxtErrorMessage.Text = "Survey Complete";
+                mTxtErrorMessage.SetTextColor(Android.Graphics.Color.DarkGreen);
+        
                 // Save Survey
                 mSurveyResults.toString();
-
-                // Send user back to Graph View
-                var intent = new Intent(this.Context, typeof(MainToolbarActivity));
-                Bundle bundle = Arguments;
-                intent.PutExtra("record", bundle.GetString("record"));
-                intent.PutExtra("surveyResults", JsonConvert.SerializeObject(mSurveyResults));
-                StartActivity(intent);
+                REDCapHelper rch = new REDCapHelper(mRecord.redcapid, mRecord.record_id);
+                rch.AddRecord(mSurveyResults);
+                
+                mTxtErrorMessage.Text = "Survey Complete! Please log out.";
             }
         }
     }

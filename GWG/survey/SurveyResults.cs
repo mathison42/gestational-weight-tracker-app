@@ -27,6 +27,16 @@ namespace GWG.survey
 
         }
 
+        public bool surveyCompleted()
+        {
+            bool result = false;
+            if (!String.IsNullOrWhiteSpace(q1) && !String.IsNullOrWhiteSpace(q2) && !String.IsNullOrWhiteSpace(q3) && !String.IsNullOrWhiteSpace(q5))
+            {
+                result = true;
+            }
+            return result;
+        }
+
         public void toString()
         {
             Console.WriteLine("Q1. " + q1);

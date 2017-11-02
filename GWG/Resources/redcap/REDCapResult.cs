@@ -23,6 +23,7 @@ namespace GWG.Resources.redcap
         public string bmi { get; set; }
         public string json { get; set; }
         public string duedate { get; set; }
+        public string completed_survey { get; set; }
 
         private double bmiDouble = -1;
         private double heightDouble = -1;
@@ -75,6 +76,25 @@ namespace GWG.Resources.redcap
                 if (exp == "1" || exp == "y" || exp == "yes")
                 {
                     result = true;
+                }
+            }
+            return result;
+        }
+
+        public bool showSurvey()
+        {
+            bool result = false;
+            if (getDueDate() < DateTime.Today.AddDays(70).Ticks && getDueDate() > 0) {
+                if (string.IsNullOrWhiteSpace(completed_survey))
+                {
+                    result = true;
+                } else
+                {
+                    string c_s = completed_survey.ToLower();
+                    if (c_s == "0" || c_s == "n" || c_s == "no")
+                    {
+                        result = true;
+                    }
                 }
             }
             return result;
@@ -273,10 +293,11 @@ namespace GWG.Resources.redcap
             Console.WriteLine("Record ID: " + record_id);
             Console.WriteLine("REDCapID: " + redcapid);
             Console.WriteLine("Experimental: " + experimental);
+            Console.WriteLine("Completed Survey: " + completed_survey);
             Console.WriteLine("Height: " + height);
             Console.WriteLine("BMI: " + bmi);
             Console.WriteLine("JSON: " + json);
-            foreach(DateWeight dw in dateWeights)
+            foreach (DateWeight dw in dateWeights)
             {
                 dw.toString();
             }

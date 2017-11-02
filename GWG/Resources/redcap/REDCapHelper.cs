@@ -191,8 +191,11 @@ namespace GWG.Resources.redcap
             {
                 data = data + "<q7>" + survey.q7.ToString() + "</q7>";
             }
+            if (survey.surveyCompleted())
+            {
+                data = data + "<completed_survey>1</completed_survey>";
+            }
             data = data + "</item></records>";
-
             return AddRecord(data);
         }
 
@@ -234,7 +237,7 @@ namespace GWG.Resources.redcap
                 }
                 finally
                 {
-                    Console.WriteLine("content: " + content.ToString());
+                    Console.WriteLine("content: " + resultString.ToString());
                 }
                 PostCountResult pcr = JsonConvert.DeserializeObject<PostCountResult>(resultString);
 
