@@ -21,8 +21,13 @@ namespace GWG.Resources.fragments
 {
     public class InformationFragment : Android.Support.V4.App.Fragment {
 
-        private Button mBtnHowYourBabyGrows;
-        private Button mBtnNutritionAndWeightGain;
+        private Button mBtnCommonPregnancyTopics;
+        private Button mBtnTestsAndConditions;
+        private Button mBtnLaborAndDelivery;
+
+        private InformationCommonTopics mInformationCommonTopics;
+        private InformationTestsAndConditions mInformationTestsAndConditions;
+        private InformationLaborAndDelivery mInformationLaborAndDelivery;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -34,26 +39,39 @@ namespace GWG.Resources.fragments
             Bundle bundle = Arguments;
 
             View view = inflater.Inflate(Resource.Layout.Information, container, false);
-            mBtnHowYourBabyGrows = view.FindViewById<Button>(Resource.Id.btnHowYourBabyGrows);
-            mBtnNutritionAndWeightGain = view.FindViewById<Button>(Resource.Id.btnNutritionAndWeightGain);
+            mBtnCommonPregnancyTopics = view.FindViewById<Button>(Resource.Id.btnCommonPregnancyTopics);
+            mBtnTestsAndConditions = view.FindViewById<Button>(Resource.Id.btnTestsAndConditions);
+            mBtnLaborAndDelivery = view.FindViewById<Button>(Resource.Id.btnLaborAndDelivery);
 
-            mBtnHowYourBabyGrows.Click += MBtnHowYourBabyGrows_Click;
-            mBtnNutritionAndWeightGain.Click += MBtnNutritionAndWeightGain_Click;
+            mBtnCommonPregnancyTopics.Click += MBtnCommonPregnancyTopics_Click;
+            mBtnTestsAndConditions.Click += MBtnTestsAndConditions_Click;
+            mBtnLaborAndDelivery.Click += mBtnLaborAndDelivery_Click;
+
+            mInformationCommonTopics = new InformationCommonTopics();
+            mInformationTestsAndConditions = new InformationTestsAndConditions();
+            mInformationLaborAndDelivery = new InformationLaborAndDelivery();
             return view;
         }
 
-        private void MBtnHowYourBabyGrows_Click(object sender, EventArgs e)
+        private void MBtnCommonPregnancyTopics_Click(object sender, EventArgs e)
         {
-            var uri = Android.Net.Uri.Parse("http://www.xamarin.com");
-            var intent = new Intent(Intent.ActionView, uri);
-            StartActivity(intent);
+            var trans = Activity.SupportFragmentManager.BeginTransaction();
+            trans.Replace(Resource.Id.fragmentContainer, mInformationCommonTopics);
+            trans.Commit();
         }
 
-        private void MBtnNutritionAndWeightGain_Click(object sender, EventArgs e)
+        private void MBtnTestsAndConditions_Click(object sender, EventArgs e)
         {
-            var uri = Android.Net.Uri.Parse("http://www.google.com");
-            var intent = new Intent(Intent.ActionView, uri);
-            StartActivity(intent);
+            var trans = Activity.SupportFragmentManager.BeginTransaction();
+            trans.Replace(Resource.Id.fragmentContainer, mInformationTestsAndConditions);
+            trans.Commit();
+        }
+
+        private void mBtnLaborAndDelivery_Click(object sender, EventArgs e)
+        {
+            var trans = Activity.SupportFragmentManager.BeginTransaction();
+            trans.Replace(Resource.Id.fragmentContainer, mInformationLaborAndDelivery);
+            trans.Commit();
         }
     }
 }
