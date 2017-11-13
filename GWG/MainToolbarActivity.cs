@@ -330,6 +330,7 @@ namespace GWG
         public async void saveBaseline(DateTime dueDate, double weight, double height, double BMI)
         {
             mDueDate = dueDate.Ticks;
+            mRecord.setDueDate(dueDate.Ticks.ToString());
             if (mRecord.dateWeights.Count == 0)
             {
                 mBMI = BMI;
@@ -337,6 +338,8 @@ namespace GWG
                 saveDateAndWeight(DateTime.Today.Ticks, weight);
 
                 // Update Database with Height, BMI, and Due Date
+                mRecord.setBMI(BMI.ToString("0.0"));
+                mRecord.setHeight(height.ToString("0.0"));
                 await mRCH.SaveBaseline(height, BMI, dueDate.Ticks);
             }
             else
@@ -372,7 +375,6 @@ namespace GWG
             }
             else
             {
-                Console.WriteLine("saveDateAndWeight3");
                 mRecord.addDateWeight(new DateWeight(timestamp, weight));
             }
 

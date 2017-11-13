@@ -55,22 +55,36 @@ namespace GWG
             mBtnSetCalendar = view.FindViewById<Button>(Resource.Id.btnSetCalendar);
             mBtnSetCalendar.Click += MBtnSaveCalendar_Click;
 
-            // Set Dialog Title
-            mCalendarText.Text = this.Arguments.GetString("title");
-
-            // Set Calendar Current, Min, and Max Dates
+            // Get Due Date and Standard Calc Info
             long tempDate = this.Arguments.GetLong("dueDate");
             DateTime origin = new DateTime(1970, 1, 1);
-            long today = (long)(DateTime.Today.Date - origin).TotalMilliseconds;
-            mCalendarView.MinDate = today;
-            mCalendarView.MaxDate = (long)(DateTime.Today.AddMonths(10).Date - origin).TotalMilliseconds;
-            if (tempDate > 0)
+            long today = (long)(DateTime.Today.AddDays(1).Date - origin).TotalMilliseconds;
+
+            // Set Dialog Title
+            string title = this.Arguments.GetString("title");
+            if (title == "LMP")
             {
-                mSelectedDate = new DateTime(tempDate);
-                mCalendarView.UpdateDate(mSelectedDate.Year, mSelectedDate.Month-1, mSelectedDate.Day);
-                if (tempDate < today)
+                mCalendarText.Text = "Select Date of Last Menstrual Period (LMP)";
+
+                // Set Calendar Current, Min, and Max Dates
+                mCalendarView.MinDate = (long)(DateTime.Today.AddMonths(-3).Date - origin).TotalMilliseconds;
+                mCalendarView.MaxDate = today;
+            }
+            else
+            {
+                mCalendarText.Text = "Select Due Date";
+
+                // Set Calendar Current, Min, and Max Dates
+                mCalendarView.MinDate = today;
+                mCalendarView.MaxDate = (long)(DateTime.Today.AddMonths(10).Date - origin).TotalMilliseconds;
+                if (tempDate > 0)
                 {
-                    mCalendarView.MinDate = tempDate;
+                    mSelectedDate = new DateTime(tempDate);
+                    mCalendarView.UpdateDate(mSelectedDate.Year, mSelectedDate.Month - 1, mSelectedDate.Day);
+                    if (tempDate < today)
+                    {
+                        mCalendarView.MinDate = tempDate;
+                    }
                 }
             }
 

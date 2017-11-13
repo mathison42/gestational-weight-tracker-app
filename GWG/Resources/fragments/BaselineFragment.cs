@@ -138,7 +138,7 @@ namespace GWG.Resources.fragments
         private void MBtnCalcPeriod_Click(object sender, EventArgs e)
         {
             Bundle bundle = new Bundle();
-            bundle.PutString("title", "Select Date of Last Menstrual Period (LMP)");
+            bundle.PutString("title", "LMP");
 
             //Pull up Calendar Dialog
             dialog_Calendar calendarDialog = new dialog_Calendar();
@@ -152,16 +152,14 @@ namespace GWG.Resources.fragments
         private void CalendarDialog_mCalendarComplete_Naegele(object sender, CalendarEventArg e)
         {
             DateTime lmp = e.Date;
-            Console.WriteLine("LMP Date: " + lmp.ToShortDateString());
             mDueDate = calcNaegelesRule(lmp);
-            Console.WriteLine("Due Date: " + mDueDate.ToShortDateString());
             mViewDate.Text = mDueDate.ToShortDateString();
         }
 
         private void MBtnSetADate_Click(object sender, EventArgs e)
         {
             Bundle bundle = new Bundle();
-            bundle.PutString("title", "Select Due Date");
+            bundle.PutString("title", "DD");
             if (mDueDate.Ticks > 0)
             {
                 bundle.PutLong("dueDate", mDueDate.Ticks);

@@ -44,6 +44,8 @@ namespace GWG
         private TextView mViewSaveWeightError;
         private Button mBtnSetWeight;
 
+        private long mInitDate;
+
         public event EventHandler<DailyWeightEventArg> mDailyWeightComplete;
 
         public override void OnCreate(Bundle savedInstanceState)
@@ -55,7 +57,7 @@ namespace GWG
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            // Use this to return your custom view for this Fragment
+            mInitDate = this.Arguments.GetLong("initDate");
 
             base.OnCreateView(inflater, container, savedInstanceState);
             var view = inflater.Inflate(Resource.Layout.dialog_weight, container, false);
@@ -77,7 +79,12 @@ namespace GWG
         {
             string weightStr = mTxtWeight.Text;
             double weight;
-            if (String.IsNullOrWhiteSpace(weightStr))
+            long newDate = mCalendarView.DateTime.Ticks;
+            if (newDate <= mInitDate)
+            {
+                mViewSaveWeightError.Text = "Date must be greater than original.";
+            }
+            else if (String.IsNullOrWhiteSpace(weightStr))
             {
                 mViewSaveWeightError.Text = "Enter weight value.";
             }
@@ -86,7 +93,7 @@ namespace GWG
                 weight = Math.Round(weight, 1);
 
                 // User has clicked the Save Weight button and entered a valid weight
-                mDailyWeightComplete.Invoke(this, new DailyWeightEventArg(mCalendarView.DateTime.Ticks, weight));
+                mDailyWeightComplete.Invoke(this, new DailyWeightEventArg(newDate, weight));
                 this.Dismiss();
             } else
             {

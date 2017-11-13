@@ -37,10 +37,23 @@ namespace GWG.Resources.redcap
             {
                 if (!Double.TryParse(bmi, out bmiDouble))
                 {
-                    Console.WriteLine("[Error] BMI is not a double value.");
+                    Console.WriteLine("[Error] GET: BMI is not a double value.");
                 }
             }
             return bmiDouble;
+        }
+
+        public void setBMI(string bmi)
+        {
+            if (!Double.TryParse(bmi, out bmiDouble))
+            {
+                Console.WriteLine("[Error] SET: BMI is not a double value.");
+            }
+            else
+            {
+                this.bmi = bmi;
+            }
+
         }
 
         public double getHeight()
@@ -49,22 +62,47 @@ namespace GWG.Resources.redcap
             {
                 if (!Double.TryParse(height, out heightDouble))
                 {
-                    Console.WriteLine("[Error] Height is not a double value.");
+                    Console.WriteLine("[Error] GET: Height is not a double value.");
                 }
             }
             return heightDouble;
+        }
+
+        public void setHeight(string height)
+        {
+            if (!Double.TryParse(height, out heightDouble))
+            {
+                Console.WriteLine("[Error] SET: Height is not a double value.");
+            }
+            else
+            {
+                this.height = height;
+            }
+
         }
 
         public long getDueDate()
         {
             if (dueDateLong == -1)
             {
-                if (!Int64.TryParse(duedate, out dueDateLong))
+                if (!long.TryParse(duedate, out dueDateLong))
                 {
-                    Console.WriteLine("[Error] Height is not a double value.");
+                    Console.WriteLine("[Error] GET: Due Date is not an long value.");
                 }
             }
             return dueDateLong;
+        }
+
+        public void setDueDate(string duedate)
+        {
+            if (!long.TryParse(duedate, out dueDateLong))
+            {
+                Console.WriteLine("[Error] SET: Due Date is not an long value.");
+            }
+            else
+            {
+                this.duedate = duedate;
+            }
         }
 
         public bool isExperimental()

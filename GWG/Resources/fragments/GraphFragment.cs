@@ -75,7 +75,7 @@ namespace GWG.Resources.fragments
                 List<double> guide = WeightGain.getWeightList(mBMI);
                 double max = guide.Max();
                 double dev = WeightGain.getWeightDeviation(mBMI);
-                mViewGainGoal.Text = "Your weight gain goal is " + (max - dev) + " - " + (max + dev) + " lbs.";
+                mViewGainGoal.Text = "Weight gain goal of " + (max - dev) + " - " + (max + dev) + " lbs.";
             }
         }
 
@@ -108,16 +108,24 @@ namespace GWG.Resources.fragments
 
         private void MBtnAddWeight_Click(object sender, EventArgs e)
         {
-            if (mDueDate.Ticks == 0)
+
+            if (mDueDate.Ticks == 0 || mDateWeights.Count <= 0)
             {
-                Console.WriteLine("[Error] Complete Baseline first.");
-                return;
+                Console.WriteLine("[User Error] Complete Baseline first.");
             }
-            //Pull up Daily Weight Dialog
-            dialog_weight weightDialog = new dialog_weight();
-            weightDialog.Show(this.FragmentManager, "Add Weight Fragment");
-            
-            weightDialog.mDailyWeightComplete += WeightDialog_mDailyWeightComplete;
+            else
+            {
+                // Get initial date of Baseline
+                Bundle bundle = new Bundle();
+                bundle.PutLong("initDate", REDCapResult.minDate(mDateWeights).mDate);
+
+                //Pull up Daily Weight Dialog
+                dialog_weight weightDialog = new dialog_weight();
+                weightDialog.Arguments = bundle;
+                weightDialog.Show(this.FragmentManager, "Add Weight Fragment");
+
+                weightDialog.mDailyWeightComplete += WeightDialog_mDailyWeightComplete;
+            }
         }
 
         private void WeightDialog_mDailyWeightComplete(object sender, DailyWeightEventArg e)
@@ -168,8 +176,7 @@ namespace GWG.Resources.fragments
                 {
                     weightSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(new DateTime(mDateWeights[i].mDate)), mDateWeights[i].mWeight));
                 }
-
-                Console.WriteLine("mDueDate!!!!: " + mDueDate);
+                
                 if (mDueDate.Ticks > 0)
                 {
                     int TOTAL_WEEKS = 40;
@@ -221,11 +228,13 @@ namespace GWG.Resources.fragments
             {
                 absoluteEndDate = mDueDate;
             }
+            /**
             Console.WriteLine("startDate: " + startDate);
             Console.WriteLine("endDate: " + endDate);
             Console.WriteLine("absoluteEndDate: " + absoluteEndDate);
             Console.WriteLine("minWeight: " + minWeight);
             Console.WriteLine("maxWeight: " + maxWeight);
+            */
 
             plotModel.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = DateTimeAxis.ToDouble(startDate), Maximum = DateTimeAxis.ToDouble(endDate), StringFormat = "M/d",
                 AbsoluteMinimum = DateTimeAxis.ToDouble(startDate),
