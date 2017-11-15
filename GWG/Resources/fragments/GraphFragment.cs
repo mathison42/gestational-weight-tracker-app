@@ -199,35 +199,59 @@ namespace GWG.Resources.fragments
             var plotModel = new PlotModel { Title = "" };
 
 
-            // Get the min and max weights for the initial bounds
+            // Get absolute min and max for the initial bounds
             double minWeight = 0;
             double maxWeight = 50;
+            double absMinWeight = 0;
+            double absMaxWeight = 50;
+            DateTime minDate = DateTime.Today.AddDays(-5);
+            DateTime maxDate = DateTime.Today.AddDays(5);
+            double absMinDate = DateTime.Today.AddDays(-5).Ticks;
+            double absMaxDate = DateTime.Today.AddDays(5).Ticks;
             if (mDateWeights.Count > 0)
             {
+                minDate = new DateTime(REDCapResult.minDate(mDateWeights).mDate).AddDays(-1);
+                maxDate = new DateTime(REDCapResult.maxDate(mDateWeights).mDate).AddDays(1);
+                absMinDate = DateTimeAxis.ToDouble(minDate);
+                absMaxDate = DateTimeAxis.ToDouble(maxDate);
+
                 minWeight = REDCapResult.minWeight(mDateWeights).mWeight;
                 maxWeight = REDCapResult.maxWeight(mDateWeights).mWeight;
+                absMinWeight = minWeight;
+                absMaxWeight = maxWeight;
+         
+                if (guideSeries.Points.Count > 0)
+                {
+                    DataPoint minGuideWeight = guideSeries.Points2[0];
+                    DataPoint maxGuideWeight = guideSeries.Points[guideSeries.Points.Count - 1];
+
+                    // Calc Absolute Min Weight
+                    if (minGuideWeight.Y < minWeight)
+                    {
+                        absMinWeight = minGuideWeight.Y;
+                    }
+
+                    // Calc Absolute Max Weight
+                    if (maxGuideWeight.Y > maxWeight)
+                    {
+                        absMaxWeight = maxGuideWeight.Y;
+                    }
+
+                    // Calc Absolute Min Date
+                    if (minGuideWeight.X < DateTimeAxis.ToDouble(minDate))
+                    {
+                        absMinDate = minGuideWeight.X;
+                    }
+
+                    // Calc Absolute Max Date
+                    if (maxGuideWeight.X > DateTimeAxis.ToDouble(maxDate))
+                    {
+                        absMaxDate = maxGuideWeight.X;
+                    }
+                }
+
             }
 
-            DateTime startDate;
-            DateTime endDate;
-            if (mDateWeights.Count > 0)
-            {
-                startDate = new DateTime(REDCapResult.minDate(mDateWeights).mDate).AddDays(-1);
-                endDate = new DateTime(REDCapResult.maxDate(mDateWeights).mDate).AddDays(1);
-
-            }
-            else
-            {
-                startDate = DateTime.Today.AddDays(-5);
-                endDate = DateTime.Today.AddDays(5);
-
-            }
-
-            DateTime absoluteEndDate = endDate;
-            if (mDueDate.Ticks > 0)
-            {
-                absoluteEndDate = mDueDate;
-            }
             /**
             Console.WriteLine("startDate: " + startDate);
             Console.WriteLine("endDate: " + endDate);
@@ -236,14 +260,14 @@ namespace GWG.Resources.fragments
             Console.WriteLine("maxWeight: " + maxWeight);
             */
 
-            plotModel.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = DateTimeAxis.ToDouble(startDate), Maximum = DateTimeAxis.ToDouble(endDate), StringFormat = "M/d",
-                AbsoluteMinimum = DateTimeAxis.ToDouble(startDate),
-                AbsoluteMaximum = DateTimeAxis.ToDouble(absoluteEndDate),
+            plotModel.Axes.Add(new DateTimeAxis { Position = AxisPosition.Bottom, Minimum = DateTimeAxis.ToDouble(minDate), Maximum = DateTimeAxis.ToDouble(maxDate), StringFormat = "M/d",
+                AbsoluteMinimum = absMinDate,
+                AbsoluteMaximum = absMaxDate,
                 Title = "Date"
             });
             plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = minWeight-3, Maximum = maxWeight+3,
-                AbsoluteMinimum = minWeight - 10,
-                AbsoluteMaximum = maxWeight + 10,
+                AbsoluteMinimum = absMinWeight - 10,
+                AbsoluteMaximum = absMaxWeight + 10,
                 Title = "Weight ( lbs )"
             });
 
