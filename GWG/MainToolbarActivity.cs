@@ -353,23 +353,31 @@ namespace GWG
         {
             if (mRecord.dateWeights.Count > 0)
             {
-                DateWeight maxDWDate = mRecord.maxDate();
-                DateWeight minDWDate = mRecord.minDate();
-                if (new DateTime(timestamp).Date == new DateTime(DateTime.Today.Ticks).Date &&
-                    new DateTime(timestamp).Date == new DateTime(maxDWDate.mDate).Date)
-                {
-                    mRecord.setDateWeight(maxDWDate.mDate, weight);
-                }
-                else if (new DateTime(timestamp).Date <= new DateTime(minDWDate.mDate).Date) {
+                DateTime newDate = new DateTime(timestamp);
+                DateTime today = new DateTime(DateTime.Today.Ticks);
+                DateTime minDate = new DateTime(mRecord.minDate().mDate);
+                // No dates prior to inital date
+                if (newDate.Date <= minDate.Date) {
                     Console.WriteLine("[User Error] Unable to add a date prior to the init date.");
                 }
+                // No dates after today
+                else if (today.Date < newDate.Date)
+                {
+                    Console.WriteLine("[User Error] Unable to add a date after today's date.");
+                }
+                // Add if newDate doesn't exist
                 else if (mRecord.getDateWeight(timestamp) == null)
                 {
                     mRecord.addDateWeight(new DateWeight(timestamp, weight));
                 }
+                // Update if newDate is today
+                else if (newDate.Date == today.Date)
+                {
+                    mRecord.setDateWeight(timestamp, weight);
+                }
+                // Nothing if value already exists at this date
                 else
                 {
-                    // value already exists at this date
                     Console.WriteLine("[User Error] Unable to add a date that already exists.");
                 }
             }
