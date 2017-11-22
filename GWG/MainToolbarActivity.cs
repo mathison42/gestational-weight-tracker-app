@@ -338,7 +338,7 @@ namespace GWG
                 // Update Database with Height, BMI, and Due Date
                 mRecord.setBMI(BMI.ToString("0.0"));
                 mRecord.setHeight(height.ToString("0.0"));
-                await mRCH.SaveBaseline(height, BMI, dueDate.Ticks);
+                await mRCH.SaveInitBaseline(height, BMI, dueDate.Ticks);
             }
             else
             {

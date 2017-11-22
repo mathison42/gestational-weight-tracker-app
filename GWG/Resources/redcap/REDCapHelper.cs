@@ -50,7 +50,7 @@ namespace GWG.Resources.redcap
 
         public async Task<REDCapResult> GetProfile()
         {
-            String[] fields = new String[] { "record_id", "control", "redcapid", "count", "height", "bmi", "json" };
+            String[] fields = new String[] { "record_id", "control", "redcapid", "initdate", "count", "height", "bmi", "json" };
             REDCapResult result = await GetRecord(fields);
             mRecordID = result.record_id;
             return result;
@@ -124,19 +124,19 @@ namespace GWG.Resources.redcap
             return await AddCount(count);
         }
 
-        public async Task<bool> SaveBaseline(double height, double bmi, long duedate)
+        public async Task<bool> SaveInitBaseline(double height, double bmi, long duedate)
         {
-            return await AddRecord(height, bmi, duedate, null, null);
+            return await AddRecord(height, bmi, true, duedate, null, null);
         }
 
         public async Task<bool> SaveDueDate(long duedate)
         {
-            return await AddRecord(Double.MinValue, Double.MinValue, duedate, null, null);
+            return await AddRecord(Double.MinValue, Double.MinValue, false, duedate, null, null);
         }
 
         public async Task<bool> SaveDateWeights(string json, string jsonshort)
         {
-            return await AddRecord(Double.MinValue, Double.MinValue, Int64.MinValue, json, jsonshort);
+            return await AddRecord(Double.MinValue, Double.MinValue, false, Int64.MinValue, json, jsonshort);
         }
 
         private async Task<bool> AddCount(int count)
@@ -151,7 +151,7 @@ namespace GWG.Resources.redcap
             return await AddRecord(data);
         }
 
-        private async Task<bool> AddRecord(double height, double bmi, long duedate, string json, string jsonshort)
+        private async Task<bool> AddRecord(double height, double bmi, bool setInitDate, long duedate, string json, string jsonshort)
         {
             String data = "<records><item><record_id>" + mRecordID + "</record_id>";
             if (bmi != Double.MinValue)
@@ -161,6 +161,12 @@ namespace GWG.Resources.redcap
             if (height != Double.MinValue)
             {
                 data = data + "<height>" + height.ToString("0.0") + "</height>";
+            }
+            if (setInitDate)
+            {
+                data = data + "<initdate>" + DateTime.Today.Ticks + "</initdate>";
+                data = data + "<initdateshort>" + DateTime.Today.ToShortDateString() + "</initdateshort>";
+                Console.WriteLine("SETTTING INIT DATE: " + DateTime.Today.Ticks + " _ " + DateTime.Today.ToShortDateString());
             }
             if (duedate != Int64.MinValue)
             {

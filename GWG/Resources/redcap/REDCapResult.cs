@@ -23,6 +23,7 @@ namespace GWG.Resources.redcap
         public string height { get; set; }
         public string bmi { get; set; }
         public string json { get; set; }
+        public string initdate { get; set; }
         public string duedate { get; set; }
         public string completed_survey { get; set; }
 
@@ -125,7 +126,21 @@ namespace GWG.Resources.redcap
         public bool showSurvey()
         {
             bool result = false;
-            if (getDueDate() < DateTime.Today.AddDays(70).Ticks && getDueDate() > 0) {
+            long initDateLong = -1;
+            if (string.IsNullOrWhiteSpace(initdate))
+            {
+                Console.WriteLine("[Warn] Empty Initial Date value found.");
+            }
+            else if (!long.TryParse(initdate, out initDateLong)) {
+                Console.WriteLine("[Error] Invalid Initial Date found:" + initdate);
+            }
+            else if (getDueDate() == -1)
+            {
+                Console.WriteLine("[Error] Due Date not found:" + getDueDate());
+            }
+            // If more than 2 weeks past Initital Date and more than 3 weeks past conception date, show survey.
+            else if (new DateTime(initDateLong).AddDays(14) < DateTime.Today  && new DateTime(getDueDate()).AddDays(-280).AddDays(21) < DateTime.Today)
+            {
                 if (string.IsNullOrWhiteSpace(completed_survey))
                 {
                     result = true;
@@ -137,6 +152,10 @@ namespace GWG.Resources.redcap
                         result = true;
                     }
                 }
+            }
+            else
+            {
+                Console.WriteLine("[Info] Init Date and Due Date criteria not met.");
             }
             return result;
         }
