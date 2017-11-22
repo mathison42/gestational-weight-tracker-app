@@ -111,9 +111,7 @@ namespace GWG
 
             // Retrieve Actual Data
             mRecord = JsonConvert.DeserializeObject<REDCapResult>(Intent.GetStringExtra("record"));
-            mRecord.printRecord();
             mRecord.parseJson2DateWeightList();
-            mRecord.printRecord();
 
             // Set REDCapHelper
             mRCH = new REDCapHelper(mRecord.redcapid, mRecord.record_id);
@@ -125,7 +123,7 @@ namespace GWG
                 mLeftDataSet.Add("Survey");
             } else
             {
-                mLeftDataSet.Add("Information");
+                mLeftDataSet.Add("Resources"); // Information
                 if (mRecord.isExperimental())
                 {
                     mLeftDataSet.Add("Tracker");
@@ -222,7 +220,7 @@ namespace GWG
                 }
                 ReplaceFragment(mHistoryFragment);
             }
-            else if (name == "Information")
+            else if (name == "Resources")
             {
                 // History
                 Console.WriteLine("Loading Information and Resources...");
@@ -335,7 +333,7 @@ namespace GWG
             {
                 mBMI = BMI;
                 mHeight = height;
-                saveDateAndWeight(DateTime.Today.Ticks, weight);
+                saveDateAndWeight(dueDate.AddDays(-280).Ticks, weight);
 
                 // Update Database with Height, BMI, and Due Date
                 mRecord.setBMI(BMI.ToString("0.0"));
@@ -387,7 +385,7 @@ namespace GWG
             }
 
             // Update Database with Weights and Dates
-            await mRCH.SaveDateWeights(mRecord.parseDateWeightList2Json());
+            await mRCH.SaveDateWeights(mRecord.parseDateWeightList2Json(), mRecord.parseDateWeightList2JsonShort());
         }
     }
 }

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@android:color/white"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="wrap_content">
     <ImageView
         android:layout_alignParentTop="true"
         android:id="@+id/viewIconToolbar"
@@ -31,7 +31,7 @@
         android:layout_below="@id/viewDisclaimerTitle"
         android:id="@+id/viewDisclaimerText"
         android:text="@string/disclaimer"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#699791"
@@ -44,18 +44,20 @@
         android:layout_below="@id/viewDisclaimerText"
         android:id="@+id/layoutSaveDateBtn"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
         android:paddingBottom="20dp">
         <Button
             android:text="@string/acceptance"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/btnAccept"
             android:textSize="20dp"
             android:textColor="#699791"
             android:background="@drawable/btnStyle"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:padding="20dp"
             android:textAllCaps="false" />
     </RelativeLayout>
 </RelativeLayout>

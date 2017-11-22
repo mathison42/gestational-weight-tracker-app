@@ -59,7 +59,10 @@ namespace GWG.Resources.fragments
             q2Yes.Click += Q2_Click;
             q2No.Click += Q2_Click;
             q3Yes.Click += Q3_Click;
-            q3No.Click += Q3_Click;
+            q3No.Click += Q3_Click;/**
+            mSurveyResults.q1 = "";
+            mSurveyResults.q2 = "";
+            mSurveyResults.q3 = "";*/
 
             return view;
         }
@@ -87,25 +90,11 @@ namespace GWG.Resources.fragments
             // Save Values
             mArgs.PutString("surveyResults", JsonConvert.SerializeObject(mSurveyResults));
             mSurvey2Fragment.Arguments = mArgs;
-
-            // Confirm all Values
-            if (String.IsNullOrWhiteSpace(mSurveyResults.q1))
-            {
-                mTxtErrorMessage.Text = "Please answer question #1";
-            }
-            else if (String.IsNullOrWhiteSpace(mSurveyResults.q2))
-            {
-                mTxtErrorMessage.Text = "Please answer question #2";
-            }
-            else if (String.IsNullOrWhiteSpace(mSurveyResults.q3))
-            {
-                mTxtErrorMessage.Text = "Please answer question #3";
-            } else
-            {
-                var trans = this.FragmentManager.BeginTransaction();
-                trans.Replace(Resource.Id.fragmentContainer, mSurvey2Fragment);
-                trans.Commit();
-            }
+            
+            var trans = this.FragmentManager.BeginTransaction();
+            trans.Replace(Resource.Id.fragmentContainer, mSurvey2Fragment);
+            trans.Commit();
+            
         }
     }
 }

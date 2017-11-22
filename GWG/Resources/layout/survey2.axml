@@ -28,17 +28,30 @@
       android:layout_marginTop="20dp"
       android:layout_marginLeft="20dp"
       android:layout_marginRight="20dp" />
-  <EditText
-      android:id="@+id/q4Value"
-      android:inputType="text"
-      android:textColor="#699791"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="20dp"
-      android:layout_marginRight="20dp"
-      android:ems="30"
-      android:layout_gravity="top|left"
-      android:gravity="top|left" />
+  <LinearLayout
+      android:id="@+id/layoutQ4Answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:weightSum="2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp">
+    <EditText
+        android:id="@+id/q4Value"
+        android:inputType="text"
+        android:textColor="#699791"
+        android:layout_width="0.0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight="1.5"
+        android:ems="30" />
+    <CheckBox android:id="@+id/checkboxNotSure"
+        android:layout_width="0.0dip"
+        android:layout_height="fill_parent"
+        android:layout_weight=".5"
+        android:text="Not Sure"
+        android:textColor="#699791"
+        android:textSize="20dp" />
+  </LinearLayout>
   <TextView
       android:text="5. What would you consider your weight just before this pregnancy?"
       android:layout_width="match_parent"

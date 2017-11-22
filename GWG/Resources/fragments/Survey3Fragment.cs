@@ -28,6 +28,7 @@ namespace GWG.Resources.fragments
 {
     public class Survey3Fragment : Android.Support.V4.App.Fragment {
 
+        private TextView mTxtSuccessMessage;
         private TextView mTxtErrorMessage;
         private Button mBtnCompleteSurvey;
 
@@ -52,6 +53,7 @@ namespace GWG.Resources.fragments
             mSurveyResults = JsonConvert.DeserializeObject<SurveyResults>(bundle.GetString("surveyResults"));
             mRecord = JsonConvert.DeserializeObject<REDCapResult>(bundle.GetString("record"));
 
+            mTxtSuccessMessage = view.FindViewById<TextView>(Resource.Id.txtSuccessMessage);
             mTxtErrorMessage = view.FindViewById<TextView>(Resource.Id.txtErrorMessage);
 
             mBtnCompleteSurvey = view.FindViewById<Button>(Resource.Id.btnCompleteSurvey);
@@ -93,26 +95,17 @@ namespace GWG.Resources.fragments
             mSurveyResults.q6 = mQ6Value.Text;
             mSurveyResults.q7 = mQ7Value.Text;
 
-            if (System.String.IsNullOrWhiteSpace(mSurveyResults.q6))
-            {
-                mTxtErrorMessage.Text = "Please answer question #6";
-            }
-            else if (System.String.IsNullOrWhiteSpace(mSurveyResults.q7))
-            {
-                mTxtErrorMessage.Text = "Please answer question #7";
-            }
-            else
-            {
-                mTxtErrorMessage.Text = "Survey Complete";
-                mTxtErrorMessage.SetTextColor(Android.Graphics.Color.DarkGreen);
-        
-                // Save Survey
-                mSurveyResults.toString();
-                REDCapHelper rch = new REDCapHelper(mRecord.redcapid, mRecord.record_id);
-                rch.AddRecord(mSurveyResults);
-                
-                mTxtErrorMessage.Text = "Survey Complete! Please log out.";
-            }
+            mTxtSuccessMessage.SetTextColor(Android.Graphics.Color.DarkGreen);
+            mTxtSuccessMessage.Visibility = ViewStates.Visible;
+
+            // Save Survey
+            mSurveyResults.toString();
+            REDCapHelper rch = new REDCapHelper(mRecord.redcapid, mRecord.record_id);
+            rch.AddRecord(mSurveyResults);
+
+            mTxtErrorMessage.SetTextColor(Android.Graphics.Color.DarkGreen);
+            mTxtErrorMessage.Text = "Please log back in to continue using the app.";
+            mBtnCompleteSurvey.Clickable = false;
         }
     }
 }

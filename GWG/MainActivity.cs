@@ -14,10 +14,10 @@ using Android.Content.PM;
 
 namespace GWG
 {
-    [Activity(Label = "GWG", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "Pregnancy and Me", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : Activity
     {
-        public static string AppName { get { return "GWG"; } }
+        public static string AppName { get { return "Pregnancy and Me"; } }
         CredentialsService storeService;
 
         private EditText mLoginPIN;
@@ -72,13 +72,16 @@ namespace GWG
 
                             REDCapHelper rch = new REDCapHelper(storeService.REDCapID);
                             REDCapResult result = await rch.GetProfile();
-                            result.parseJson2DateWeightList();
+                            //result.parseJson2DateWeightList();
 
                             if (result.redcapid != null)
                             {
                                 if (result.redcapid == storeService.REDCapID)
                                 {
-                                    result.printRecord();
+                                    // Increment Login Count
+                                    int count = 0;
+                                    int.TryParse(result.count, out count);
+                                    await rch.SaveCount(++count);
 
                                     // Reset Values
                                     mLoginPIN.Text = "";

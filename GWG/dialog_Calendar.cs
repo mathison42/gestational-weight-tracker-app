@@ -67,7 +67,7 @@ namespace GWG
                 mCalendarText.Text = "Select Date of Last Menstrual Period (LMP)";
 
                 // Set Calendar Current, Min, and Max Dates
-                mCalendarView.MinDate = (long)(DateTime.Today.AddMonths(-3).Date - origin).TotalMilliseconds;
+                mCalendarView.MinDate = (long)(DateTime.Today.AddMonths(-4).Date - origin).TotalMilliseconds;
                 mCalendarView.MaxDate = today;
             }
             else

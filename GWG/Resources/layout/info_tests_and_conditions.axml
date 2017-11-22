@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:text="Tests and Conditions During Pregnancy"
+        android:text="Pregnancy Tests &amp; Conditions"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:id="@+id/viewTestsAndConditions"
         android:textColor="#699791"
         android:textStyle="bold"

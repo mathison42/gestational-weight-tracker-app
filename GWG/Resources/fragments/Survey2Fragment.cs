@@ -30,6 +30,7 @@ namespace GWG.Resources.fragments
 
         private TextView mViewSurveyQ4;
         private EditText mQ4Value;
+        private CheckBox mQ4NotSure;
         private TextView mViewSurveyQ5;
 
         private SurveyResults mSurveyResults = new SurveyResults();
@@ -58,6 +59,7 @@ namespace GWG.Resources.fragments
 
             mViewSurveyQ4 = view.FindViewById<TextView>(Resource.Id.viewSurveyQ4);
             mQ4Value = view.FindViewById<EditText>(Resource.Id.q4Value);
+            mQ4NotSure = view.FindViewById<CheckBox>(Resource.Id.checkboxNotSure);
             RadioButton q5Underweight = view.FindViewById<RadioButton>(Resource.Id.q5Underweight);
             RadioButton q5NormalWeight = view.FindViewById<RadioButton>(Resource.Id.q5NormalWeight);
             RadioButton q5Overweight = view.FindViewById<RadioButton>(Resource.Id.q5Overweight);
@@ -68,6 +70,8 @@ namespace GWG.Resources.fragments
             q5Overweight.Click += Q5_Click;
             q5Obese.Click += Q5_Click;
             q5NotSure.Click += Q5_Click;
+            /**mSurveyResults.q4 = "";
+            mSurveyResults.q5 = "";*/
 
             // Make Q4 invisible if Q3 is No
             if (mSurveyResults.q3.ToLower() == "no" || mSurveyResults.q3.ToLower() == "n")
@@ -100,28 +104,21 @@ namespace GWG.Resources.fragments
         private void MBtnContSurvey_Click(object sender, EventArgs e)
         {
             // Save Values
-            mSurveyResults.q4 = mQ4Value.Text;
-            mArgs.PutString("surveyResults", JsonConvert.SerializeObject(mSurveyResults));
-            mSurvey3Fragment.Arguments = mArgs;
-
-            // Confirm all Values
-
-
-            // Confirm all Values
-            if (String.IsNullOrWhiteSpace(mSurveyResults.q4))
+            if (mQ4NotSure.Checked)
             {
-                mTxtErrorMessage.Text = "Please answer question #4";
-            }
-            else if (String.IsNullOrWhiteSpace(mSurveyResults.q5))
-            {
-                mTxtErrorMessage.Text = "Please answer question #5";
+                mSurveyResults.q4 = "Not Sure";
             }
             else
             {
-                var trans = this.FragmentManager.BeginTransaction();
-                trans.Replace(Resource.Id.fragmentContainer, mSurvey3Fragment);
-                trans.Commit();
+                mSurveyResults.q4 = mQ4Value.Text;
+
             }
+            mArgs.PutString("surveyResults", JsonConvert.SerializeObject(mSurveyResults));
+            mSurvey3Fragment.Arguments = mArgs;
+
+            var trans = this.FragmentManager.BeginTransaction();
+            trans.Replace(Resource.Id.fragmentContainer, mSurvey3Fragment);
+            trans.Commit();
         }
     }
 }

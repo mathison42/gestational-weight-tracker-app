@@ -75,7 +75,7 @@ namespace GWG.Resources.fragments
                 List<double> guide = WeightGain.getWeightList(mBMI);
                 double max = guide.Max();
                 double dev = WeightGain.getWeightDeviation(mBMI);
-                mViewGainGoal.Text = "Weight gain goal of " + (max - dev) + " - " + (max + dev) + " lbs.";
+                mViewGainGoal.Text = "Your weight gain goal is " + (max - dev) + "-" + (max + dev) + " lbs.";
             }
         }
 
@@ -265,7 +265,7 @@ namespace GWG.Resources.fragments
                 AbsoluteMaximum = absMaxDate,
                 Title = "Date"
             });
-            plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = minWeight-3, Maximum = maxWeight+3,
+            plotModel.Axes.Add(new LinearAxis { Position = AxisPosition.Left, Minimum = minWeight-10, Maximum = maxWeight+10,
                 AbsoluteMinimum = absMinWeight - 10,
                 AbsoluteMaximum = absMaxWeight + 10,
                 Title = "Weight ( lbs )"

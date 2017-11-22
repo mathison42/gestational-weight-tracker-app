@@ -19,6 +19,7 @@ namespace GWG.Resources.redcap
         public string record_id { get; set; }
         public string redcapid { get; set; }
         public string experimental { get; set; }
+        public string count { get; set; }
         public string height { get; set; }
         public string bmi { get; set; }
         public string json { get; set; }
@@ -28,7 +29,9 @@ namespace GWG.Resources.redcap
         private double bmiDouble = -1;
         private double heightDouble = -1;
         private long dueDateLong = -1;
-        
+        public string jsonshort = "";
+
+
         public List<DateWeight> dateWeights = new List<DateWeight>();
 
         public double getBMI()
@@ -183,13 +186,32 @@ namespace GWG.Resources.redcap
             string result;
 
             Dictionary<long, double> tempDic = new Dictionary<long, double>();
-            foreach(DateWeight dw in dateWeights){
+            foreach (DateWeight dw in dateWeights){
                 tempDic.Add(dw.mDate, dw.mWeight);
             }
             result = JsonConvert.SerializeObject(tempDic, Formatting.Indented);
             return result;
         }
-        
+
+        public String parseDateWeightList2JsonShort()
+        {
+            jsonshort = parseDateWeightList2JsonShort(dateWeights);
+            return jsonshort;
+        }
+
+        public static string parseDateWeightList2JsonShort(List<DateWeight> dateWeights)
+        {
+            string result;
+
+            Dictionary<string, double> tempDicShort = new Dictionary<string, double>();
+            foreach (DateWeight dw in dateWeights)
+            {
+                tempDicShort.Add(new DateTime(dw.mDate).ToShortDateString(), dw.mWeight);
+            }
+            result = JsonConvert.SerializeObject(tempDicShort, Formatting.Indented);
+            return result;
+        }
+
         public DateWeight minDate()
         {
             return minDate(dateWeights);

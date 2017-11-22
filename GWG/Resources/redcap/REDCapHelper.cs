@@ -50,7 +50,7 @@ namespace GWG.Resources.redcap
 
         public async Task<REDCapResult> GetProfile()
         {
-            String[] fields = new String[] { "record_id", "control", "redcapid", "height", "bmi", "json" };
+            String[] fields = new String[] { "record_id", "control", "redcapid", "count", "height", "bmi", "json" };
             REDCapResult result = await GetRecord(fields);
             mRecordID = result.record_id;
             return result;
@@ -91,7 +91,7 @@ namespace GWG.Resources.redcap
                     result.EnsureSuccessStatusCode();
                 } finally
                 {
-                    Console.WriteLine("content: " + content.ToString());
+                    //Console.WriteLine("content: " + content.ToString());
 
                     if (resultString.StartsWith("["))
                     {
@@ -104,10 +104,8 @@ namespace GWG.Resources.redcap
                         resultString = resultString.Substring(0, resultString.Length - 1);
                     }
 
-                    Console.WriteLine("resultString: " + resultString);
+                    //Console.WriteLine("resultString: " + resultString);
                 }
-                //REDCapResult post = new REDCapResult();
-                //REDCapResult post = JsonConvert.DeserializeObject<REDCapResult>(resultString);
                 REDCapResult post = JsonConvert.DeserializeObject<REDCapResult>(resultString);
 
                 return post;
@@ -120,23 +118,40 @@ namespace GWG.Resources.redcap
         {
             public int Count { get; set; }
         };
-    
+
+        public async Task<bool> SaveCount(int count)
+        {
+            return await AddCount(count);
+        }
+
         public async Task<bool> SaveBaseline(double height, double bmi, long duedate)
         {
-            return await AddRecord(height, bmi, duedate, null);
+            return await AddRecord(height, bmi, duedate, null, null);
         }
 
         public async Task<bool> SaveDueDate(long duedate)
         {
-            return await AddRecord(Double.MinValue, Double.MinValue, duedate, null);
+            return await AddRecord(Double.MinValue, Double.MinValue, duedate, null, null);
         }
 
-        public async Task<bool> SaveDateWeights(string json)
+        public async Task<bool> SaveDateWeights(string json, string jsonshort)
         {
-            return await AddRecord(Double.MinValue, Double.MinValue, Int64.MinValue, json);
+            return await AddRecord(Double.MinValue, Double.MinValue, Int64.MinValue, json, jsonshort);
         }
 
-        private async Task<bool> AddRecord(double height, double bmi, long duedate, string json)
+        private async Task<bool> AddCount(int count)
+        {
+            String data = "<records><item><record_id>" + mRecordID + "</record_id>";
+            if (count > 0)
+            {
+                data = data + "<count>" + count.ToString() + "</count>";
+            }
+            data = data + "</item></records>";
+
+            return await AddRecord(data);
+        }
+
+        private async Task<bool> AddRecord(double height, double bmi, long duedate, string json, string jsonshort)
         {
             String data = "<records><item><record_id>" + mRecordID + "</record_id>";
             if (bmi != Double.MinValue)
@@ -150,10 +165,15 @@ namespace GWG.Resources.redcap
             if (duedate != Int64.MinValue)
             {
                 data = data + "<duedate>" + duedate.ToString() + "</duedate>";
+                data = data + "<duedateshort>" + new DateTime(duedate).ToShortDateString() + "</duedateshort>";
             }
             if (!String.IsNullOrWhiteSpace(json))
             {
                 data = data + "<json>" + json.ToString() + "</json>";
+            }
+            if (!String.IsNullOrWhiteSpace(jsonshort))
+            {
+                data = data + "<jsonshort>" + jsonshort.ToString() + "</jsonshort>";
             }
             data = data + "</item></records>";
 
@@ -191,10 +211,8 @@ namespace GWG.Resources.redcap
             {
                 data = data + "<q7>" + survey.q7.ToString() + "</q7>";
             }
-            if (survey.surveyCompleted())
-            {
-                data = data + "<completed_survey>1</completed_survey>";
-            }
+
+            data = data + "<completed_survey>1</completed_survey>";
             data = data + "</item></records>";
             return AddRecord(data);
         }
@@ -237,7 +255,7 @@ namespace GWG.Resources.redcap
                 }
                 finally
                 {
-                    Console.WriteLine("content: " + resultString.ToString());
+                    //Console.WriteLine("content: " + resultString.ToString());
                 }
                 PostCountResult pcr = JsonConvert.DeserializeObject<PostCountResult>(resultString);
 
@@ -276,11 +294,11 @@ namespace GWG.Resources.redcap
                 }
                 finally
                 {
-                    Console.WriteLine("content: " + content.ToString());
-                    Console.WriteLine("version: " + version);
+                    //Console.WriteLine("content: " + content.ToString());
+                    //Console.WriteLine("version: " + version);
                 }
 
-                Console.WriteLine("Post Response: " + version);
+                //Console.WriteLine("Post Response: " + version);
                 return version;
             }
 
@@ -300,7 +318,7 @@ namespace GWG.Resources.redcap
                 if (int.TryParse(profile.redcapid, out redcapid) && profile.redcapid == mId)
                 {
                     result = true;
-                    Console.WriteLine("RESULTS HEREEREE: " + redcapid);
+                    //Console.WriteLine("Results Here: " + redcapid);
                 }
             }
             //result = true;

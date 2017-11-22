@@ -28,17 +28,33 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp" />
-    <EditText
-        android:id="@+id/q6Value"
-        android:inputType="numberDecimal"
-        android:textColor="#699791"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:hint="Weight (lbs)"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:ems="30" />
+    <LinearLayout
+        android:id="@+id/layoutQ6Answer"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="0"
+          android:weightSum="2"
+          android:layout_marginLeft="20dp"
+          android:layout_marginRight="20dp">
+      <EditText
+          android:id="@+id/q6Value"
+          android:inputType="text"
+          android:textColor="#699791"
+          android:layout_width="0.0dip"
+          android:layout_height="fill_parent"
+          android:layout_weight="1.5"
+          android:hint="Weight (pounds)"
+          android:ems="30" />
+      <TextView
+          android:text="pounds"
+          android:layout_width="0.0dip"
+          android:layout_height="fill_parent"
+          android:layout_weight=".5"
+          android:id="@+id/viewlbs6"
+          android:textColor="#699791"
+          android:textSize="20dp"
+          android:gravity="left|bottom" />
+    </LinearLayout>
     <TextView
         android:text="7. How much weight do you think you will gain during this pregnancy?"
         android:layout_width="match_parent"
@@ -52,30 +68,58 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp" />
-    <EditText
-        android:id="@+id/q7Value"
-        android:inputType="numberDecimal"
-        android:textColor="#699791"
+    <LinearLayout
+        android:id="@+id/layoutQ7Answer"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="0"
+          android:weightSum="2"
+          android:layout_marginLeft="20dp"
+          android:layout_marginRight="20dp">
+      <EditText
+          android:id="@+id/q7Value"
+          android:inputType="text"
+          android:textColor="#699791"
+          android:layout_width="0.0dip"
+          android:layout_height="fill_parent"
+          android:layout_weight="1.5"
+          android:hint="Weight (pounds)"
+          android:ems="30" />
+      <TextView
+          android:text="pounds"
+          android:layout_width="0.0dip"
+          android:layout_height="fill_parent"
+          android:layout_weight=".5"
+          android:id="@+id/viewlbs7"
+          android:textColor="#699791"
+          android:textSize="20dp"
+          android:gravity="left|bottom" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/txtSuccessMessage"
+        android:inputType="text"
+        android:textColor="#FF0000"
+        android:visibility="invisible"
+        android:text="Thank you for completing the survey!"
+        android:layout_gravity="bottom|center"
+        android:gravity="bottom|center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="0"
-        android:hint="Weight (lbs)"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:ems="30"
-        android:layout_gravity="top|left"
-        android:gravity="top|left" />
+        android:layout_marginRight="20dp" />
     <TextView
         android:id="@+id/txtErrorMessage"
         android:inputType="text"
         android:textColor="#FF0000"
         android:text=""
-        android:layout_gravity="bottom|center"
-        android:gravity="bottom|center"
-        android:textSize="20dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp" />
     <Button

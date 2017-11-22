@@ -15,8 +15,8 @@
         android:id="@+id/imgIcon"
         android:layout_marginTop="20dp" />
     <TextView
-        android:text="Gestational Weight Tracker"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Pregnancy and Me"
+        android:textSize="30dp"
         android:layout_width="match_parent"
         android:layout_weight="10"
         android:layout_height="0dp"

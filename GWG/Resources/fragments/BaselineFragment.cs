@@ -85,13 +85,13 @@ namespace GWG.Resources.fragments
 
         private void MTxtHeight_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
         {
-            Console.WriteLine("Height: " + e.Editable.ToString());
+            //Console.WriteLine("Height: " + e.Editable.ToString());
             setTextBMI(e.Editable.ToString(), mTxtWeight.Text);
         }
 
         private void MTxtWeight_AfterTextChanged(object sender, Android.Text.AfterTextChangedEventArgs e)
         {
-            Console.WriteLine("Weight: " + e.Editable.ToString());
+            //Console.WriteLine("Weight: " + e.Editable.ToString());
             setTextBMI(mTxtHeight.Text, e.Editable.ToString());
         }
 
@@ -180,7 +180,7 @@ namespace GWG.Resources.fragments
         private void CalendarDialog_mCalendarComplete_SelectDate(object sender, CalendarEventArg e)
         {
             mDueDate = e.Date;
-            Console.WriteLine("Selected Date: " + mDueDate.ToShortDateString());
+            //Console.WriteLine("Selected Date: " + mDueDate.ToShortDateString());
             mViewDate.Text = mDueDate.ToShortDateString();
         }
 
@@ -230,9 +230,10 @@ namespace GWG.Resources.fragments
         private DateTime calcNaegelesRule(DateTime lmp)
         {
             DateTime dueDate = lmp;
-            dueDate = dueDate.AddYears(1);
-            dueDate = dueDate.AddMonths(-3);
-            dueDate = dueDate.AddDays(7);
+            //dueDate = dueDate.AddYears(1);
+            //dueDate = dueDate.AddMonths(-3);
+            //dueDate = dueDate.AddDays(7);
+            dueDate = dueDate.AddDays(280);
             return dueDate;
         }
 
