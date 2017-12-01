@@ -138,8 +138,8 @@ namespace GWG.Resources.redcap
             {
                 Console.WriteLine("[Error] Due Date not found:" + getDueDate());
             }
-            // If more than 2 weeks past Initital Date and more than 3 weeks past conception date, show survey.
-            else if (new DateTime(initDateLong).AddDays(14) < DateTime.Today  && new DateTime(getDueDate()).AddDays(-280).AddDays(21) < DateTime.Today)
+            // If more than 4 weeks past Initital Date and more than 15 weeks past conception date, show survey.
+            else if (new DateTime(initDateLong).AddDays(28) < DateTime.Today && new DateTime(getDueDate()).AddDays(-280).AddDays(105) < DateTime.Today)
             {
                 if (string.IsNullOrWhiteSpace(completed_survey))
                 {
