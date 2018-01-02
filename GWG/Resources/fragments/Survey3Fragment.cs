@@ -102,9 +102,7 @@ namespace GWG.Resources.fragments
             mSurveyResults.toString();
             REDCapHelper rch = new REDCapHelper(mRecord.redcapid, mRecord.record_id);
             rch.AddRecord(mSurveyResults);
-
-            mTxtErrorMessage.SetTextColor(Android.Graphics.Color.DarkGreen);
-            mTxtErrorMessage.Text = "Please log back in to continue using the app.";
+            
             mBtnCompleteSurvey.Clickable = false;
         }
     }

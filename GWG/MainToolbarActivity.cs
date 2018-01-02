@@ -28,7 +28,7 @@ using GWG.survey;
 namespace GWG
 {
     [Activity(Label = "MainToolbarActivity", Theme = "@style/MyTheme", ScreenOrientation = ScreenOrientation.Portrait)]
-    public class MainToolbarActivity : ActionBarActivity, AdapterView.IOnItemClickListener
+    public class MainToolbarActivity : AppCompatActivity, AdapterView.IOnItemClickListener
     {
         private SupportToolbar mToolbar;
         private MyActionBarDrawerToggle mDrawerToggle;
@@ -86,7 +86,7 @@ namespace GWG
                 Resource.String.closeDrawer // Closed Message
             );
 
-            mDrawerLayout.SetDrawerListener(mDrawerToggle);
+            mDrawerLayout.AddDrawerListener(mDrawerToggle);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetDisplayShowTitleEnabled(true);
             mDrawerToggle.SyncState();

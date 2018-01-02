@@ -14,7 +14,7 @@ using Android.Content.PM;
 
 namespace GWG
 {
-    [Activity(Label = "Pregnancy and Me", MainLauncher = true, Icon = "@drawable/icon", ScreenOrientation = ScreenOrientation.Portrait)]
+    [Activity(Label = "Pregnancy and Me", MainLauncher = true, Icon = "@drawable/gwg_icon", ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : Activity
     {
         public static string AppName { get { return "Pregnancy and Me"; } }

@@ -77,6 +77,7 @@ namespace GWG.Resources.fragments
             if (mSurveyResults.q3.ToLower() == "no" || mSurveyResults.q3.ToLower() == "n")
             {
                 mViewSurveyQ4.Visibility = Android.Views.ViewStates.Invisible;
+                mQ4NotSure.Visibility = Android.Views.ViewStates.Invisible;
                 mQ4Value.Visibility = Android.Views.ViewStates.Invisible;
                 mQ4Value.Text = "N/A";
             }
